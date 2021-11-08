@@ -31,21 +31,21 @@
         <div class="form-group">
             <label for="rb-gender">Gender</label>
             <div class="form-check">
-                <input class="form-check-input" type="radio" name="rb-gender" id="rb-gender" value="Female" checked>
-                <label class="form-check-label" for="rb-gender">
-                    Default radio
+                <input class="form-check-input" type="radio" name="rb-gender" id="rb-gender-1" value="FEMALE" checked>
+                <label class="form-check-label" for="rb-gender-1">
+                    Female
                 </label>
-                </div>
-                <div class="form-check">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios2" value="option2">
-                <label class="form-check-label" for="exampleRadios2">
-                    Second default radio
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="rb-gender" id="rb-gender-2" value="MALE">
+                <label class="form-check-label" for="rb-gender-2">
+                    Male
                 </label>
-                </div>
-                <div class="form-check disabled">
-                <input class="form-check-input" type="radio" name="exampleRadios" id="exampleRadios3" value="option3" disabled>
-                <label class="form-check-label" for="exampleRadios3">
-                    Disabled radio
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="rb-gender" id="rb-gender-3" value="OTHER">
+                <label class="form-check-label" for="rb-gender-3">
+                    Other
                 </label>
             </div>
         </div>
