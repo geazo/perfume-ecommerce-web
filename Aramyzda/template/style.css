@@ -1,0 +1,83 @@
+.header{
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    padding-left: 5%;
+    padding-right: 5%;
+    box-shadow: 0px 2px 5px 3px rgba(0,0,0,0.41);
+}
+.logoToko{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.logo{
+    background-image: url(../asset/formal_but_lux_amogus.png);
+
+    width: 600px;
+    height: 150px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.navBar{
+    padding-left: 5%;
+    padding-right: 5%;
+}
+.marketing-container{
+    margin-top: 30px;
+}
+.katalog{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+}
+.kontainerUtama{
+    padding: 3% 10%;
+}
+.sortBy{
+    margin-bottom: 3%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+.displayTeksSort{
+    width: 83%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.displayedTeks{
+    font-weight: bolder;
+    font-size: 2em;
+}
+.selectSort{
+    width: 17%;
+}
+.konten{
+    display: flex;
+    
+}
+.nav-item{
+    border-bottom: 1px solid #eaeaea;
+    width: 200px;
+}
+.nav-link{
+    color: black;
+}
+.navKiri{
+    margin-right: 2%;
+}
+.card{
+    margin-bottom: 3%;
+}
+
+
+
+
+
+.xyzUnusedForTestingOnlyClassPlsDontTouch{
+    background-image: url(../asset/formal_but_lux_amogus.png);
+}
