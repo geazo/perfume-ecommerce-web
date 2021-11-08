@@ -4,6 +4,9 @@
     if (isset($_REQUEST['btn-login'])) {
         header("Location: login.php");
     }
+    if (isset($_REQUEST['btn-register'])) {
+        
+    }
 ?>
     <div class="container p-3">
         <div class="row">
