@@ -8,6 +8,10 @@
         $username = $_REQUEST['inp-username'];
         $password = $_REQUEST['inp-password'];
 
+        if ($username == "admin" && $password == "admin") {
+            header("Location: ../admin/entry.php");
+        }
+
         $stmt = $conn->prepare("SELECT * FROM user");
         $stmt->execute();
         $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
@@ -40,12 +44,12 @@
                 <h1>Login</h1>
                 <form method="POST">
                     <div class="form-group">
-                        <label for="tbx-username">Username or Email</label>
-                        <input type="text" class="form-control" id="tbx-username" placeholder="Enter username or email" name="tbx-username">
+                        <label for="inp-username">Username or Email</label>
+                        <input type="text" class="form-control" id="inp-username" placeholder="Enter username or email" name="inp-username">
                     </div>
                     <div class="form-group mb-2">
-                        <label for="tbx-password">Password</label>
-                        <input type="password" class="form-control" id="tbx-password" placeholder="Password" name="tbx-password">
+                        <label for="inp-password">Password</label>
+                        <input type="password" class="form-control" id="inp-password" placeholder="Password" name="inp-password">
                     </div>
                     <button name="btn-login" type="submit" class="btn btn-primary">Login</button>
                     <button name="btn-register" type="submit" class="btn border btn-light">Go to register</button>
