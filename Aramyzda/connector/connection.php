@@ -3,7 +3,7 @@
     $host = 'localhost';
     $user = 'root';
     $password = '';
-    $database = 'latihan_prak';
+    $database = 'proyek_pw_aramyzda';
     $port = '3306';
     $conn = new mysqli($host, $user, $password, $database);
     if ($conn->connect_errno) {
