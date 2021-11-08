@@ -2,7 +2,7 @@
   $pilihanSort = array('Featured', 'Best Selling', 'Alhpabetical,A-Z', 'Alphabetical,Z-A', 'Price, Hight to Low', 'Price, Low to High', 'Oldest to Newest', 'Newest to Oldest');
   $printedTex = isset($_REQUEST['']);
   $listProduct = file_get_contents(
-    "results.json"
+    "result.json"
   );
 ?>
 <!-- code here -->
