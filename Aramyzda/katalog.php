@@ -1,12 +1,12 @@
 <?php require_once("./template/heading.php");
 $pilihanSort = array('Best Selling', 'Alhpabetical,A-Z', 'Alphabetical,Z-A', 'Price, Hight to Low', 'Price, Low to High', 'Oldest to Newest', 'Newest to Oldest');
 $printedTex = isset($_REQUEST['']);
-$listProduct = file_get_contents(
+$listProductDB = file_get_contents(
   "result.json"
 );
-$listProduct = json_decode($listProduct, true);
+$listProductDB = json_decode($listProductDB, true);
 $listBrand = [];
-foreach ($listProduct as $key => $value) {
+foreach ($listProductDB as $key => $value) {
   $kembar = false;
   foreach ($listBrand as $i => $brandName) {
     if ($value['brand'] == $brandName) {
@@ -18,6 +18,15 @@ foreach ($listProduct as $key => $value) {
   }
 }
 sort($listBrand);
+
+$listProduct = [];
+
+if (isset($_REQUEST['btn-submit-search']))
+foreach ($listProductDB as $key => $value) {
+  if (str_contains(strtoupper($value['name']), strtoupper($_REQUEST['tbx-search']))) {
+    $listProduct[] = $value;
+  }
+}
 
 $maxProductInAPage = 21;
 $maxPage = ceil(count($listProduct) / $maxProductInAPage);
@@ -32,9 +41,11 @@ if (isset($_REQUEST['page'])) {
     $currentPage = $maxPage;
   }
 }
+
 echo '<pre>';
-print_r($currentPage); echo "<br>";
-print_r($listProduct[20]);
+// print_r($currentPage); echo "<br>";
+// print_r($listProduct);
+print_r($_REQUEST);
 echo '</pre>';
 ?>
 <!-- code here -->
@@ -69,14 +80,14 @@ echo '</pre>';
         <span name="displayTeks" class="displayedTeks">Gucci Gang</span>
       </div>
       <div class="searchbox col-3">
-            <div class="row">
-              <div class="col-8">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-              </div>
-              <div class="col-4">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-              </div>
+          <div class="row">
+            <div class="col-8">
+              <input class="form-control me-2" name="tbx-search" type="search" placeholder="Search" aria-label="Search" value="<?=$_REQUEST['tbx-search'] ?>">
             </div>
+            <div class="col-4">
+              <button class="btn btn-outline-success" type="submit" name="btn-submit-search">Search</button>
+            </div>
+          </div>
       </div>
     </div>
 
@@ -94,36 +105,42 @@ echo '</pre>';
 
       <div class="navKanan col-9 ">
         <div class="katalog justify-content-between row ">
-          <?php for ($i = ($currentPage - 1) * $maxProductInAPage; $i < $currentPage * $maxProductInAPage; $i++) { ?>
-            <?php if ($i >= count($listProduct)) break; ?>
-            <div class="card" style="width: 18rem;">
-              <img src="<?= $listProduct[$i]['image'] ?>" class="card-img-top" alt="...">
-              <div class="card-body">
-                <h6 class="card-title"> <?= $listProduct[$i]['name'] ?> </h6>
-                <p class="card-text">Rp <?= $listProduct[$i]['price'] != '' ? number_format($listProduct[$i]['price'], 0, ',', '.') : '0' ?> </p>
+          <?php if(count($listProduct) != 0) { ?>
+            <?php for ($i = ($currentPage - 1) * $maxProductInAPage; $i < $currentPage * $maxProductInAPage; $i++) { ?>
+              <?php if ($i >= count($listProduct)) break; ?>
+              <div class="card" style="width: 18rem;">
+                <img src="<?= $listProduct[$i]['image'] ?>" class="card-img-top" alt="...">
+                <div class="card-body">
+                  <h6 class="card-title"> <?= $listProduct[$i]['name'] ?> </h6>
+                  <p class="card-text">Rp <?= $listProduct[$i]['price'] != '' ? number_format($listProduct[$i]['price'], 0, ',', '.') : '0' ?> </p>
+                </div>
               </div>
-            </div>
-          <?php } ?>
+            <?php } ?>
+            <?php } else {?>
+              <h1>Item yang anda cari tidak ada!</h1>
+            <?php } ?>
         </div>
         <!-- pagination -->
-        <nav class="d-flex justify-content-center">
-          <ul class="pagination">
-            <li class="page-item"><a class="page-link" href="<?= 'katalog.php?page='.$currentPage - 1?>">Previous</a></li>
-            <?php if($currentPage - 2 > 1) {?>
-              <li class="page-item"><a class="page-link" href="<?= 'katalog.php' ?>">1</a></li>
-              <li class="page-item"><span class="page-link">...</span></li>
-            <?php } ?>
-            <?php for ($i = $currentPage - 2; $i <= $currentPage + 2; $i++) { ?>
-              <?php if ($i < 1 || $i > $maxPage) continue; ?>
-              <li class="page-item"><a class="page-link" href="<?= 'katalog.php?page='.$i ?>"><?=$i?></a></li>
-            <?php } ?>
-            <?php if($currentPage + 2 < $maxPage) {?>
-              <li class="page-item"><span class="page-link">...</span></li>
-              <li class="page-item"><a class="page-link" href="<?= 'katalog.php?page='.$maxPage?>"><?= $maxPage ?></a></li>
-            <?php } ?>
-            <li class="page-item"><a class="page-link" href="<?= 'katalog.php?page='.$currentPage + 1?>">Next</a></li>
-          </ul>
-        </nav>
+          <?php if(count($listProduct) != 0) { ?>
+            <nav class="d-flex justify-content-center">
+              <ul class="pagination">
+                <li class="page-item"><a class="page-link" href="<?= 'katalog.php?page='.$currentPage - 1?>">Previous</a></li>
+                <?php if($currentPage - 2 > 1) {?>
+                  <li class="page-item"><a class="page-link" href="<?= 'katalog.php' ?>">1</a></li>
+                  <li class="page-item"><span class="page-link">...</span></li>
+                <?php } ?>
+                <?php for ($i = $currentPage - 2; $i <= $currentPage + 2; $i++) { ?>
+                  <?php if ($i < 1 || $i > $maxPage) continue; ?>
+                  <li class="page-item"><a class="page-link" href="<?= 'katalog.php?page='.$i ?>"><?=$i?></a></li>
+                <?php } ?>
+                <?php if($currentPage + 2 < $maxPage) {?>
+                  <li class="page-item"><span class="page-link">...</span></li>
+                  <li class="page-item"><a class="page-link" href="<?= 'katalog.php?page='.$maxPage?>"><?= $maxPage ?></a></li>
+                <?php } ?>
+                <li class="page-item"><a class="page-link" href="<?= 'katalog.php?page='.$currentPage + 1?>">Next</a></li>
+              </ul>
+            </nav>
+          <?php } ?>
       </div>
       <!--penutup katalog -->
     </div>
