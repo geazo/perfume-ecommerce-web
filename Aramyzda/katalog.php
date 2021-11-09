@@ -1,5 +1,5 @@
 <?php require_once("./template/heading.php");
-$pilihanSort = array('Featured', 'Best Selling', 'Alhpabetical,A-Z', 'Alphabetical,Z-A', 'Price, Hight to Low', 'Price, Low to High', 'Oldest to Newest', 'Newest to Oldest');
+$pilihanSort = array('Best Selling', 'Alhpabetical,A-Z', 'Alphabetical,Z-A', 'Price, Hight to Low', 'Price, Low to High', 'Oldest to Newest', 'Newest to Oldest');
 $printedTex = isset($_REQUEST['']);
 $listProduct = file_get_contents(
   "result.json"
@@ -53,20 +53,30 @@ echo '</pre>';
     </div>
   </div>
   <div class="kontainerUtama">
-    <div class="sortBy">
-      <div class="selectSort">
+    <div class="sortBy row">
+      <div class="selectSort col-2">
         <select class="form-select" aria-label="Default select example">
           <option selected>Featured Items</option>
-          <?php for ($i = 0; $i < 6; $i++) {
+          <?php for ($i = 0; $i < 7; $i++) {
           ?>
-            <option value="sort<?= $i ?>">sort<?= $i ?></option>
+            <option value="sort<?= $i ?>"><?= $pilihanSort[$i] ?></option>
           <?php
           }
           ?>
         </select>
       </div>
-      <div class="displayTeksSort">
+      <div class="displayTeksSort col-7">
         <span name="displayTeks" class="displayedTeks">Gucci Gang</span>
+      </div>
+      <div class="searchbox col-3">
+            <div class="row">
+              <div class="col-8">
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              </div>
+              <div class="col-4">
+                <button class="btn btn-outline-success" type="submit">Search</button>
+              </div>
+            </div>
       </div>
     </div>
 
