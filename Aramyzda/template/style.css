@@ -5,6 +5,7 @@
     padding-left: 5%;
     padding-right: 5%;
     box-shadow: 0px 2px 5px 3px rgba(0,0,0,0.41);
+    background-color: black;
 }
 .logoToko{
     display: flex;
@@ -12,7 +13,7 @@
     justify-content: center;
 }
 .logo{
-    background-image: url(../asset/formal_but_lux_amogus.png);
+    background-image: url(../asset/imageedit_2_5345510685.png);
 
     width: 600px;
     height: 150px;
