@@ -25,10 +25,10 @@ $maxPage = ceil(count($listProduct) / $maxProductInAPage);
 $currentPage = 1;
 if (isset($_REQUEST['page'])) {
   $currentPage = $_REQUEST['page'];
-  if ($currentPage <= 0)  {
-    $currentPage = 0;
+  if ($currentPage < 1)  {
+    $currentPage = 1;
   }
-  else if ( $currentPage >= $maxPage) {
+  else if ( $currentPage > $maxPage) {
     $currentPage = $maxPage;
   }
 }
