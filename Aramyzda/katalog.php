@@ -82,7 +82,7 @@ echo '</pre>';
       <div class="searchbox col-3">
           <div class="row">
             <div class="col-8">
-              <input class="form-control me-2" name="tbx-search" type="search" placeholder="Search" aria-label="Search" value="<?=$_REQUEST['tbx-search'] ?>">
+              <input class="form-control me-2" name="tbx-search" type="search" placeholder="Search" aria-label="Search" value="<?= isset($_REQUEST['tbx-search']) ? $_REQUEST['tbx-search'] : '' ?>">
             </div>
             <div class="col-4">
               <button class="btn btn-outline-success" type="submit" name="btn-submit-search">Search</button>
