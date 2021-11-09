@@ -37,9 +37,15 @@ echo'</pre>';
                     <div class="row hargaProduk"> <?=$priceTeks?> </div>
                     <br>
                     <div class="row descProduk"> <?=$product['description'] ?> </div>
+                    <div class="row addToCart">  </div>
                 </div>
             </div>
-        </div><!--penutup detailprod -->
+            <div class="row">
+                <div class="col-2 tagUlasan">
+                    
+                </div>
+            </div>
+        </div>
     </div><!-- penutup kontainer besar -->
     
   
