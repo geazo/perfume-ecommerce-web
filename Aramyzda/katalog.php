@@ -85,6 +85,7 @@ echo '</pre>';
       <div class="navKanan col-9 ">
         <div class="katalog justify-content-between row ">
           <?php for ($i = ($currentPage - 1) * $maxProductInAPage; $i < $currentPage * $maxProductInAPage; $i++) { ?>
+            <?php if ($i >= count($listProduct)) break; ?>
             <div class="card" style="width: 18rem;">
               <img src="<?= $listProduct[$i]['image'] ?>" class="card-img-top" alt="...">
               <div class="card-body">
