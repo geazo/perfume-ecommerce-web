@@ -4,6 +4,22 @@
   $listProduct = file_get_contents(
     "result.json"
   );
+  $listProduct = json_decode($listProduct,true);
+  $listBrand = [];
+  foreach ($listProduct as $key => $value) {
+    $kembar = false;
+    foreach ($listBrand as $i => $brandName) {
+      if($value['brand'] == $brandName){
+        $kembar = true;
+      }
+    }
+    if(!$kembar){
+      $listBrand[] = $value['brand']; 
+    }
+  }
+  echo'<pre>';
+    print_r($listBrand);
+  echo'</pre>';
 ?>
 <!-- code here -->
 <form action="#" method="post">
