@@ -17,6 +17,8 @@ foreach ($listProduct as $key => $value) {
     $listBrand[] = $value['brand'];
   }
 }
+sort($listBrand);
+
 $maxProductInAPage = 21;
 $maxPage = ceil(count($listProduct) / $maxProductInAPage);
 
