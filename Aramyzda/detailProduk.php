@@ -17,10 +17,10 @@ echo'</pre>';
         </div>
         <div class="NavBar">
             <nav class="nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center nav-link " name="keHome" aria-current="page" href="index.php">Home</a>
-                <a class="flex-sm-fill text-sm-center nav-link active" name="keKatalog" href="katalog.php">Catalogue</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="#">otw1</a>
-                <a class="flex-sm-fill text-sm-center nav-link" href="#">otw2</a>
+                <a class="flex-sm-fill text-sm-center bg-black text-light nav-link " name="keHome" aria-current="page" href="index.php">Home</a>
+                <a class="flex-sm-fill text-sm-center bg-black text-light nav-link active" name="keKatalog" href="katalog.php">Catalogue</a>
+                <a class="flex-sm-fill text-sm-center bg-black text-light nav-link" href="#">otw1</a>
+                <a class="flex-sm-fill text-sm-center bg-black text-light nav-link" href="#">otw2</a>
             </nav>
         </div>
     </div>
