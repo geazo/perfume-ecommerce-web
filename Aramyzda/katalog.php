@@ -25,9 +25,10 @@ if (isset($_REQUEST['btn-submit-search'])) {
   header("Location: katalog.php?search=" . $_REQUEST['tbx-search']);
 }
 
-if (isset($_REQUEST['search'])) {
+if (isset($_REQUEST['search']) || isset($_REQUEST['brand'])) {
+  isset($_REQUEST['search']) ? $search = $_REQUEST['search'] : $search = $_REQUEST['brand'];
   foreach ($listProductDB as $key => $value) {
-    if (str_contains(strtoupper($value['name']), strtoupper($_REQUEST['search']))) {
+    if (str_contains(strtoupper($value['name']), strtoupper($search))) {
     $listProduct[] = $value;
     }
   }
@@ -91,7 +92,7 @@ if(isset($_REQUEST['search'])){
         </select>
       </div>
       <div class="displayTeksSort col-7">
-        <span name="displayTeks" class="displayedTeks"><?= isset($_REQUEST['search']) ? strtoupper($_REQUEST['search']) :"CATALOGUE" ?> </span>
+        <span name="displayTeks" class="displayedTeks"><?= isset($_REQUEST['brand']) ? strtoupper($_REQUEST['brand']) :"CATALOGUE" ?> </span>
       </div>
       <div class="searchbox col-3">
           <div class="row">
@@ -111,7 +112,7 @@ if(isset($_REQUEST['search'])){
         <ul class="nav flex-sm-column nav-pills">
           <?php foreach ($listBrand as $idxB => $brandName) { ?>
             <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="katalog.php?search=<?=$brandName?>"> <?= $brandName ?></a>
+              <a class="nav-link " aria-current="page" href="katalog.php?brand=<?=$brandName?>"> <?= $brandName ?></a>
             </li>
           <?php } ?>
         </ul>
