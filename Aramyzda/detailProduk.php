@@ -47,7 +47,7 @@ $priceTeks = 'Rp '. number_format($product['price'],0,',','.');
                     <div class="row hargaProduk"> <?=$priceTeks?> </div>
                     <br>
                     <div class="row">
-                        <div class="col-sm-4 col-lg-3">
+                        <div class="col-sm-4  col-lg-5">
                             <div class="input-group">
                                 <button class="btn btn-outline-secondary" id="btnDownQty" type="button" onclick="gantiAngkaDown()">-</button>
                                 <input type="text" class="form-control text-center" id="inputNumberLangsung" aria-label="" value ="1">
@@ -61,6 +61,7 @@ $priceTeks = 'Rp '. number_format($product['price'],0,',','.');
                     <br>
                     <div class="row addToCart"> <button type="button" class="btn btn-danger">Add to Cart</button>  </div>
                     <br> <br>
+                    <div class="row tipeProduk"><?= $product['type'] ?> </div>  
                     <div class="row descProduk"> <?=$product['description'] ?> </div>
                 </div>
             </div>
