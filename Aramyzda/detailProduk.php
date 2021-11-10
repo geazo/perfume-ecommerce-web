@@ -9,6 +9,16 @@ echo'<pre>';
   print_r($listProduct[0]);
 echo'</pre>';
 ?>
+<script>
+    function gantiAngkaDown(){
+        if(parseInt(document.getElementById('inputNumberLangsung').value)>1){
+            document.getElementById('inputNumberLangsung').value = parseInt(document.getElementById('inputNumberLangsung').value) -  1;
+        }
+    }
+    function gantiAngkaUp(){
+        document.getElementById('inputNumberLangsung').value = parseInt(document.getElementById('inputNumberLangsung').value) +1;
+    }
+</script>
 <!-- code here -->
 <form action="#" method= "post">
     <div class="header">
@@ -36,8 +46,22 @@ echo'</pre>';
                     <br>
                     <div class="row hargaProduk"> <?=$priceTeks?> </div>
                     <br>
+                    <div class="row">
+                        <div class="col-sm-4 col-lg-3">
+                            <div class="input-group">
+                                <button class="btn btn-outline-secondary" id="btnDownQty" type="button" onclick="gantiAngkaDown()">-</button>
+                                <input type="text" class="form-control text-center" id="inputNumberLangsung" aria-label="" value ="1">
+                                <button class="btn btn-outline-secondary" id="btnUpQty"  type="button" onclick="gantiAngkaUp()">+</button>
+                            </div>
+                        </div>
+                        <div class="col">
+
+                        </div>
+                    </div>
+                    <br>
+                    <div class="row addToCart"> <button type="button" class="btn btn-danger">Add to Cart</button>  </div>
+                    <br> <br>
                     <div class="row descProduk"> <?=$product['description'] ?> </div>
-                    <div class="row addToCart">  </div>
                 </div>
             </div>
             <div class="row">
