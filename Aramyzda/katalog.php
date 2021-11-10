@@ -22,10 +22,13 @@ sort($listBrand);
 $listProduct = [];
 
 if (isset($_REQUEST['btn-submit-search']))
-foreach ($listProductDB as $key => $value) {
+  foreach ($listProductDB as $key => $value) {
   if (str_contains(strtoupper($value['name']), strtoupper($_REQUEST['tbx-search']))) {
     $listProduct[] = $value;
   }
+}
+else {
+  $listProduct = $listProductDB;
 }
 
 $maxProductInAPage = 21;
