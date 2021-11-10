@@ -109,7 +109,9 @@
 .color-inherit {
     color: inherit;
 }
-
+.list-style-none {
+    list-style: none;
+}
 
 
 .xyzUnusedForTestingOnlyClassPlsDontTouch{
