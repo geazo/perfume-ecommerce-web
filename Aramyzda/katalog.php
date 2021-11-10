@@ -21,10 +21,15 @@ sort($listBrand);
 
 $listProduct = [];
 
-if (isset($_REQUEST['btn-submit-search']))
+if (isset($_REQUEST['btn-submit-search'])) {
+  header("Location: katalog.php?search=" . $_REQUEST['tbx-search']);
+}
+
+if (isset($_REQUEST['search'])) {
   foreach ($listProductDB as $key => $value) {
-  if (str_contains(strtoupper($value['name']), strtoupper($_REQUEST['tbx-search']))) {
+    if (str_contains(strtoupper($value['name']), strtoupper($_REQUEST['search']))) {
     $listProduct[] = $value;
+    }
   }
 }
 else {
@@ -100,7 +105,7 @@ if (isset($_REQUEST['page'])) {
         <ul class="nav flex-sm-column nav-pills">
           <?php foreach ($listBrand as $idxB => $brandName) { ?>
             <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="#"> <?= $brandName ?></a>
+              <a class="nav-link " aria-current="page" href="katalog.php?search=<?=$brandName?>"> <?= $brandName ?></a>
             </li>
           <?php } ?>
         </ul>
@@ -122,9 +127,9 @@ if (isset($_REQUEST['page'])) {
                 <!-- </div> -->
               </a>
             <?php } ?>
-            <?php } else {?>
-              <h1>Item yang anda cari tidak ada!</h1>
-            <?php } ?>
+              <?php } else {?>
+                <h1>Item yang anda cari tidak ada!</h1>
+          <?php } ?>
         </div>
         <!-- pagination -->
           <?php if(count($listProduct) != 0) { ?>
