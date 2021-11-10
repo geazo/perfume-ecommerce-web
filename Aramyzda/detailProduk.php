@@ -3,11 +3,11 @@ $listProduct = file_get_contents(
     "result.json"
 );
 $listProduct = json_decode($listProduct,true);
-$product = $listProduct[0];
+$product = $listProduct[$_REQUEST['product']];
 $priceTeks = 'Rp '. number_format($product['price'],0,',','.');
-echo'<pre>';
-  print_r($listProduct[0]);
-echo'</pre>';
+// echo'<pre>';
+//   print_r($listProduct[0]);
+// echo'</pre>';
 ?>
 <script>
     function gantiAngkaDown(){

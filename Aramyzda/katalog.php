@@ -42,11 +42,11 @@ if (isset($_REQUEST['page'])) {
   }
 }
 
-echo '<pre>';
+// echo '<pre>';
 // print_r($currentPage); echo "<br>";
 // print_r($listProduct);
-print_r($_REQUEST);
-echo '</pre>';
+// print_r($listProduct[0]);
+// echo '</pre>';
 ?>
 <!-- code here -->
 <form action="#" method="post">
@@ -108,13 +108,16 @@ echo '</pre>';
           <?php if(count($listProduct) != 0) { ?>
             <?php for ($i = ($currentPage - 1) * $maxProductInAPage; $i < $currentPage * $maxProductInAPage; $i++) { ?>
               <?php if ($i >= count($listProduct)) break; ?>
-              <div class="card" style="width: 18rem;">
-                <img src="<?= $listProduct[$i]['image'] ?>" class="card-img-top" alt="...">
-                <div class="card-body">
-                  <h6 class="card-title"> <?= $listProduct[$i]['name'] ?> </h6>
-                  <p class="card-text">Rp <?= $listProduct[$i]['price'] != '' ? number_format($listProduct[$i]['price'], 0, ',', '.') : '0' ?> </p>
-                </div>
-              </div>
+              <a class="card text-decoration-none color-inherit" style="width: 18rem;" href="detailProduk.php?product=<?= $i?>">
+                <!-- <div class="card" style="width: 18rem;"> -->
+                  <img src="<?= $listProduct[$i]['image'] ?>" class="card-img-top" alt="...">
+                  <div class="card-body">
+                    <h6 class="card-title"> <?= $listProduct[$i]['name'] ?> </h6>
+                    <p class="card-text">Rp <?= $listProduct[$i]['price'] != '' ? number_format($listProduct[$i]['price'], 0, ',', '.') : '0' ?> </p>
+                    <p class="card-text"> <?= $listProduct[$i]['type'] ?> </p>
+                  </div>
+                <!-- </div> -->
+              </a>
             <?php } ?>
             <?php } else {?>
               <h1>Item yang anda cari tidak ada!</h1>
