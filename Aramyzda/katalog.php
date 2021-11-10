@@ -50,6 +50,10 @@ if (isset($_REQUEST['page'])) {
   }
 }
 
+if(isset($_REQUEST['search'])){
+
+}
+
 // echo '<pre>';
 // print_r($currentPage); echo "<br>";
 // print_r($listProduct);
@@ -87,7 +91,7 @@ if (isset($_REQUEST['page'])) {
         </select>
       </div>
       <div class="displayTeksSort col-7">
-        <span name="displayTeks" class="displayedTeks">Gucci Gang</span>
+        <span name="displayTeks" class="displayedTeks"><?= isset($_REQUEST['search']) ? strtoupper($_REQUEST['search']) :"CATALOGUE" ?> </span>
       </div>
       <div class="searchbox col-3">
           <div class="row">
