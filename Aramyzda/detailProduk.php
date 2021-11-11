@@ -21,17 +21,21 @@ $priceTeks = 'Rp '. number_format($product['price'],0,',','.');
 </script>
 <!-- code here -->
 <form action="#" method= "post">
-    <div class="header">
-        <div class="logoToko">
-            <div class="logo"></div>
-        </div>
-        <div class="NavBar">
-            <nav class="nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center bg-black text-light nav-link " name="keHome" aria-current="page" href="index.php">Home</a>
-                <a class="flex-sm-fill text-sm-center bg-black text-light nav-link active" name="keKatalog" href="katalog.php">Catalogue</a>
-                <a class="flex-sm-fill text-sm-center bg-black text-light nav-link" href="#">otw1</a>
-                <a class="flex-sm-fill text-sm-center bg-black text-light nav-link" href="#">otw2</a>
-            </nav>
+    
+    <div class="mainHead col-12">
+        <div class="headBg col-12 "></div>
+        <div class="header col-12 ">
+            <div class="logoToko">
+                <div class="logo"></div>
+            </div>
+            <div class="NavBar">
+                <nav class="nav nav-pills flex-row  justify-content-center">
+                    <a class="flex-sm-fill text-sm-center bg-black text-light nav-link " name="keHome" aria-current="page" href="index.php">Home</a>
+                    <a class="flex-sm-fill text-sm-center bg-black text-light nav-link active" name="keKatalog" href="katalog.php">Catalogue</a>
+                    <a class="flex-sm-fill text-sm-center bg-black text-light nav-link" href="#">otw1</a>
+                    <a class="flex-sm-fill text-sm-center bg-black text-light nav-link" href="#">otw2</a>
+                </nav>
+            </div>
         </div>
     </div>
 

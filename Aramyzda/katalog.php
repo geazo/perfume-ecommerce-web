@@ -63,23 +63,26 @@ if(isset($_REQUEST['search'])){
 <!-- code here -->
 <form action="#" method="post">
 
-<div class="header">
-        <div class="logoToko">
-            <div class="logo"></div>
-        </div>
-        <div class="NavBar">
-            <nav class="nav nav-pills flex-column flex-sm-row">
-                <a class="flex-sm-fill text-sm-center bg-black text-light nav-link " name="keHome" aria-current="page" href="index.php">Home</a>
-                <a class="flex-sm-fill text-sm-center bg-black text-light nav-link active " name="keKatalog" href="katalog.php">Catalogue</a>
-                <a class="flex-sm-fill text-sm-center bg-black text-light nav-link" href="#">otw1</a>
-                <a class="flex-sm-fill text-sm-center bg-black text-light nav-link" href="#">otw2</a>
-            </nav>
+<div class="mainHead col-12">
+        <div class="headBg col-12 "></div>
+        <div class="header col-12 ">
+            <div class="logoToko">
+                <div class="logo"></div>
+            </div>
+            <div class="NavBar">
+                <nav class="nav nav-pills flex-row  justify-content-center">
+                    <a class="flex-sm-fill text-sm-center bg-black text-light nav-link " name="keHome" aria-current="page" href="index.php">Home</a>
+                    <a class="flex-sm-fill text-sm-center bg-black text-light nav-link active" name="keKatalog" href="katalog.php">Catalogue</a>
+                    <a class="flex-sm-fill text-sm-center bg-black text-light nav-link" href="#">otw1</a>
+                    <a class="flex-sm-fill text-sm-center bg-black text-light nav-link" href="#">otw2</a>
+                </nav>
+            </div>
         </div>
     </div>
 
   <div class="kontainerUtama">
     <div class="sortBy row">
-      <div class="selectSort col-2">
+      <div class="selectSort col-3 d-none">
         <select class="form-select" aria-label="Default select example">
           <option selected>Featured Items</option>
           <?php for ($i = 0; $i < 7; $i++) {
