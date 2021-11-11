@@ -25,9 +25,10 @@ if (isset($_REQUEST['btn-submit-search'])) {
   header("Location: katalog.php?search=" . $_REQUEST['tbx-search']);
 }
 
-if (isset($_REQUEST['search'])) {
+if (isset($_REQUEST['search']) || isset($_REQUEST['brand'])) {
+  isset($_REQUEST['search']) ? $search = $_REQUEST['search'] : $search = $_REQUEST['brand'];
   foreach ($listProductDB as $key => $value) {
-    if (str_contains(strtoupper($value['name']), strtoupper($_REQUEST['search']))) {
+    if (str_contains(strtoupper($value['name']), strtoupper($search))) {
     $listProduct[] = $value;
     }
   }
@@ -61,15 +62,15 @@ if(isset($_REQUEST['search'])){
 // echo '</pre>';
 ?>
 <!-- code here -->
-<form action="#" method="post">
+<form action="" method="post">
 
-<div class="mainHead col-12">
+<!-- <div class="mainHead col-12">
         <div class="headBg col-12 "></div>
         <div class="header col-12 ">
             <div class="logoToko">
                 <div class="logo"></div>
             </div>
-            <div class="NavBar">
+            <div class="NavBar bg-black">
                 <nav class="nav nav-pills flex-row  justify-content-center">
                     <a class="flex-sm-fill text-sm-center bg-black text-light nav-link " name="keHome" aria-current="page" href="index.php">Home</a>
                     <a class="flex-sm-fill text-sm-center bg-black text-light nav-link active" name="keKatalog" href="katalog.php">Catalogue</a>
@@ -78,7 +79,35 @@ if(isset($_REQUEST['search'])){
                 </nav>
             </div>
         </div>
+    </div> -->
+
+    <div class="mainHead">
+    <div class="headBg col-12 "></div>
+    <div class="col-12" id ="header">
+    <div class="d-flex  text-white p-3">
+      <div class="w-25 text-dark">
+        kiri
+      </div>
+      <div class="w-50 fs-1 text-center">
+        <!-- Aramyzda logo-->
+        Aramyzda
+      </div>
+      <div class="w-25">
+        <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
+          <li class="px-2"><i class="fa fa-search" aria-hidden="true"></i> Search</li>
+          <li class="px-2"><i class="fa fa-user" aria-hidden="true"></i> Account</li>
+          <li class="px-2 pe-4"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
+        </ul>
+      </div>
     </div>
+    <ul class="d-flex bg-black p-1 justify-content-center align-items-center list-style-none">
+      <a class="text-light nav-link active" href="index.php"><li>HOME</li></a>
+      <a class="text-light nav-link active" href="katalog.php"><li>CATALOGUE</li></a>
+      <a class="text-light nav-link active" href="#"><li>CART</li></a>
+      <a class="text-light nav-link active" href="#"><li>TRANSACTION</li></a>
+    </ul>
+  </div>
+</div>
 
   <div class="kontainerUtama">
     <div class="sortBy row">
@@ -94,7 +123,7 @@ if(isset($_REQUEST['search'])){
         </select>
       </div>
       <div class="displayTeksSort col-7">
-        <span name="displayTeks" class="displayedTeks"><?= isset($_REQUEST['search']) ? strtoupper($_REQUEST['search']) :"CATALOGUE" ?> </span>
+        <span name="displayTeks" class="displayedTeks"><?= isset($_REQUEST['brand']) ? strtoupper($_REQUEST['brand']) :"CATALOGUE" ?> </span>
       </div>
       <div class="searchbox col-3">
           <div class="row">
@@ -114,7 +143,7 @@ if(isset($_REQUEST['search'])){
         <ul class="nav flex-sm-column nav-pills">
           <?php foreach ($listBrand as $idxB => $brandName) { ?>
             <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="katalog.php?search=<?=$brandName?>"> <?= $brandName ?></a>
+              <a class="nav-link " aria-current="page" href="katalog.php?brand=<?=$brandName?>"> <?= $brandName ?></a>
             </li>
           <?php } ?>
         </ul>
