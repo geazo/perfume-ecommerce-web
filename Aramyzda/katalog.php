@@ -122,10 +122,10 @@ if(isset($_REQUEST['search'])){
           ?>
         </select>
       </div>
-      <div class="displayTeksSort col-7">
+      <div class="displayTeksSort col-9">
         <span name="displayTeks" class="displayedTeks"><?= isset($_REQUEST['brand']) ? strtoupper($_REQUEST['brand']) :"CATALOGUE" ?> </span>
       </div>
-      <div class="searchbox col-3">
+      <div class="searchbox d-flex justify-content-end col-3">
           <div class="row">
             <div class="col-8">
               <input class="form-control me-2" name="tbx-search" type="search" placeholder="Search" aria-label="Search" value="<?= isset($_REQUEST['tbx-search']) ? $_REQUEST['tbx-search'] : '' ?>">
