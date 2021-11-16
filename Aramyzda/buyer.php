@@ -1,5 +1,22 @@
 <?php include("./template/heading.php")?>
 <!-- code here -->
+<div id="mySidebar" class="sidebar">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
+  <div class="row d-flex justify-content-center text-light fs-4 ">Your Cart</div>
+
+</div>
+
+<script>
+function openNav() {
+  document.getElementById("mySidebar").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidebar").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+</script>
 
 <div class="mainHead">
     <div class="headBg col-12 "></div>
@@ -12,11 +29,12 @@
         <!-- Aramyzda logo-->
         Aramyzda
       </div>
-      <div class="w-25  iconMode">
-      <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
-          <li class="px-2"><i class="fa fa-search" aria-hidden="true"></i> Search</li>
-          <li class="px-2"><i class="fa fa-user" aria-hidden="true"></i> Account</li>
-          <li class="px-2 pe-4"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
+
+    <div class="w-25  iconMode">
+        <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
+            <li class="px-2"><i class="fa fa-search" aria-hidden="true"></i> Search</li>
+            <li class="px-2"><i class="fa fa-user" aria-hidden="true"></i> Account</li>
+            <li class="px-2 pe-4" onclick="openNav()"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
         </ul>
       </div>
 
@@ -25,7 +43,9 @@
         <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
           <li class="px-2"><i class="fa fa-search" aria-hidden="true"></i> Search</li>
           <li class="px-2"><i class="fa fa-user" aria-hidden="true"></i> Account</li>
-          <li class="px-2 pe-4"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
+          <button type="button" class="btn" onclick="openNav()">
+              <li class="px-2 pe-4" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
+          </button>
         </ul>
         </div>
         <nav class="navbar navbar-dark ">
