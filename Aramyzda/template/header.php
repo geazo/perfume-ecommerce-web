@@ -48,7 +48,7 @@ function closeNav() {
     </div>
     <div class="w-100 d-flex">
       <ul class="w-25 bg-black d-flex">
-        kanan
+        kiri #2
       </ul>
       <ul class="d-flex w-50 bg-black p-1 justify-content-center align-items-center list-style-none ">
         <a class="text-light nav-link active" href="index.php"><li>HOME</li></a>
@@ -57,7 +57,7 @@ function closeNav() {
         <a class="text-light nav-link active" href="#"><li>TRANSACTION</li></a>
       </ul>
       <ul class="w-25 bg-black d-flex justify-content-end">
-        kiri
+        kanan 
       </ul>
     </div>
     
@@ -70,22 +70,20 @@ function closeNav() {
     <div class="col-12" id ="header">
     <div class="d-flex  text-white p-3">
       <div class="w-25 text-dark">
-        kiri
+        
       </div>
       <div class="w-50 text-light fs-1 text-center">
         <!-- Aramyzda logo-->
         Aramyzda
       </div>
-
-    
-
-    
+      <div class="w-25 text-dark">
+        kanan
+      </div>
 
     </div>
     <div class="w-100 d-flex">
      
     </div>
     
-
   </div>
 </div>
