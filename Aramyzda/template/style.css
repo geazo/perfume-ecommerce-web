@@ -139,14 +139,7 @@
 .burgerMode{
     display: none;
 }
-@media screen and (max-width:600px) {
-    .burgerMode {
-        display: flex;
-    }
-    .iconMode{
-        display: none;
-    }
-}
+
 .sidebar {
     height: 100%;
     width: 0;
@@ -233,7 +226,7 @@
 .mobileView{
     display: none;
 }
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 720px) {
     .pcView{
         display: none;
     }

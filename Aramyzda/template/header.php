@@ -38,25 +38,13 @@ function closeNav() {
         Aramyzda
       </div>
 
-      <div class="w-25  iconMode">
+      <div class="w-25 ">
       <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
             <li class="px-2"><i class="fa fa-search" aria-hidden="true"></i> Search</li>
             <li class="px-2"><i class="fa fa-user" aria-hidden="true"></i> Account</li>
             <li class="px-2 pe-4" onclick="openNav()"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
         </ul>
       </div>
-
-    <div class="w-25  justify-content-end burgerMode">
-        <div class="menuTiga">
-          <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
-              <li class="px-2"><i class="fa fa-search" aria-hidden="true"></i> Search</li>
-              <li class="px-2"><i class="fa fa-user" aria-hidden="true"></i> Account</li>
-              <li class="px-2 pe-4" onclick="openNav()"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
-          </ul>
-        </div>
-        
-    </div>
-
     </div>
     <div class="w-100 d-flex">
       <ul class="w-25 bg-black d-flex">
