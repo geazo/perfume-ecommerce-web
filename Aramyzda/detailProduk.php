@@ -1,20 +1,11 @@
 <?php 
     require_once("./template/heading.php");
     require_once("./connector/connection.php");
-// $listProduct = file_get_contents(
-//     "result.json"
-// );
-// $listProduct = json_decode($listProduct,true);
-// $product = $listProduct[$_REQUEST['product']];
-
     $stmt = $conn -> prepare("select * from product where id = ?");
     $stmt -> bind_param("i", $_REQUEST['product']);
     $stmt -> execute();
     $product = $stmt -> get_result() -> fetch_assoc();
     $priceTeks = 'Rp '. number_format($product['price'],0,',','.');
-    // echo'<pre>';
-    //   print_r($listProduct[0]);
-    // echo'</pre>';
 ?>
 <script>
     function gantiAngkaDown(){
@@ -35,7 +26,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 col-sm-12">
-                    <img class="fotoProd" src="<?=$product['image']?>" alt="" srcset="">
+                    <img class="fotoProd" src="<?=$product['image_source']?>" alt="" srcset="">
                 </div>
                 <div class="col-lg-6 col-sm-12 ">
                     <div class="row namaProduk "> <?=$product['name'] ?> </div>
@@ -55,7 +46,7 @@
                         </div>
                     </div>
                     <br>
-                    <div class="row addToCart"> <button type="button" class="btn btn-danger">Add to Cart</button>  </div>
+                    <div class="row addToCart"> <button type="button" class="btn btn-danger" onclick="AddToCart(<?=$product['id']?>)">Add to Cart</button>  </div>
                     <br> <br>
                     <div class="row tipeProduk"><?= $product['type'] ?> </div>  
                     <div class="row descProduk"> <?=$product['description'] ?> </div>
@@ -72,3 +63,15 @@
   
 </form>
 <?php require_once("./template/footing.php")?>
+<?php 
+    
+// echo'<pre>';
+// var_dump($product);
+// echo'</pre>';
+?>
+<script>
+    function AddToCart(id_product) {
+        quantity = parseInt($("#inputNumberLangsung").val());
+        console.log('quantity :>> ', quantity);
+    }
+</script>

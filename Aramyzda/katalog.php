@@ -1,57 +1,57 @@
 <?php 
-  require_once("./template/heading.php");
-  require_once("./connector/connection.php");
-  $pilihanSort = array('Best Selling', 'Alhpabetical,A-Z', 'Alphabetical,Z-A', 'Price, Hight to Low', 'Price, Low to High', 'Oldest to Newest', 'Newest to Oldest');
-  $printedTex = isset($_REQUEST['']);
-  // $listProductDB = file_get_contents(
-  //   "result.json"
-  // );
-  // $listProductDB = json_decode($listProductDB, true);
+require_once("./template/heading.php");
+require_once("./connector/connection.php");
+$pilihanSort = array('Best Selling', 'Alhpabetical,A-Z', 'Alphabetical,Z-A', 'Price, Hight to Low', 'Price, Low to High', 'Oldest to Newest', 'Newest to Oldest');
+$printedTex = isset($_REQUEST['']);
+// $listProductDB = file_get_contents(
+//   "result.json"
+// );
+// $listProductDB = json_decode($listProductDB, true);
 
-  $listProduct = [];
+$listProduct = [];
 
-  if (isset($_REQUEST['btn-submit-search'])) {
-    header("Location: katalog.php?search=" . $_REQUEST['tbx-search']);
+if (isset($_REQUEST['btn-submit-search'])) {
+  header("Location: katalog.php?search=" . $_REQUEST['tbx-search']);
+}
+
+if (isset($_REQUEST['search']) || isset($_REQUEST['brand'])) {
+  isset($_REQUEST['search']) ? $search = $_REQUEST['search'] : $search = $_REQUEST['brand'];
+  // foreach ($listProductDB as $key => $value) {
+  //   if (str_contains(strtoupper($value['name']), strtoupper($search))) {
+  //   $listProduct[] = $value;
+  //   }
+  // }
+  $search = "%".$search."%";
+  $stmt = $conn -> prepare("select * from product where name like ?");
+  $stmt -> bind_param("s", $search);
+  $stmt -> execute();
+  $listProduct = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+}
+else {
+  $stmt = $conn -> prepare("select * from product");
+  $stmt -> execute();
+  $listProduct = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+}
+
+$maxProductInAPage = 21;
+$maxPage = ceil(count($listProduct) / $maxProductInAPage);
+
+$currentPage = 1;
+if (isset($_REQUEST['page'])) {
+  $currentPage = $_REQUEST['page'];
+  if ($currentPage < 1)  {
+    $currentPage = 1;
   }
-
-  if (isset($_REQUEST['search']) || isset($_REQUEST['brand'])) {
-    isset($_REQUEST['search']) ? $search = $_REQUEST['search'] : $search = $_REQUEST['brand'];
-    // foreach ($listProductDB as $key => $value) {
-    //   if (str_contains(strtoupper($value['name']), strtoupper($search))) {
-    //   $listProduct[] = $value;
-    //   }
-    // }
-    $search = "%".$search."%";
-    $stmt = $conn -> prepare("select * from product where name like ?");
-    $stmt -> bind_param("s", $search);
-    $stmt -> execute();
-    $listProduct = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+  else if ( $currentPage > $maxPage) {
+    $currentPage = $maxPage;
   }
-  else {
-    $stmt = $conn -> prepare("select * from product");
-    $stmt -> execute();
-    $listProduct = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-  }
+}
 
-  $maxProductInAPage = 21;
-  $maxPage = ceil(count($listProduct) / $maxProductInAPage);
-
-  $currentPage = 1;
-  if (isset($_REQUEST['page'])) {
-    $currentPage = $_REQUEST['page'];
-    if ($currentPage < 1)  {
-      $currentPage = 1;
-    }
-    else if ( $currentPage > $maxPage) {
-      $currentPage = $maxPage;
-    }
-  }
-
-  // echo '<pre>';
-  // print_r($currentPage); echo "<br>";
-  // print_r($listProduct);
-  // print_r($listProduct[0]);
-  // echo '</pre>';
+// echo '<pre>';
+// print_r($currentPage); echo "<br>";
+// print_r($listProduct);
+// print_r($listProduct[0]);
+// echo '</pre>';
 ?>
 <!-- code here -->
 <!-- <form action="" method="post"> -->
@@ -100,7 +100,7 @@
           <?php if(count($listProduct) != 0) { ?>
             <?php for ($i = ($currentPage - 1) * $maxProductInAPage; $i < $currentPage * $maxProductInAPage; $i++) { ?>
               <?php if ($i >= count($listProduct)) break; ?>
-              <a class="card text-decoration-none color-inherit" style="width: 18rem;" href="detailProduk.php?product=<?= $i?>">
+              <a class="card text-decoration-none color-inherit" style="width: 18rem;" href="detailProduk.php?product=<?= $listProduct[$i]['id']?>">
                 <!-- <div class="card" style="width: 18rem;"> -->
                   <img src="<?= $listProduct[$i]['image_source'] ?>" class="card-img-top" alt="...">
                   <div class="card-body">
