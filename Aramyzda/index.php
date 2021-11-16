@@ -1,6 +1,4 @@
-<?php require_once("./template/heading.php");
-
-?>
+<?php require_once("./template/heading.php"); ?>
 <!-- code here -->
 <form action="#" method= "post">
   
@@ -32,9 +30,9 @@
       </div>
       <div class="w-25">
         <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
-          <li class="px-2"><i class="fa fa-search" aria-hidden="true"></i> Search</li>
-          <li class="px-2"><i class="fa fa-user" aria-hidden="true"></i> Account</li>
-          <li class="px-2 pe-4"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
+          <li class="px-2"><a class="text-light text-decoration-none" href=""><i class="fa fa-search" aria-hidden="true"></i> Search</a></li>
+          <li class="px-2"><a class="text-light text-decoration-none" href=""><i class="fa fa-user" aria-hidden="true"></i> Account</a></li>
+          <li class="px-2 pe-4"><a class="text-light text-decoration-none" href=""><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</a></li>
         </ul>
       </div>
     </div>
