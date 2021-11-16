@@ -1,12 +1,14 @@
 <div id="mySidebar" class="sidebar h-100">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <div class="col h-100">
+  <div class="col min-vh-90">
     <div class="row align-self-start d-flex h-10 justify-content-center text-light fs-4 ">Your Cart</div>
+
     <div class="row align-self-center h-80 d-flex justify-content-center">
       items
     </div>
+
     <div class="row align-self-end text-light h-10 d-flex justify-content-center">
-      Tocheckout
+      <button class="button"><span>To Checkout </span></button>
     </div>
   
   </div>
