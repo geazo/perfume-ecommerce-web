@@ -14,6 +14,7 @@
   </div>
 </div>
 
+
 <script>
 function openNav() {
   document.getElementById("mySidebar").style.width = "250px";
@@ -24,8 +25,32 @@ function closeNav() {
   document.getElementById("mySidebar").style.width = "0";
   document.getElementById("main").style.marginLeft= "0";
 }
+function mobileOpen(){
+  $("#theMobileSidebar").removeClass("mobileSidebarClosed");
+  $("#theMobileSidebar").addClass("mobileSidebar");
+}
+function mobileClose(){
+  $("#theMobileSidebar").addClass("mobileSidebarClosed");
+  $("#theMobileSidebar").removeClass("mobileSidebar");
+}
 </script>
-
+<div class="mobileSidebarClosed p-2" id="theMobileSidebar">
+    <ul class = "d-flex flex-column list-style-none fs-6 text light">
+      <li class="iconSidebar fs-1  pb-5 text-light align-self-end" onclick="mobileClose()"><i class="fa fa-bars"></i> </li>
+      <a class="" style="text-decoration:none;" href="index.php">
+        <li class = "text-light pt-5 pb-3 fs-4">HOME</li>
+      </a>
+      <a class="" style="text-decoration:none;" href="katalog.php">
+        <li class = "text-light pb-3 fs-4">CATALOGUE</li>
+      </a>
+      <a class="" style="text-decoration:none;" href="">
+        <li class = "text-light pb-3 fs-4">ACCOUNT</li>
+      </a>
+      <a class="" style="text-decoration:none;" href="">
+        <li class = "text-light pb-3 fs-4">CHECK OUT</li>
+      </a>
+    </ul>
+</div>
 <div class="mainHead pcView">
     <div class="headBg col-12 "></div>
     <div class="col-12" id ="header">
@@ -70,7 +95,8 @@ function closeNav() {
     <div class="col-12" id ="header">
     <div class="d-flex  text-white p-3">
       <div class="w-25 text-dark">
-        
+        <div class="fa fa-bars text-light fs-1" onclick="mobileOpen()"></div>
+          
       </div>
       <div class="w-50 text-light fs-1 text-center">
         <!-- Aramyzda logo-->

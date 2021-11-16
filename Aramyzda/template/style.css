@@ -234,6 +234,27 @@
         display: block;
     }
 }
+.mobileSidebar{
+    width: 35vw;
+    height: 100vh;
+    background: black;
+    position: fixed;
+    z-index: 1000;
+    transform: translateX(0);
+    transition: 0.75s;
+}
+.mobileSidebarClosed{
+    width: 35vw;
+    height: 100vh;
+    background: black;
+    position: fixed;
+    z-index: 1000;
+    transform: translateX(-35vw);
+    transition: 0.75s;
+}
+.iconSidebar{
+    padding-top: 35%;
+}
 
 
 .xyzUnusedForTestingOnlyClassPlsDontTouch{
