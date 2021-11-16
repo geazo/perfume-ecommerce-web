@@ -1,7 +1,15 @@
-<div id="mySidebar" class="sidebar">
+<div id="mySidebar" class="sidebar h-100">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <div class="row d-flex justify-content-center text-light fs-4 ">Your Cart</div>
-
+  <div class="col h-100">
+    <div class="row align-self-start d-flex h-10 justify-content-center text-light fs-4 ">Your Cart</div>
+    <div class="row align-self-center h-80 d-flex justify-content-center">
+      items
+    </div>
+    <div class="row align-self-end text-light h-10 d-flex justify-content-center">
+      Tocheckout
+    </div>
+  
+  </div>
 </div>
 
 <script>
@@ -57,16 +65,16 @@ function closeNav() {
 
     </div>
     <div class="w-100 d-flex">
-      <ul class="w-25 bg-black d-flex ">
+      <ul class="w-25 bg-black d-flex">
         kanan
       </ul>
-      <ul class="d-flex w-50 bg-black p-1 justify-content-center align-items-center list-style-none z-index-3">
+      <ul class="d-flex w-50 bg-black p-1 justify-content-center align-items-center list-style-none ">
         <a class="text-light nav-link active" href="index.php"><li>HOME</li></a>
         <a class="text-light nav-link active" href="katalog.php"><li>CATALOGUE</li></a>
         <a class="text-light nav-link active" href="#"><li>CART</li></a>
         <a class="text-light nav-link active" href="#"><li>TRANSACTION</li></a>
       </ul>
-      <ul class="w-25 bg-black d-flex justify-content-end z-index-1">
+      <ul class="w-25 bg-black d-flex justify-content-end">
         kiri
       </ul>
     </div>
