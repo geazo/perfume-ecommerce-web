@@ -1,13 +1,20 @@
-<?php require_once("./template/heading.php");
-$listProduct = file_get_contents(
-    "result.json"
-);
-$listProduct = json_decode($listProduct,true);
-$product = $listProduct[$_REQUEST['product']];
-$priceTeks = 'Rp '. number_format($product['price'],0,',','.');
-// echo'<pre>';
-//   print_r($listProduct[0]);
-// echo'</pre>';
+<?php 
+    require_once("./template/heading.php");
+    require_once("./connector/connection.php");
+// $listProduct = file_get_contents(
+//     "result.json"
+// );
+// $listProduct = json_decode($listProduct,true);
+// $product = $listProduct[$_REQUEST['product']];
+
+    $stmt = $conn -> prepare("select * from product where id = ?");
+    $stmt -> bind_param("i", $_REQUEST['product']);
+    $stmt -> execute();
+    $product = $stmt -> get_result() -> fetch_assoc();
+    $priceTeks = 'Rp '. number_format($product['price'],0,',','.');
+    // echo'<pre>';
+    //   print_r($listProduct[0]);
+    // echo'</pre>';
 ?>
 <script>
     function gantiAngkaDown(){
