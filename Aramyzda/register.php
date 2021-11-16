@@ -42,7 +42,7 @@
         <div class="row">
             <div class="col-12">
                 <h1>Register</h1>
-                <form method="POST">
+                <form method="POST" id="form">
                     <div class="form-group">
                         <label for="inp-username">Username</label>
                         <input type="text" class="form-control" id="inp-username" placeholder="Enter username" name="inp-username">
