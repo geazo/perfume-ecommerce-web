@@ -1,38 +1,40 @@
 
 <?php 
-    require_once("../template/heading.php");
-    require_once("../connector/connection.php");
+    require_once("./template/heading.php");
+    require_once("./connector/connection.php");
     if (isset($_REQUEST['btn-login'])) {
         header("Location: login.php");
     }
     if (isset($_REQUEST['btn-register'])) {
-        $username = $_REQUEST['inp-username'];
         $email = $_REQUEST['inp-email'];
         $password = $_REQUEST['inp-password'];
         $confirmPassword = $_REQUEST['inp-confirm-password'];
-        $fullName = $_REQUEST['inp-full-name'];
+        $firstName = $_REQUEST['inp-first-name'];
+        $lastName = $_REQUEST['inp-last-name'];
         $address = $_REQUEST['inp-address'];
         $phone = $_REQUEST['inp-phone'];
         $gender = $_REQUEST['rb-gender'];
         $birthDate = $_REQUEST['inp-birth-date'];
 
-        $stmt = $conn->prepare("SELECT * FROM user");
+        $stmt = $conn->prepare("SELECT * FROM user WHERE email = ?");
+        $stmt -> bind_param("s", $email);
         $stmt->execute();
-        $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $user = $stmt->get_result()->fetch_assoc();
 
-        $usernameKembar = false;
-        foreach ($users as $idxU => $user) {
-            if ($usernameKembar == $user['username']) $usernameKembar = true;
+        $usernameKembar = true;
+        if ($user == null || $user == "") {
+            $usernameKembar = false;
         }
 
-        if ($usernameKembar || $username == "admin") {
+        if ($usernameKembar || $email == "admin") {
             alert('username sudah ada!');
         }
-        else if ($username == "" || $email == "" || $password == "" || $confirmPassword == "" || $fullName == "" || $address == "" || $phone == "" || $gender == "" || $birthDate == "") {
+        else if ($email == "" || $password == "" || $confirmPassword == "" || $firstName == "" || $lastName || $address == "" || $phone == "" || $gender == "" || $birthDate == "") {
             alert('isi semua field!');
         }
         else {
-            $stmt = $conn->prepare("INSERT INTO `user`(, `username`, `password`, `email`, `full_name`, `address`, `phone`, `gender`, `birthdate`) VALUES ('$username','$password','$email','$fullName','$address','$phone','$gender','$birthDate')");
+            $stmt = $conn->prepare("INSERT INTO `user`(`password`, `email`, `first_name`, `last_name`, `address`, `phone`, `gender`, `birthdate`) VALUES (?,?,?,?,?,?,?,?)");
+            $stmt -> bind_param("ssssssss", $password, $email, $firstName, $lastName, $address, $phone, $gender, $birthDate);
             $stmt->execute();
             alert('berhasil daftar');
         }
@@ -44,8 +46,12 @@
                 <h1>Register</h1>
                 <form method="POST" id="form">
                     <div class="form-group">
-                        <label for="inp-username">Username</label>
-                        <input type="text" class="form-control" id="inp-username" placeholder="Enter username" name="inp-username">
+                        <label for="inp-full-name">First Name</label>
+                        <input type="text" class="form-control" id="inp-full-name" placeholder="Enter First Name" name="inp-first-name">
+                    </div>
+                    <div class="form-group">
+                        <label for="inp-full-name">Last Name (Optional)</label>
+                        <input type="text" class="form-control" id="inp-full-name" placeholder="Enter Last Name (Optional)" name="inp-last-name">
                     </div>
                     <div class="form-group">
                         <label for="inp-email">Email address</label>
@@ -59,10 +65,6 @@
                     <div class="form-group">
                         <label for="inp-password">Confirm Password</label>
                         <input type="password" class="form-control" id="inp-confirm-password" placeholder="Confirm Password" name="inp-confirm-password">
-                    </div>
-                    <div class="form-group">
-                        <label for="inp-full-name">Full Name</label>
-                        <input type="text" class="form-control" id="inp-full-name" placeholder="Enter Full Name" name="inp-full-name">
                     </div>
                     <div class="form-group">
                         <label for="inp-address">Address</label>
@@ -103,4 +105,4 @@
             </div>
         </div>
     </div>
-<?php require_once("../template/footing.php")?>
+<?php require_once("./template/footing.php")?>

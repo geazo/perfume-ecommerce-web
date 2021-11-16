@@ -1,31 +1,31 @@
 
 <?php 
-    require_once("../template/heading.php");
+    require_once("./template/heading.php");
+    require_once("./connector/connection.php");
+    if (isset($_SESSION['user-login'])) {
+        header("Location: index.php");
+    }
     if (isset($_REQUEST['btn-register'])) {
         header("Location: register.php");
     }
     if (isset($_REQUEST['btn-login'])) {
-        $username = $_REQUEST['inp-username'];
+        $email = $_REQUEST['inp-email'];
         $password = $_REQUEST['inp-password'];
 
-        if ($username == "admin" && $password == "admin") {
+        if ($email == "admin" && $password == "admin") {
             header("Location: ../admin/entry.php");
         }
 
-        $stmt = $conn->prepare("SELECT * FROM user");
+        $stmt = $conn->prepare("SELECT * FROM user where email = ?");
+        $stmt -> bind_param("s", $email);
         $stmt->execute();
-        $users = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+        $user = $stmt->get_result()->fetch_assoc();
 
-        $usernameKembar = false;
-        $passwordKembar = false;
-        foreach ($users as $idxU => $user) {
-            if ($username == $user['username']) {
-                $usernameKembar = true;
-                if ($password == $user['password']) {
-                    $passwordKembar = true;
-                }
-            }
-        }
+        $usernameKembar = true;
+        $passwordKembar = true;
+        
+        if ($user == null || $user == "") $usernameKembar = false;
+        else if ($user['password'] != $password) $passwordKembar = false;
 
         if (!$usernameKembar) {
             alert('username tidak ada!');
@@ -34,6 +34,8 @@
             alert('password salah!');
         }
         else {
+
+            $_SESSION['user-login'] = $user;
             alert('berhasil login');
         }
     }
@@ -44,8 +46,8 @@
                 <h1>Login</h1>
                 <form method="POST">
                     <div class="form-group">
-                        <label for="inp-username">Username or Email</label>
-                        <input type="text" class="form-control" id="inp-username" placeholder="Enter username or email" name="inp-username">
+                        <label for="inp-username">Email</label>
+                        <input type="text" class="form-control" id="inp-username" placeholder="Enter username or email" name="inp-email">
                     </div>
                     <div class="form-group mb-2">
                         <label for="inp-password">Password</label>
@@ -57,4 +59,4 @@
             </div>
         </div>
     </div>
-<?php require_once("../template/footing.php")?>
+<?php require_once("./template/footing.php")?>
