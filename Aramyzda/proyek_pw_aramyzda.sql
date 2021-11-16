@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 15, 2021 at 02:10 PM
+-- Generation Time: Nov 16, 2021 at 12:08 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 8.0.10
 
@@ -401,7 +401,8 @@ CREATE TABLE `user` (
   `username` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `full_name` varchar(100) NOT NULL,
+  `first_name` varchar(255) NOT NULL,
+  `last_name` varchar(255) DEFAULT NULL,
   `address` varchar(100) NOT NULL,
   `phone` varchar(100) NOT NULL,
   `gender` varchar(10) NOT NULL,
@@ -412,8 +413,8 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `username`, `password`, `email`, `full_name`, `address`, `phone`, `gender`, `birthdate`) VALUES
-(1, '[value-2]', '[value-3]', '[value-4]', '[value-5]', '[value-6]', '[value-7]', '[value-8]', '0000-00-00');
+INSERT INTO `user` (`id`, `username`, `password`, `email`, `first_name`, `last_name`, `address`, `phone`, `gender`, `birthdate`) VALUES
+(1, '[value-2]', '[value-3]', '[value-4]', '[value-5]', NULL, '[value-6]', '[value-7]', '[value-8]', '0000-00-00');
 
 --
 -- Indexes for dumped tables
