@@ -26,7 +26,7 @@ function closeNav() {
 }
 </script>
 
-<div class="mainHead">
+<div class="mainHead pcView">
     <div class="headBg col-12 "></div>
     <div class="col-12" id ="header">
     <div class="d-flex  text-white p-3">
@@ -39,7 +39,7 @@ function closeNav() {
       </div>
 
       <div class="w-25  iconMode">
-        <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
+      <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
             <li class="px-2"><i class="fa fa-search" aria-hidden="true"></i> Search</li>
             <li class="px-2"><i class="fa fa-user" aria-hidden="true"></i> Account</li>
             <li class="px-2 pe-4" onclick="openNav()"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
@@ -47,22 +47,14 @@ function closeNav() {
       </div>
 
     <div class="w-25  justify-content-end burgerMode">
-        <div class="collapse" id="navbarToggleExternalContent">
-        <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
-          <li class="px-2"><i class="fa fa-search" aria-hidden="true"></i> Search</li>
-          <li class="px-2"><i class="fa fa-user" aria-hidden="true"></i> Account</li>
-          <button type="button" class="btn" onclick="openNav()">
-              <li class="px-2 pe-4" ><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
-          </button>
-        </ul>
+        <div class="menuTiga">
+          <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
+              <li class="px-2"><i class="fa fa-search" aria-hidden="true"></i> Search</li>
+              <li class="px-2"><i class="fa fa-user" aria-hidden="true"></i> Account</li>
+              <li class="px-2 pe-4" onclick="openNav()"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
+          </ul>
         </div>
-        <nav class="navbar navbar-dark ">
-            <div class="container-fluid">
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon "></span>
-                </button>
-            </div>
-        </nav>
+        
     </div>
 
     </div>
@@ -79,6 +71,31 @@ function closeNav() {
       <ul class="w-25 bg-black d-flex justify-content-end">
         kiri
       </ul>
+    </div>
+    
+
+  </div>
+</div>
+
+<div class="mainHead mobileView ">
+    <div class="headBg col-12 "></div>
+    <div class="col-12" id ="header">
+    <div class="d-flex  text-white p-3">
+      <div class="w-25 text-dark">
+        kiri
+      </div>
+      <div class="w-50 text-light fs-1 text-center">
+        <!-- Aramyzda logo-->
+        Aramyzda
+      </div>
+
+    
+
+    
+
+    </div>
+    <div class="w-100 d-flex">
+     
     </div>
     
 
