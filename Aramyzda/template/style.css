@@ -135,7 +135,17 @@
 .list-style-none {
     list-style: none;
 }
-
+.burgerMode{
+    display: none;
+}
+@media screen and (max-width:600px) {
+    .burgerMode {
+        display: flex;
+    }
+    .iconMode{
+        display: none;
+    }
+}
 
 .xyzUnusedForTestingOnlyClassPlsDontTouch{
     background-image: url(../asset/formal_but_lux_amogus.png);

@@ -1,4 +1,4 @@
-<?php require_once("../template/heading.php")?>
+<?php include("./template/heading.php")?>
 <!-- code here -->
 
-<?php require_once("../template/footing.php")?>
+<?php include("./template/footing.php")?>
