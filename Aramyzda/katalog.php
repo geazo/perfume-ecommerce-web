@@ -66,16 +66,16 @@ if (isset($_REQUEST['page'])) {
         <span name="displayTeks" class="displayedTeks"><?= isset($_REQUEST['brand']) ? strtoupper($_REQUEST['brand']) :"CATALOGUE" ?> </span>
       </div>
       <div class="searchbox d-flex justify-content-end col-3">
-          <div class="row">
-            <div class="col-8">
-              <input class="form-control me-2" name="tbx-search" type="search" placeholder="Search" aria-label="Search" value="<?= isset($_REQUEST['tbx-search']) ? $_REQUEST['tbx-search'] : '' ?>">
+          <form action="" method="POST">
+            <div class="row">
+              <div class="col-8">
+                <input class="form-control me-2" name="tbx-search" type="search" placeholder="Search" aria-label="Search" value="<?= isset($_REQUEST['tbx-search']) ? $_REQUEST['tbx-search'] : '' ?>">
+              </div>
+              <div class="col-4">
+                  <button class="btn btn-outline-success" type="submit" name="btn-submit-search">Search</button>
+              </div>
             </div>
-            <div class="col-4">
-              <form action="" method="POST">
-                <button class="btn btn-outline-success" type="submit" name="btn-submit-search">Search</button>
-              </form>
-            </div>
-          </div>
+          </form>
       </div>
     </div>
 
