@@ -5,19 +5,6 @@ $listProductDB = file_get_contents(
   "result.json"
 );
 $listProductDB = json_decode($listProductDB, true);
-$listBrand = [];
-foreach ($listProductDB as $key => $value) {
-  $kembar = false;
-  foreach ($listBrand as $i => $brandName) {
-    if ($value['brand'] == $brandName) {
-      $kembar = true;
-    }
-  }
-  if (!$kembar) {
-    $listBrand[] = $value['brand'];
-  }
-}
-sort($listBrand);
 
 $listProduct = [];
 
@@ -51,10 +38,6 @@ if (isset($_REQUEST['page'])) {
   }
 }
 
-if(isset($_REQUEST['search'])){
-
-}
-
 // echo '<pre>';
 // print_r($currentPage); echo "<br>";
 // print_r($listProduct);
@@ -62,7 +45,7 @@ if(isset($_REQUEST['search'])){
 // echo '</pre>';
 ?>
 <!-- code here -->
-<form action="" method="post">
+<!-- <form action="" method="post"> -->
 
 <!-- <div class="mainHead col-12">
         <div class="headBg col-12 "></div>
@@ -131,7 +114,9 @@ if(isset($_REQUEST['search'])){
               <input class="form-control me-2" name="tbx-search" type="search" placeholder="Search" aria-label="Search" value="<?= isset($_REQUEST['tbx-search']) ? $_REQUEST['tbx-search'] : '' ?>">
             </div>
             <div class="col-4">
-              <button class="btn btn-outline-success" type="submit" name="btn-submit-search">Search</button>
+              <form action="" method="POST">
+                <button class="btn btn-outline-success" type="submit" name="btn-submit-search">Search</button>
+              </form>
             </div>
           </div>
       </div>
@@ -140,17 +125,12 @@ if(isset($_REQUEST['search'])){
 
     <div class="konten row">
       <div class="navKiri col-3">
-        <ul class="nav flex-sm-column nav-pills">
-          <?php foreach ($listBrand as $idxB => $brandName) { ?>
-            <li class="nav-item">
-              <a class="nav-link " aria-current="page" href="katalog.php?brand=<?=$brandName?>"> <?= $brandName ?></a>
-            </li>
-          <?php } ?>
+        <ul class="nav flex-sm-column nav-pills" id="list-brand-name">
         </ul>
       </div>
 
       <div class="navKanan col-9 ">
-        <div class="katalog justify-content-between row ">
+        <div class="katalog justify-content-between row" id="katalog">
           <?php if(count($listProduct) != 0) { ?>
             <?php for ($i = ($currentPage - 1) * $maxProductInAPage; $i < $currentPage * $maxProductInAPage; $i++) { ?>
               <?php if ($i >= count($listProduct)) break; ?>
@@ -196,5 +176,19 @@ if(isset($_REQUEST['search'])){
     <!--penutup konten -->
   </div>
   <!--penutup kontainer utama -->
-</form>
+<!-- </form> -->
 <?php require_once("./template/footing.php") ?>
+<script>
+  load_brand_name();
+  function load_brand_name() {
+    $("#list-brand-name").html("bisa ini");
+    $.ajax({
+      type: "post",
+      url: "ajax/katalog_load_brand_name.php",
+      success: function (response) {
+        $("#list-brand-name").html("");
+        $("#list-brand-name").append(response);
+      }
+    });
+  }
+</script>
