@@ -71,7 +71,17 @@
 ?>
 <script>
     function AddToCart(id_product) {
-        quantity = parseInt($("#inputNumberLangsung").val());
-        console.log('quantity :>> ', quantity);
+        quantity = parseInt($("#inputNumberLangsung").val()) || 1;
+        $.ajax({
+            type: "post",
+            url: "ajax/add_to_cart.php",
+            data: {
+                "id-product" : id_product,
+                "quantity" : quantity
+            },
+            success: function (response) {
+                alert(response)  ;
+            }
+        });
     }
 </script>
