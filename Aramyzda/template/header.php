@@ -1,3 +1,4 @@
+<?php require_once("./connector/connection.php") ?>
 <div id="mySidebar" class="sidebar h-100">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
   <div class="col min-vh-90">
@@ -65,9 +66,25 @@ function mobileClose(){
 
       <div class="w-25 ">
       <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
-            <li class="px-2"><i class="fa fa-search" aria-hidden="true"></i> Search</li>
-            <li class="px-2"><i class="fa fa-user" aria-hidden="true"></i> Account</li>
-            <li class="px-2 pe-4" onclick="openNav()"><i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart</li>
+          <li class="px-2">
+            <i class="fa fa-search" aria-hidden="true"></i> Search
+          </li>
+          <li class="px-2">
+            <div class="dropdown">
+              <a class="text-light text-decoration-none dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="fa fa-user" aria-hidden="true"></i> Account
+              </a>
+
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><a class="dropdown-item" href="#">Action</a></li>
+                <li><a class="dropdown-item" href="#">Another action</a></li>
+                <li><a class="dropdown-item" href="#">Something else here</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="px-2 pe-4" onclick="openNav()">
+            <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart
+          </li>
         </ul>
       </div>
     </div>
@@ -85,8 +102,6 @@ function mobileClose(){
         kanan 
       </ul>
     </div>
-    
-
   </div>
 </div>
 
@@ -113,3 +128,4 @@ function mobileClose(){
     
   </div>
 </div>
+
