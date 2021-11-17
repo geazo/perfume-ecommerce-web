@@ -3,7 +3,7 @@
 <div class="container">
   <footer class="py-5">
     <div class="row">
-      <div class="col-2">
+      <div class="col-3">
         <h5>Browse</h5>
         <ul class="nav flex-column">
           <li class="nav-item mb-2 border-bottom-0"><a href="index.php" class="nav-link p-0 text-muted">Home</a></li>
@@ -12,7 +12,7 @@
         </ul>
       </div>
 
-      <div class="col-2">
+      <div class="col-3">
         <h5>Account</h5>
         <ul class="nav flex-column">
           <li class="nav-item mb-2 border-bottom-0"><a href="profile.php" class="nav-link p-0 text-muted">My Profile</a></li>
@@ -23,7 +23,7 @@
         </ul>
       </div>
 
-      <div class="col-2">
+      <!-- <div class="col-2">
         <h5>Section idk </h5>
         <ul class="nav flex-column">
           <li class="nav-item mb-2 border-bottom-0"><a href="#" class="nav-link p-0 text-muted">Home</a></li>
@@ -32,7 +32,7 @@
           <li class="nav-item mb-2 border-bottom-0"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
           <li class="nav-item mb-2 border-bottom-0"><a href="#" class="nav-link p-0 text-muted">About</a></li>
         </ul>
-      </div>
+      </div> -->
 
       <div class="col-4 offset-1">
         <form>
