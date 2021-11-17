@@ -62,13 +62,6 @@
     
   
 </form>
-<?php require_once("./template/footing.php")?>
-<?php 
-    
-// echo'<pre>';
-// var_dump($product);
-// echo'</pre>';
-?>
 <script>
     function AddToCart(id_product) {
         quantity = parseInt($("#inputNumberLangsung").val()) || 1;
@@ -85,3 +78,5 @@
         });
     }
 </script>
+<?php require_once("./template/footer.php")?>
+<?php require_once("./template/footing.php")?>

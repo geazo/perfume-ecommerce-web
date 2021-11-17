@@ -44,4 +44,5 @@
 </div>
 <!-- </form> -->
 
+<?php require_once("./template/footer.php")?>
 <?php require_once("./template/footing.php")?>

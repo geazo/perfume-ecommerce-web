@@ -143,6 +143,7 @@ if (isset($_REQUEST['page'])) {
   </div>
   <!--penutup kontainer utama -->
 <!-- </form> -->
+<?php require_once("./template/footer.php")?>
 <?php require_once("./template/footing.php") ?>
 <script>
   load_brand_name();
