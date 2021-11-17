@@ -45,7 +45,7 @@
             
             <div class="col-7 loginBg d-flex justify-content-center align-items-center">
                 <div class=" fs-4 text-light">
-                    Aramyza
+                    Aramyzda
                 </div>
             </div>
             <div class="col-5 p-5  bg-light">
