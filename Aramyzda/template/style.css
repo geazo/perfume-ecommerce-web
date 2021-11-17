@@ -266,6 +266,10 @@
 .loginBg{
     background-image: url(https://ak.picdn.net/shutterstock/videos/14986201/thumb/1.jpg);
 }
+.garis{
+    border-bottom: 2px solid grey;
+    margin: 0 1%;
+}
 
 .xyzUnusedForTestingOnlyClassPlsDontTouch{
     background-image: url(../asset/formal_but_lux_amogus.png);
