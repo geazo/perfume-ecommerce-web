@@ -54,16 +54,17 @@ function mobileClose(){
 <div class="mobileSidebarClosed p-2" id="theMobileSidebar">
     <ul class = "d-flex flex-column list-style-none fs-6 text light">
       <li class="iconSidebar fs-1  pb-5 text-light align-self-end" onclick="mobileClose()"><i class="fa fa-bars"></i> </li>
+
       <a class="" style="text-decoration:none;" href="index.php">
         <li class = "text-light pt-5 pb-3 fs-4">HOME</li>
       </a>
       <a class="" style="text-decoration:none;" href="katalog.php">
         <li class = "text-light pb-3 fs-4">CATALOGUE</li>
       </a>
-      <a class="" style="text-decoration:none;" href="">
+      <a class="" style="text-decoration:none;" href="profile.php">
         <li class = "text-light pb-3 fs-4">ACCOUNT</li>
       </a>
-      <a class="" style="text-decoration:none;" href="">
+      <a class="" style="text-decoration:none;" href="cart.php">
         <li class = "text-light pb-3 fs-4">CHECK OUT</li>
       </a>
     </ul>
@@ -116,8 +117,8 @@ function mobileClose(){
       </div>
     </div>
     <div class="w-100 d-flex">
-      <ul class="w-25 bg-black d-flex">
-        kiri #2
+      <ul class="w-25 bg-black text-light align-items-center d-flex">
+            
       </ul>
       <ul class="d-flex w-50 bg-black p-1 justify-content-center align-items-center list-style-none ">
         <a class="text-light nav-link active" href="index.php"><li>HOME</li></a>
@@ -149,9 +150,23 @@ function mobileClose(){
       </div>
 
     </div>
-    <div class="w-100 d-flex">
-     
-    </div>
+    <?php 
+          if (isset($_SESSION['user-login'])) {
+        ?>
+          <ul class="w-100 text-light justify-content-end p-3 d-flex">
+            Welcome,  <?= $_SESSION['user-login']['first_name'] ?>
+          </ul>
+          <?php
+          }
+          else{
+          ?>
+            <ul class="w-100 align-items-center d-flex">
+            
+            </ul>
+          <?php
+          }
+          ?>
+    
     
   </div>
 </div>
