@@ -34,7 +34,6 @@
             alert('password salah!');
         }
         else {
-
             $_SESSION['user-login'] = $user;
             alert('berhasil login');
         }
