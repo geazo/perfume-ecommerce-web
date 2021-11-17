@@ -13,7 +13,7 @@
         $password = $_REQUEST['inp-password'];
 
         if ($email == "admin" && $password == "admin") {
-            header("Location: ../admin/entry.php");
+            header("Location: ./admin/index.php");
         }
 
         $stmt = $conn->prepare("SELECT * FROM user where email = ?");
