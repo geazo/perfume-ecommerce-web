@@ -1,15 +1,32 @@
 <?php require_once("./connector/connection.php") ?>
 <div id="mySidebar" class="sidebar h-100">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
-  <div class="col min-vh-90">
-    <div class="row align-self-start d-flex h-10 justify-content-center text-light fs-4 ">Your Cart</div>
+  <div class="col h-100">
+    <div class="row align-self-start d-flex  justify-content-center text-light fs-4 ">Your Cart</div>
 
-    <div class="row align-self-center h-80 d-flex justify-content-center">
-      items
+    <div class=" align-item-start h-75 ">
+    <?php for ($i=0; $i < 4; $i++) { 
+    ?>
+      <div class="d-flex justify-content-center " style="height: 50px;">
+        <div class=" m-1 gbrCart d-flex justify-content-center align-items-center" style="width:20%">
+          <img src="<?=$i ?>" alt="" class="itemGbrCart"> img <?=$i ?>
+        </div>
+        <div class=" m-1 itemNameCart d-flex text-light align-items-center">
+          Nama parfum panjang ga jelas <?=$i ?>
+        </div>
+        <div class="m-1 itemCountCart d-flex text-light align-items-center" style="width:10%">
+          <?= $i ?>x
+        </div>
+      </div>
+    <?php
+    }
+    ?>
     </div>
 
-    <div class="row align-self-end text-light h-10 d-flex justify-content-center">
-      <button class="button"><span>To Checkout </span></button>
+    <div class="row align-self-end text-light h-25 d-flex justify-content-center">
+      <a href="./cart.php" class="d-flex justify-content-center">
+        <button class="button" href="./cart.php"><span>To Checkout </span></button>
+      </a>
     </div>
   </div>
 </div>
@@ -17,13 +34,13 @@
 
 <script>
 function openNav() {
-  document.getElementById("mySidebar").style.width = "250px";
-  document.getElementById("main").style.marginLeft = "250px";
+  document.getElementById("mySidebar").style.width = "400px";
+  
 }
 
 function closeNav() {
   document.getElementById("mySidebar").style.width = "0";
-  document.getElementById("main").style.marginLeft= "0";
+  
 }
 function mobileOpen(){
   $("#theMobileSidebar").removeClass("mobileSidebarClosed");
@@ -58,10 +75,12 @@ function mobileClose(){
       <div class="w-25 text-dark">
         kiri
       </div>
-      <div class="w-50 fs-1 text-center">
-        <!-- Aramyzda logo-->
-        Aramyzda
-      </div>
+      <a href="./index.php" class="w-50 fs-1 d-flex justify-content-center text-center" style="text-decoration:none;">
+        <div class="w-50 fs-1 text-center text-light">
+          <!-- Aramyzda logo-->
+          Aramyzda
+        </div>
+      </a>
 
       <div class="w-25 ">
       <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
