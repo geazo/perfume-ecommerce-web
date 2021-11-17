@@ -11,7 +11,6 @@
     <div class="row align-self-end text-light h-10 d-flex justify-content-center">
       <button class="button"><span>To Checkout </span></button>
     </div>
-  
   </div>
 </div>
 
@@ -70,17 +69,26 @@ function mobileClose(){
             <i class="fa fa-search" aria-hidden="true"></i> Search
           </li>
           <li class="px-2">
-            <div class="dropdown">
-              <a class="text-light text-decoration-none dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
-                <i class="fa fa-user" aria-hidden="true"></i> Account
-              </a>
+            <?php 
+              if (isset($_SESSION['user-login'])) {
+            ?>
+              <div class="dropdown">
+                <a class="text-light text-decoration-none dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                  <i class="fa fa-user" aria-hidden="true"></i> <?= $_SESSION['user-login']['first_name'] ?>
+                </a>
 
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-              </ul>
-            </div>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                  <li><a class="dropdown-item" href="">Profile</a></li>
+                  <li><a class="dropdown-item" href="" onclick="logOff()">Log Off</a></li>
+                </ul>
+              </div>
+            <?php 
+              } else {
+            ?>
+              <a href="login.php" class="text-light text-decoration-none"><i class="fa fa-user" aria-hidden="true"></i> Account</a>
+            <?php 
+              }
+            ?>
           </li>
           <li class="px-2 pe-4" onclick="openNav()">
             <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart
@@ -129,3 +137,20 @@ function mobileClose(){
   </div>
 </div>
 
+<script>
+  function logOff() {
+    $.ajax({
+      type: "post",
+      url: "./ajax/log_off.php",
+      success: function (response) {
+
+      }
+    });
+  }
+</script>
+
+<?php 
+  // echo "<pre>";
+  // print_r($_SESSION);
+  // echo "</pre>";
+?>
