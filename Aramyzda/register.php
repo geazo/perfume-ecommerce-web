@@ -74,6 +74,10 @@
                         <label for="inp-phone">Phone</label>
                         <input type="text" class="form-control" id="inp-phone" placeholder="Enter Phone" name="inp-phone">
                     </div>
+                    <div class="form-group mb-2">
+                        <label for="inp-birth-date">Birth Date</label>
+                        <input type="date" class="form-control" id="inp-birth-date" name="inp-birth-date">
+                    </div>
                     <div class="form-group">
                         <label for="rb-gender">Gender</label>
                         <div class="form-check">
@@ -94,10 +98,6 @@
                                 Other
                             </label>
                         </div>
-                    </div>
-                    <div class="form-group mb-2">
-                        <label for="inp-birth-date">Birth Date</label>
-                        <input type="date" class="form-control" id="inp-birth-date" name="inp-birth-date">
                     </div>
                     <button name="btn-register" type="submit" class="btn btn-primary">Register</button>
                     <button name="btn-login" type="submit" class="btn border btn-light">Go to login</button>
