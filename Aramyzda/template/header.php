@@ -61,10 +61,10 @@ function mobileClose(){
       <a class="" style="text-decoration:none;" href="katalog.php">
         <li class = "text-light pb-3 fs-4">CATALOGUE</li>
       </a>
-      <a class="" style="text-decoration:none;" href="">
+      <a class="" style="text-decoration:none;" href="profile.php">
         <li class = "text-light pb-3 fs-4">ACCOUNT</li>
       </a>
-      <a class="" style="text-decoration:none;" href="">
+      <a class="" style="text-decoration:none;" href="cart.php">
         <li class = "text-light pb-3 fs-4">CHECK OUT</li>
       </a>
     </ul>
