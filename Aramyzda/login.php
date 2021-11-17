@@ -36,12 +36,20 @@
         else {
             $_SESSION['user-login'] = $user;
             alert('berhasil login');
+            header ('Location: index.php');
         }
     }
 ?>
-    <div class="container p-3">
-        <div class="row">
-            <div class="col-12">
+    <div class="vh-100 p-5 bg-dark">
+        <div class="row h-75  m-5 p-5 bg-dark">
+            
+            <div class="col-7 loginBg d-flex justify-content-center align-items-center">
+                <div class=" fs-4 text-light">
+                    Aramyza
+                </div>
+            </div>
+            <div class="col-5 p-5  bg-light">
+
                 <h1>Login</h1>
                 <form method="POST">
                     <div class="form-group">

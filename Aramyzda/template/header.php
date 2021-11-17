@@ -75,10 +75,12 @@ function mobileClose(){
       <div class="w-25 text-dark">
         kiri
       </div>
-      <div class="w-50 fs-1 text-center">
-        <!-- Aramyzda logo-->
-        Aramyzda
-      </div>
+      <a href="./index.php" class="w-50 fs-1 d-flex justify-content-center text-center" style="text-decoration:none;">
+        <div class="w-50 fs-1 text-center text-light">
+          <!-- Aramyzda logo-->
+          Aramyzda
+        </div>
+      </a>
 
       <div class="w-25 ">
       <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">

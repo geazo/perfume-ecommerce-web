@@ -139,7 +139,9 @@
 .burgerMode{
     display: none;
 }
-
+#mySidebar{
+    z-index: 10000;
+}
 .sidebar {
     height: 100%;
     width: 0;
@@ -260,6 +262,9 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
+}
+.loginBg{
+    background-image: url(https://ak.picdn.net/shutterstock/videos/14986201/thumb/1.jpg);
 }
 
 .xyzUnusedForTestingOnlyClassPlsDontTouch{
