@@ -69,7 +69,7 @@
 </div>
 <?php require_once("../template/footing.php")?>
 <script>
-    loadListBarang() {
+    function loadListBarang() {
         $.ajax({
             type: "post",
             url: "ajaxAdmin.php",
