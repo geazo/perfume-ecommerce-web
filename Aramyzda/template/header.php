@@ -1,4 +1,12 @@
-<?php require_once("./connector/connection.php") ?>
+<?php 
+  require_once("./connector/connection.php");
+  if (isset($_SESSION['user-login'])) {
+    $stmt = $conn -> prepare("SELECT p.*, c.quantity FROM cart c, product p WHERE id_user = ? AND p.id = c.id_product");
+    $stmt -> bind_param("i", $_SESSION['user-login']['id']);
+    $stmt -> execute();
+    $carts = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+  }
+?>
 <div id="mySidebar" class="sidebar h-100">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">×</a>
   <div class="col h-100">
@@ -7,17 +15,17 @@
     <div class=" align-item-start h-75 ">
       <!-- cek ada user  -->
     <?php if(isset($_SESSION['user-login'])){
-      for ($i=0; $i < 4; $i++) { 
+      foreach ($carts as $key => $cart) { 
     ?>
-      <div class="d-flex justify-content-center " style="height: 50px;">
-        <div class=" m-1 gbrCart d-flex justify-content-center align-items-center" style="width:20%">
-          <img src="<?=$i ?>" alt="" class="itemGbrCart"> img <?=$i ?>
+      <div class="d-flex justify-content-center cart-item" style="height: 75px;">
+        <div class=" m-1 gbrCart d-flex justify-content-center align-items-center hoverable expand-hover" style="width:20%">
+          <img class="h-100" src="<?=$cart['image_source']?>" alt="" class="itemGbrCart">
         </div>
         <div class=" m-1 itemNameCart d-flex text-light align-items-center">
-          Nama parfum panjang ga jelas <?=$i ?>
+          <?=$cart['name']?>
         </div>
         <div class="m-1 itemCountCart d-flex text-light align-items-center" style="width:10%">
-          <?= $i ?>x
+          <?= $cart['quantity'] ?>x
         </div>
       </div>
     <?php
@@ -142,7 +150,7 @@ function mobileClose(){
       <ul class="d-flex w-50 bg-black p-1 justify-content-center align-items-center list-style-none ">
         <a class="text-light nav-link active" href="index.php"><li>HOME</li></a>
         <a class="text-light nav-link active" href="katalog.php"><li>CATALOGUE</li></a>
-        <a class="text-light nav-link active" href="#"><li>CART</li></a>
+        <a class="text-light nav-link active" href="cart.php"><li>CART</li></a>
         <a class="text-light nav-link active" href="#"><li>TRANSACTION</li></a>
       </ul>
       <ul class="w-25 bg-black d-flex justify-content-end">

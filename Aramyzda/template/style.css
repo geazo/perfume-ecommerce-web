@@ -271,6 +271,20 @@
     margin: 0 1%;
 }
 
+.hover:hover {
+    cursor: pointer;
+}
+
+.hover-expand:hover {
+    transform: scale(1.5);
+    transition: ease-in-out;
+}
+
+/* nda ngerti color palette ahihihih */
+.cart-item {
+    background-color: indigo;
+}
+
 .xyzUnusedForTestingOnlyClassPlsDontTouch{
     background-image: url(../asset/formal_but_lux_amogus.png);
 }
