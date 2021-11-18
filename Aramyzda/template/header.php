@@ -5,6 +5,7 @@
     <div class="row align-self-start d-flex  justify-content-center text-light fs-4 ">Your Cart</div>
 
     <div class=" align-item-start h-75 ">
+      <!-- cek ada user  -->
     <?php if(isset($_SESSION['user-login'])){
       for ($i=0; $i < 4; $i++) { 
     ?>
@@ -21,6 +22,13 @@
       </div>
     <?php
       }
+    ?>
+      <div class="row align-self-end text-light h-25 d-flex justify-content-center">
+        <a href="./cart.php" class="d-flex justify-content-center">
+          <button class="button" href="./cart.php"><span>To Checkout </span></button>
+        </a>
+      </div>
+    <?php
     }
     else{
     ?>
@@ -28,16 +36,17 @@
             <a class="d-flex justify-content-center align-items-center" style="text-decoration:none;" href="login.php"> Please Login first
             </a>
       </div>
+
+      <div class="row align-self-end text-light h-25 d-flex justify-content-center">
+
+      </div>
     <?php
     }
     ?>
     </div>
 
-    <div class="row align-self-end text-light h-25 d-flex justify-content-center">
-      <a href="./cart.php" class="d-flex justify-content-center">
-        <button class="button" href="./cart.php"><span>To Checkout </span></button>
-      </a>
-    </div>
+    
+
   </div>
 </div>
 
