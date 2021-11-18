@@ -5,7 +5,8 @@
     <div class="row align-self-start d-flex  justify-content-center text-light fs-4 ">Your Cart</div>
 
     <div class=" align-item-start h-75 ">
-    <?php for ($i=0; $i < 4; $i++) { 
+    <?php if(isset($_SESSION['user-login'])){
+      for ($i=0; $i < 4; $i++) { 
     ?>
       <div class="d-flex justify-content-center " style="height: 50px;">
         <div class=" m-1 gbrCart d-flex justify-content-center align-items-center" style="width:20%">
@@ -17,6 +18,15 @@
         <div class="m-1 itemCountCart d-flex text-light align-items-center" style="width:10%">
           <?= $i ?>x
         </div>
+      </div>
+    <?php
+      }
+    }
+    else{
+    ?>
+      <div class="d-flex justify-content-center align-items-center">
+            <a class="d-flex justify-content-center align-items-center" style="text-decoration:none;" href="login.php"> Please Login first
+            </a>
       </div>
     <?php
     }
@@ -98,7 +108,7 @@ function mobileClose(){
                 </a>
 
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                  <li><a class="dropdown-item" href="">Profile</a></li>
+                  <li><a class="dropdown-item" href="profile.php">Profile</a></li>
                   <li><a class="dropdown-item" href="" onclick="logOff()">Log Off</a></li>
                 </ul>
               </div>
