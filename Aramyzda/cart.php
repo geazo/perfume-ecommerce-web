@@ -34,15 +34,16 @@
         });
     }
 
-    function editQuantity() {
+    function editQuantity(num, id_cart) {
         $.ajax({
             type: "post",
-            url: "edit_cart_quantity.php",
+            url: "ajax/edit_cart_quantity.php",
             data: {
-                
+                "number" : num,
+                "id-cart" : id_cart
             },
             success: function (response) {
-                
+                loadCart();
             }
         });
     }

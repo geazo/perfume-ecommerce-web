@@ -12,5 +12,9 @@
 
     function alert($msg) {
         echo "<script>alert('$msg')</script>";
-}
+    }
+
+    function getFormatHarga($number)  {
+        return number_format($number,0,',','.');
+    }
 ?>

@@ -1,14 +1,9 @@
 <?php
     require_once('../connector/connection.php');
-    if (!isset($_SESSION['user-login'])) {
-        header("login.php");
-    }
-    else {
-        $stmt = $conn -> prepare("SELECT p.*, c.quantity FROM cart c, product p WHERE id_user = ? AND p.id = c.id_product");
-        $stmt -> bind_param("i", $_SESSION['user-login']['id']);
-        $stmt -> execute();
-        $carts = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-    }
+    $stmt = $conn -> prepare("SELECT p.*, c.quantity, c.id_cart FROM cart c, product p WHERE id_user = ? AND p.id = c.id_product");
+    $stmt -> bind_param("i", $_SESSION['user-login']['id']);
+    $stmt -> execute();
+    $carts = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
 ?>
 <?php foreach ($carts as $key => $cart_item) { ?>
     <tr class="align-middle">
@@ -24,11 +19,11 @@
             </a>
         </td>
         <td><?=$cart_item['type']?></td>
-        <td><?=$cart_item['price']?></td>
+        <td><?="Rp. " . getFormatHarga($cart_item['price'])?></td>
         <td>
-            <button class="btn btn-outline-secondary" id="btnDownQty" type="button" onclick="gantiAngkaDown()">-</button>
-            <button class="btn btn-outline-secondary" type="button" disabled><?=$cart_item['quantity']?></button>
-            <button class="btn btn-outline-secondary" id="btnUpQty"  type="button" onclick="gantiAngkaUp()">+</button>
+            <button class="btn btn-outline-secondary" id="btnDownQty" type="button" onclick="editQuantity(-1, <?=$cart_item['id_cart']?>)">-</button>
+            <button class="text-dark btn btn-outline-secondary" disabled><?=$cart_item['quantity']?></button>
+            <button class="btn btn-outline-secondary" id="btnUpQty"  type="button" onclick="editQuantity(1, <?=$cart_item['id_cart']?>)">+</button>
         </td>
         <td>
             
