@@ -26,7 +26,7 @@
             <button class="btn btn-outline-secondary" id="btnUpQty"  type="button" onclick="editQuantity(1, <?=$cart_item['id_cart']?>)">+</button>
         </td>
         <td>
-            
+            <i class="hover fa fa-trash fa-2x" aria-hidden="true" onclick="deleteCart(<?=$cart_item['id_cart']?>)"></i>
         </td>
     </tr>
 <?php } ?>

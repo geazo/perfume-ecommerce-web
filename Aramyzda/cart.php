@@ -47,4 +47,17 @@
             }
         });
     }
+
+    function deleteCart(id_cart) {
+        $.ajax({
+            type: "post",
+            url: "ajax/delete_cart.php",
+            data: {
+                "id-cart" : id_cart
+            },
+            success: function (response) {
+                loadCart();
+            }
+        });
+    }
 </script>
