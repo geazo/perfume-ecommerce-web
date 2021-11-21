@@ -21,7 +21,7 @@
         <div class=" m-1 gbrCart d-flex justify-content-center align-items-center hoverable expand-hover" style="width:20%">
           <img class="h-100" src="<?=$cart['image_source']?>" alt="" class="itemGbrCart">
         </div>
-        <div class=" m-1 itemNameCart d-flex text-light align-items-center">
+        <div class=" m-1 itemNameCart d-flex text-light align-items-center" style="width:70%;">
           <?=$cart['name']?>
         </div>
         <div class="m-1 itemCountCart d-flex text-light align-items-center" style="width:10%">

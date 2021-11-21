@@ -57,6 +57,30 @@ if (isset($_REQUEST['page'])) {
 <!-- <form action="" method="post"> -->
   
 <?php include ("./template/header.php")?>
+<script>
+    function gantiAngkaDown(){
+        if(parseInt(document.getElementById('inputNumberLangsung').value)>1){
+            document.getElementById('inputNumberLangsung').value = parseInt(document.getElementById('inputNumberLangsung').value) -  1;
+        }
+    }
+    function gantiAngkaUp(){
+        document.getElementById('inputNumberLangsung').value = parseInt(document.getElementById('inputNumberLangsung').value) +1;
+    }
+    function AddToCart(id_product) {
+        quantity = parseInt($("#inputNumberLangsung").val()) || 1;
+        $.ajax({
+            type: "post",
+            url: "ajax/add_to_cart.php",
+            data: {
+                "id-product" : id_product,
+                "quantity" : quantity
+            },
+            success: function (response) {
+                alert(response)  ;
+            }
+        });
+    }
+</script>
 
   <div class="kontainerUtama">
     <div class="sortBy row">
@@ -100,16 +124,34 @@ if (isset($_REQUEST['page'])) {
           <?php if(count($listProduct) != 0) { ?>
             <?php for ($i = ($currentPage - 1) * $maxProductInAPage; $i < $currentPage * $maxProductInAPage; $i++) { ?>
               <?php if ($i >= count($listProduct)) break; ?>
-              <a class="card text-decoration-none color-inherit" style="width: 18rem;" href="detailProduk.php?product=<?= $listProduct[$i]['id']?>">
+              <div class="card text-decoration-none color-inherit" style="width: 18rem;" href="detailProduk.php?product=<?= $listProduct[$i]['id']?>">
                 <!-- <div class="card" style="width: 18rem;"> -->
-                  <img src="<?= $listProduct[$i]['image_source'] ?>" class="card-img-top" alt="...">
-                  <div class="card-body">
-                    <h6 class="card-title"> <?= $listProduct[$i]['name'] ?> </h6>
-                    <p class="card-text">Rp <?= $listProduct[$i]['price'] != '' ? number_format($listProduct[$i]['price'], 0, ',', '.') : '0' ?> </p>
-                    <p class="card-text"> <?= $listProduct[$i]['type'] ?> </p>
+                  <a href="detailProduk.php?product=<?= $listProduct[$i]['id']?>">
+                    <img src="<?= $listProduct[$i]['image_source'] ?>" class="card-img-top" alt="...">
+                  </a>
+                  <div class="row d-flex justify-content-center card-body">
+                    <a href="detailProduk.php?product=<?= $listProduct[$i]['id']?>"></a>
+                    <h6 class="row card-title"> <?= $listProduct[$i]['name'] ?> </h6>
+                    <p class="row card-text"> <?= $listProduct[$i]['type'] ?> </p>
+                    <div class=" d-flex justify-content-center align-items-center flex-row mb-2">
+
+                      <div class="w-50 ">
+                        <p class="card-text">Rp <?= $listProduct[$i]['price'] != '' ? number_format($listProduct[$i]['price'], 0, ',', '.') : '0' ?> </p>
+                      </div>
+
+                      <div class="w-50 input-group">
+                          <button class="btn btn-outline-secondary" id="btnDownQty" type="button" onclick="gantiAngkaDown()">-</button>
+                          <input type="text" class="form-control text-center" id="inputNumberLangsung" aria-label="" value ="1">
+                          <button class="btn btn-outline-secondary" id="btnUpQty"  type="button" onclick="gantiAngkaUp()">+</button>
+                      </div>
+
+                    </div>
+                    <div class="row align-self-center addToCart">
+                       <button type="button" class="btn btn-danger" onclick="AddToCart(<?=$product['id']?>)">Add to Cart</button>  
+                    </div>
                   </div>
                 <!-- </div> -->
-              </a>
+              </div>
             <?php } ?>
               <?php } else {?>
                 <h1>Item yang anda cari tidak ada!</h1>

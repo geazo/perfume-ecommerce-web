@@ -10,7 +10,7 @@
         <th scope="row"><?=$key + 1?></th>
         <td class="d-flex justify-content-center">
             <a href="detailProduk.php?product=<?= $cart_item['id']?>">
-                <img class="hover-expand" style="width: 120px;" src="<?= $cart_item['image_source'] ?>" alt="">
+                <img class="hover-expand" style="width: 100px;" src="<?= $cart_item['image_source'] ?>" alt="">
             </a>
         </td>
         <td>

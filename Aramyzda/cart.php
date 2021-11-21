@@ -6,21 +6,29 @@
     <!-- <div class="yesno modal d-none" id="modalCart">
     <span onclick="document.getElementById('modalCart').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div> -->
-    <table class="table table-hover fs-5">
-        <thead>
-            <tr>
-            <th scope="col">#</th>
-            <th class="d-flex justify-content-center" scope="col">Image</th>
-            <th scope="col">Name</th>
-            <th scope="col">Type</th>
-            <th scope="col">Price</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Action</th>
-            </tr>
-        </thead>
-        <tbody id="tbody">
-        </tbody>
-    </table>
+    <div class="row">
+        <div class="col-8">
+            <table class="table table-hover fs-6">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th class="d-flex justify-content-center" scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Type</th>
+                    <th scope="col">Price</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody">
+                </tbody>
+            </table>
+        </div>
+        <div class="col-4">
+            
+        </div>
+    </div>
+    
 </div>
 <?php require_once("./template/footer.php")?>
 <?php require_once("./template/footing.php")?>
