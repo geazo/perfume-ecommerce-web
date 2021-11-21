@@ -31,6 +31,7 @@
     <?php
       }
     ?>
+      </div>
       <div class="row align-self-end text-light h-25 d-flex justify-content-center">
         <a href="./cart.php" class="d-flex justify-content-center">
           <button class="button" href="./cart.php"><span>To Checkout </span></button>
@@ -51,10 +52,7 @@
     <?php
     }
     ?>
-    </div>
-
     
-
   </div>
 </div>
 

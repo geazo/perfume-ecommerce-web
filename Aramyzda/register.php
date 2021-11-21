@@ -29,7 +29,7 @@
         if ($usernameKembar || $email == "admin") {
             alert('username sudah ada!');
         }
-        else if ($email == "" || $password == "" || $confirmPassword == "" || $firstName == "" || $lastName || $address == "" || $phone == "" || $gender == "" || $birthDate == "") {
+        else if ($email == "" || $password == "" || $confirmPassword == "" || $firstName == "" || $lastName == "" || $address == "" || $phone == "" || $gender == "" || $birthDate == "") {
             alert('isi semua field!');
         }
         else {

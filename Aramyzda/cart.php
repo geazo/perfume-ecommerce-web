@@ -3,6 +3,9 @@
 <?php 
 ?>
 <div class="py-3 m-3">
+    <!-- <div class="yesno modal d-none" id="modalCart">
+    <span onclick="document.getElementById('modalCart').style.display='none'" class="close" title="Close Modal">&times;</span>
+    </div> -->
     <table class="table table-hover fs-5">
         <thead>
             <tr>
