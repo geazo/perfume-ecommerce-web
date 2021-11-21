@@ -48,7 +48,7 @@
         </div>
         </div>
         <div class="col-6 d-flex justify-content-center">
-          something something
+          <h5>History</h5>
         </div>
         <div class="col-12 d-flex justify-content-center">
           probably something more .....
