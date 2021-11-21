@@ -140,9 +140,9 @@ if (isset($_REQUEST['page'])) {
                       </div>
 
                       <div class="w-50 input-group">
-                          <button class="btn btn-outline-secondary" id="btnDownQty" type="button" onclick="gantiAngkaDown()">-</button>
-                          <input type="text" class="form-control text-center" id="inputNumberLangsung" aria-label="" value ="1">
-                          <button class="btn btn-outline-secondary" id="btnUpQty"  type="button" onclick="gantiAngkaUp()">+</button>
+                          <button class="btn btn-outline-secondary" id="btnDownQty<?= $listProduct[$i]['id']?>" type="button" onclick="gantiAngkaDown()">-</button>
+                          <input type="text" class="form-control text-center" id="inputNumberLangsung<?= $listProduct[$i]['id']?>" aria-label="" value ="1">
+                          <button class="btn btn-outline-secondary" id="btnUpQty<?= $listProduct[$i]['id']?>"  type="button" onclick="gantiAngkaUp()">+</button>
                       </div>
 
                     </div>
