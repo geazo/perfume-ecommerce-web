@@ -3,7 +3,8 @@
     require_once("./template/heading.php");
     require_once("./connector/connection.php");
     if (isset($_REQUEST['btn-login'])) {
-        header("Location: login.php");
+        // header("Location: login.php");
+        windowLocationHref("login.php");
     }
     if (isset($_REQUEST['btn-register'])) {
         $email = $_REQUEST['inp-email'];

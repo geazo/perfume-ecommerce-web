@@ -4,11 +4,11 @@
     require_once("./connector/connection.php");
     if (isset($_SESSION['user-login'])) {
         // header("Location: index.php");
-        echo "<script>window.location.href='index.php'</script>";
+        windowLocationHref("index.php");
     }
     if (isset($_REQUEST['btn-register'])) {
         // header("Location: register.php");
-        echo "<script>window.location.href='register.php'</script>";
+        windowLocationHref("register.php");
     }
     if (isset($_REQUEST['btn-login'])) {
         $email = $_REQUEST['inp-email'];

@@ -18,4 +18,8 @@
     function getFormatHarga($number)  {
         return number_format($number,0,',','.');
     }
+
+    function windowLocationHref($url) {
+        echo "<script>window.location.href='$url'</script>";
+    }
 ?>
