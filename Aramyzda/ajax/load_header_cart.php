@@ -8,7 +8,4 @@
 ?>
 
 <h2>Total : Rp. <?=getFormatHarga($total)?></h2>
-<form id="form-h-cart" action="./Midtrans/checkout-process.php" method="POST">
-    <input id="total-amount-h" type="hidden" name="amount" value="<?=$total?>">
-    <button id="pay-button" type="submit" class="btn btn-primary btn-lg">Check Out</button>
-</form>
+<button id="pay-button" class="btn btn-primary btn-lg" onclick="checkout()">Check Out</button>
