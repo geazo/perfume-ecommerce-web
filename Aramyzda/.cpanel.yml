@@ -1,0 +1,18 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/adudumas/public_html/
+    - /bin/cp cart.php $DEPLOYPATH
+    - /bin/cp detailProduk.php $DEPLOYPATH
+    - /bin/cp index.php $DEPLOYPATH
+    - /bin/cp katalog.php $DEPLOYPATH
+    - /bin/cp login.php $DEPLOYPATH
+    - /bin/cp Midtrans.php $DEPLOYPATH
+    - /bin/cp profile.php $DEPLOYPATH
+    - /bin/cp register.php $DEPLOYPATH
+    - /bin/cp -R admin $DEPLOYPATH
+    - /bin/cp -R ajax $DEPLOYPATH
+    - /bin/cp -R asset $DEPLOYPATH
+    - /bin/cp -R connector $DEPLOYPATH
+    - /bin/cp -R Midtrans $DEPLOYPATH
+    - /bin/cp -R template $DEPLOYPATH
