@@ -38,7 +38,7 @@
         else {
             $_SESSION['user-login'] = $user;
             alert('berhasil login');
-            header ('Location: index.php');
+            windowLocationHref("index.php");
         }
     }
 ?>
@@ -47,7 +47,7 @@
             
             <div class="col-7 loginBg d-flex justify-content-center align-items-center">
                 <div class=" fs-4 text-light">
-                    Aramyzda
+                     Aramyzda
                 </div>
             </div>
             <div class="col-5 p-5  bg-light">
