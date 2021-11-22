@@ -17,12 +17,16 @@
                     <th scope="col">Type</th>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
+                    <th scope="col">Subtotal</th>
                     <th scope="col">Action</th>
                     </tr>
                 </thead>
                 <tbody id="tbody">
                 </tbody>
             </table>
+            <div class="d-flex justify-content-end">
+                <button id="pay-button" type="button" class="btn btn-primary btn-lg">Check Out</button>
+            </div>
         </div>
         <div class="col-4">
             
