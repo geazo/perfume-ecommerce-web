@@ -1,5 +1,6 @@
 
 <?php 
+    ob_start();
     require_once("./template/heading.php");
     require_once("./connector/connection.php");
     if (isset($_SESSION['user-login'])) {
@@ -67,3 +68,4 @@
         </div>
     </div>
 <?php require_once("./template/footing.php")?>
+<?php ob_end_flush() ?>
