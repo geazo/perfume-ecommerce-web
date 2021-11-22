@@ -1,10 +1,9 @@
 <?php
     session_start();
     $host = 'localhost';
-    $user = 'root';
-    $password = '';
-    $database = 'proyek_pw_aramyzda';
-    $port = '3306';
+    $user = 'aramyzda_aramyzda';
+    $password = 'kennymasterphp';
+    $database = 'aramyzda_proyek_pw_aramyzda';
     $conn = new mysqli($host, $user, $password, $database);
     if ($conn->connect_errno) {
         die($conn->connect_error);
