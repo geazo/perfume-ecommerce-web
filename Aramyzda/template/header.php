@@ -45,7 +45,7 @@
             <a class="d-flex justify-content-center align-items-center" style="text-decoration:none;" href="login.php"> Please Login first
             </a>
       </div>
-
+    </div>
       <div class="row align-self-end text-light h-25 d-flex justify-content-center">
 
       </div>
