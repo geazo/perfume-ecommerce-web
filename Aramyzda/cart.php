@@ -24,8 +24,7 @@
                 <tbody id="tbody">
                 </tbody>
             </table>
-            <div class="d-flex justify-content-end">
-                <button id="pay-button" type="button" class="btn btn-primary btn-lg">Check Out</button>
+            <div id="header-cart" class="d-flex align-items-end flex-column">
             </div>
         </div>
         <div class="col-4">
@@ -38,15 +37,31 @@
 <?php require_once("./template/footing.php")?>
 <script>
     loadCart();
-    function loadCart() {
+    function loadDCart() {
         $.ajax({
             type: "post",
-            url: "ajax/load_cart.php",
+            url: "ajax/load_detail_cart.php",
             success: function (response) {
                 $("#tbody").html("");
                 $("#tbody").append(response);
             }
         });
+    }
+
+    function loadHCart() {
+        $.ajax({
+            type: "post",
+            url: "ajax/load_header_cart.php",
+            success: function (response) {
+                $("#header-cart").html("");
+                $("#header-cart").append(response);
+            }
+        });
+    }
+
+    function loadCart() {
+        loadDCart();
+        loadHCart();
     }
 
     function editQuantity(num, id_cart) {

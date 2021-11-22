@@ -39,14 +39,4 @@
             </td>
         </tr>
     <?php } ?>
-    <tr class="align-middle">
-        <td colspan="5">
-            <div class="d-flex justify-content-end">
-                <h2>Total :</h2>
-            </div>
-        </td>
-        <td colspan="2">
-            <h2><?="Rp. " . getFormatHarga($total)?></h2>
-        </td>
-    </tr>
 <?php } ?>
