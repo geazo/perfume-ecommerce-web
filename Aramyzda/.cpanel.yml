@@ -1,7 +1,7 @@
 ---
 deployment:
   tasks:
-    - export DEPLOYPATH=/home/adudumas/public_html/
+    - export DEPLOYPATH=/home/aramyzda/public_html/
     - /bin/cp cart.php $DEPLOYPATH
     - /bin/cp detailProduk.php $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
