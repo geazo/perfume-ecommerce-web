@@ -28,12 +28,12 @@
             </td>
             <td><?=$cart_item['type']?></td>
             <td><?="Rp. " . getFormatHarga($cart_item['price'])?></td>
-            <td><?="Rp. " . getFormatHarga($cart_item['price'] * $cart_item['quantity'])?></td>
             <td>
                 <button class="btn btn-outline-secondary" id="btnDownQty" type="button" onclick="editQuantity(-1, <?=$cart_item['id_cart']?>)">-</button>
                 <button class="text-dark btn btn-outline-secondary" disabled><?=$cart_item['quantity']?></button>
                 <button class="btn btn-outline-secondary" id="btnUpQty"  type="button" onclick="editQuantity(1, <?=$cart_item['id_cart']?>)">+</button>
             </td>
+            <td><?="Rp. " . getFormatHarga($cart_item['price'] * $cart_item['quantity'])?></td>
             <td>
                 <i class="hover fa fa-trash fa-2x" aria-hidden="true" onclick="deleteCart(<?=$cart_item['id_cart']?>)"></i>
             </td>

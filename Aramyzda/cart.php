@@ -7,7 +7,7 @@
     <span onclick="document.getElementById('modalCart').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div> -->
     <div class="row">
-        <div class="col-8">
+        <div class="col-12">
             <table class="table table-hover fs-6">
                 <thead>
                     <tr>
@@ -27,9 +27,7 @@
             <div id="header-cart" class="d-flex align-items-end flex-column">
             </div>
         </div>
-        <div class="col-4">
-            
-        </div>
+        
     </div>
     
 </div>
