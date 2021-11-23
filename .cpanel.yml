@@ -11,6 +11,7 @@ deployment:
     - /bin/cp profile.php $DEPLOYPATH
     - /bin/cp register.php $DEPLOYPATH
     - /bin/cp notification-handler.php $DEPLOYPATH
+    - /bin/cp sukro.php $DEPLOYPATH
     - /bin/cp -R admin $DEPLOYPATH
     - /bin/cp -R ajax $DEPLOYPATH
     - /bin/cp -R asset $DEPLOYPATH
