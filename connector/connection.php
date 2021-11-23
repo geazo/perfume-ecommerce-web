@@ -3,9 +3,9 @@
     $host = 'localhost';
     $user = 'aramyzda_aramyzda';
     $password = 'kennymasterphp';
-    // $database = 'aramyzda_proyek_pw_aramyzda';
+    $database = 'aramyzda_proyek_pw_aramyzda';
     $conn = new mysqli($host, $user, $password, $database);
-    $conn = new mysqli($host, 'root', '', 'proyek_pw_aramyzda');
+    // $conn = new mysqli($host, 'root', '', 'proyek_pw_aramyzda');
     if ($conn->connect_errno) {
         die($conn->connect_error);
     }
