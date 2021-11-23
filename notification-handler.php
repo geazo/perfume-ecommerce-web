@@ -82,10 +82,10 @@ try {
     }
 }
 catch (\Exception $e) {
-    echo $e->getMessage();
+    // echo $e->getMessage();
+    echo "404";
 }
 
-echo "404";
 function printExampleWarningMessage() {
     if ($_SERVER['REQUEST_METHOD'] != 'POST') {
         echo 'Notification-handler are not meant to be opened via browser / GET HTTP method. It is used to handle Midtrans HTTP POST notification / webhook.';
