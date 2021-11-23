@@ -59,6 +59,8 @@ if ($transaction == 'capture') {
     // echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
 }
 try {
+    $date = date("d-m-Y");
+    $amount = $_REQUEST['gross_amount'];
     $stmt = $conn -> prepare("INSERT INTO `htrans`(`id_user`, `tanggal`, `total`, `status`) VALUES (?,?,?,?)");
     $stmt -> bind_param("isis", $_SESSION['user-login']['id'], $date, $amount, $transaction);
     $stmt -> execute();
