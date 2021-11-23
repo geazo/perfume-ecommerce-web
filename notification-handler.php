@@ -5,11 +5,14 @@
 
 namespace Midtrans;
 
+use Exception;
+
 require_once("./Midtrans.php");
+require_once("./connector/connection.php");
 Config::$isProduction = false;
 
 // non-relevant function only used for demo/example purpose
-// printExampleWarningMessage();
+printExampleWarningMessage();
 
 try {
     $notif = new Notification();
@@ -24,6 +27,12 @@ $type = $notif->payment_type;
 $order_id = $notif->order_id;
 $fraud = $notif->fraud_status;
 
+
+
+foreach ($item_details as $key => $item) {
+    $stmt = $conn -> prepare("query");
+}
+
 if ($transaction == 'capture') {
     // For credit card transaction, we need to check whether transaction is challenge by FDS or not
     if ($type == 'credit_card') {
@@ -31,9 +40,11 @@ if ($transaction == 'capture') {
             // TODO set payment status in merchant's database to 'Challenge by FDS'
             // TODO merchant should decide whether this transaction is authorized or not in MAP
             echo "Transaction order_id: " . $order_id ." is challenged by FDS";
+            $transaction = "challenge by FDS";
         } else {
             // TODO set payment status in merchant's database to 'Success'
             echo "Transaction order_id: " . $order_id ." successfully captured using " . $type;
+            $transaction = "success";
         }
     }
 } else if ($transaction == 'settlement') {
@@ -52,6 +63,33 @@ if ($transaction == 'capture') {
     // TODO set payment status in merchant's database to 'Denied'
     echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
 }
+try {
+    $stmt = $conn -> prepare("INSERT INTO `htrans`(`id_user`, `tanggal`, `total`, `status`) VALUES (?,?,?,?)");
+    $stmt -> bind_param("isis", $_SESSION['user-login']['id'], date("d-m-Y"), $_REQUEST['gross_amount'], $transaction);
+    $stmt -> execute();
+    
+    $stmt = $conn -> prepare("SELECT * FROM htrans ORDER BY 1 DESC LIMIT 1");
+    $stmt -> execute();
+    $id = $stmt -> get_result() -> fetch_assoc();
+    $id = $id['id_transaksi'];
+    $id = (int) $id;
+    $id += 1;
+    
+    $stmt = $conn -> prepare("SELECT p.id AS 'id', c.quantity AS 'quantity', FROM cart c, product p WHERE id_user = ? AND p.id = c.id_product");
+    $stmt -> bind_param("i", $_SESSION['user-login']['id']);
+    $stmt -> execute();
+    $item_details = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+    
+    foreach ($item_details as $key => $item) {
+        $stmt = $conn -> prepare("INSERT INTO `dtrans`(`id_transaksi`, `id_product`, `quantity`) VALUES (?,?,?)");
+        $stmt -> bind_param("iii", $id, $item['id'], $item['quantity']);
+        $stmt -> execute();
+    }
+}
+catch (\Exception $e) {
+    echo $e->getMessage();
+}
+
 
 function printExampleWarningMessage() {
     if ($_SERVER['REQUEST_METHOD'] != 'POST') {

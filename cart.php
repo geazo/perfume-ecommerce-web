@@ -27,7 +27,6 @@
     $stmt = $conn -> prepare("SELECT p.id AS 'id', p.price AS 'price', c.quantity AS 'quantity', p.name as 'name' FROM cart c, product p WHERE id_user = ? AND p.id = c.id_product");
     $stmt -> bind_param("i", $_SESSION['user-login']['id']);
     $stmt -> execute();
-    
     $item_details = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
     
     $user = $_SESSION['user-login'];
