@@ -6,7 +6,6 @@
     require_once('./connector/connection.php');
 
     if (!isset($_SESSION['user-login'])) {
-        alert('ahi');
         windowLocationHref("index.php");
     }
 
