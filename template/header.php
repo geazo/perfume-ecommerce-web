@@ -121,10 +121,10 @@ function mobileClose(){
                 <a class="text-light text-decoration-none dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
                   <i class="fa fa-user" aria-hidden="true"></i> <?= $_SESSION['user-login']['first_name'] ?>
                 </a>
-
+                
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                   <li><a class="dropdown-item" href="profile.php">Profile</a></li>
-                  <li><a class="dropdown-item" href="" onclick="logOff()">Log Off</a></li>
+                  <li><a class="dropdown-item" href="index.php" onclick="logOff()">Log Off</a></li>
                 </ul>
               </div>
             <?php 

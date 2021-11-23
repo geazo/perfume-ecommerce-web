@@ -1,7 +1,15 @@
 <?php namespace Midtrans; ?>
+<?php require_once("./template/heading.php"); ?>
+<?php include ("./template/header.php"); ?>
 <?php 
     require_once('./Midtrans.php');
     require_once('./connector/connection.php');
+
+    if (!isset($_SESSION['user-login'])) {
+        alert('ahi');
+        windowLocationHref("index.php");
+    }
+
     Config::$isSanitized = true;
     Config::$is3ds = true;
     
@@ -68,15 +76,8 @@
     );
     
     $snap_token = '';
-    try {
-        $snap_token = Snap::getSnapToken($transaction);
-    }
-    catch (\Exception $e) {
-        echo $e->getMessage();
-    }
+    $snap_token = Snap::getSnapToken($transaction);
 ?>
-<?php require_once("./template/heading.php"); ?>
-<?php include ("./template/header.php"); ?>
 <div class="py-3 m-3">
     <!-- <div class="yesno modal d-none" id="modalCart">
     <span onclick="document.getElementById('modalCart').style.display='none'" class="close" title="Close Modal">&times;</span>
