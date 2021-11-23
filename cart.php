@@ -9,72 +9,104 @@
         windowLocationHref("index.php");
     }
 
-    Config::$isSanitized = true;
-    Config::$is3ds = true;
-    
     $stmt = $conn -> prepare("SELECT SUM(p.price * c.quantity) AS 'total' FROM cart c, product p WHERE id_user = ? AND p.id = c.id_product");
     $stmt -> bind_param("i", $_SESSION['user-login']['id']);
     $stmt -> execute();
     $total = $stmt -> get_result() -> fetch_assoc();
     $total = $total['total'];
-    
-    $transaction_details = array(
-        'order_id' => rand(),
-        'gross_amount' => $total, // no decimal allowed for creditcard
-    );
-    
-    
-    $stmt = $conn -> prepare("SELECT p.id AS 'id', p.price AS 'price', c.quantity AS 'quantity', p.name as 'name' FROM cart c, product p WHERE id_user = ? AND p.id = c.id_product");
-    $stmt -> bind_param("i", $_SESSION['user-login']['id']);
-    $stmt -> execute();
-    $item_details = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-    
-    $user = $_SESSION['user-login'];
-    // Optional
-    $billing_address = array(
-        'first_name'    => $user['first_name'],
-        'last_name'     => $user['last_name'],
-        'address'       => $user['address'],
-        'city'          => "",
-        'postal_code'   => "",
-        'phone'         => $user['phone'],
-        'country_code'  => 'IDN'
-    );
-    
-    // Optional
-    $shipping_address = array(
-        'first_name'    => $user['first_name'],
-        'last_name'     => $user['last_name'],
-        'address'       => $user['address'],
-        'city'          => "",
-        'postal_code'   => "",
-        'phone'         => $user['phone'],
-        'country_code'  => 'IDN'
-    );
-    
-    // Optional
-    $customer_details = array(
-        'first_name'    => $user['first_name'],
-        'last_name'     => $user['last_name'],
-        'email'         => $user['email'],
-        'phone'         => $user['phone'],
-        'billing_address'  => $billing_address,
-        'shipping_address' => $shipping_address
-    );
-    
-    // Optional, remove this to display all available payment methods
-    $enable_payments = array('credit_card','cimb_clicks','mandiri_clickpay','echannel');
-    
-    // Fill transaction details
-    $transaction = array(
-        'enabled_payments' => $enable_payments,
-        'transaction_details' => $transaction_details,
-        'customer_details' => $customer_details,
-        'item_details' => $item_details,
-    );
-    
-    $snap_token = '';
-    $snap_token = Snap::getSnapToken($transaction);
+
+    if (isset($_REQUEST['pay-button'])) {
+        $date = date("d-m-Y");
+        $amount = $total;
+
+        $stmt = $conn -> prepare("INSERT INTO `htrans`(`id_user`, `tanggal`, `total`, `status`) VALUES (?,?,?,?)");
+        $stmt -> bind_param("isis", $_SESSION['user-login']['id'], $date, $amount, $transaction);
+        $stmt -> execute();
+        
+        $stmt = $conn -> prepare("SELECT * FROM htrans ORDER BY 1 DESC LIMIT 1");
+        $stmt -> execute();
+        $id = $stmt -> get_result() -> fetch_assoc();
+        $id = $id['id_transaksi'];
+        $id = (int) $id;
+        $id += 1;
+        
+        $stmt = $conn -> prepare("SELECT p.id AS 'id', c.quantity AS 'quantity' FROM cart c, product p WHERE id_user = ? AND p.id = c.id_product");
+        $stmt -> bind_param("i", $_SESSION['user-login']['id']);
+        $stmt -> execute();
+        $item_details = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+        
+        foreach ($item_details as $key => $item) {
+            $stmt = $conn -> prepare("INSERT INTO `dtrans`(`id_transaksi`, `id_product`, `quantity`) VALUES (?,?,?)");
+            $stmt -> bind_param("iii", $id, $item['id'], $item['quantity']);
+            $stmt -> execute();
+        }
+
+        $stmt = $conn -> prepare("DELETE FROM `cart` WHERE id_user = ?");
+        $stmt -> bind_param("i", $_SESSION['user-login']['id']);
+        $stmt -> execute();
+
+        Config::$isSanitized = true;
+        Config::$is3ds = true;
+        
+        $transaction_details = array(
+            'order_id' => rand(),
+            'gross_amount' => $total, // no decimal allowed for creditcard
+        );
+        
+        $stmt = $conn -> prepare("SELECT p.id AS 'id', p.price AS 'price', c.quantity AS 'quantity', p.name as 'name' FROM cart c, product p WHERE id_user = ? AND p.id = c.id_product");
+        $stmt -> bind_param("i", $_SESSION['user-login']['id']);
+        $stmt -> execute();
+        $item_details = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+        
+        $user = $_SESSION['user-login'];
+        // Optional
+        $billing_address = array(
+            'first_name'    => $user['first_name'],
+            'last_name'     => $user['last_name'],
+            'address'       => $user['address'],
+            'city'          => "",
+            'postal_code'   => "",
+            'phone'         => $user['phone'],
+            'country_code'  => 'IDN'
+        );
+        
+        // Optional
+        $shipping_address = array(
+            'first_name'    => $user['first_name'],
+            'last_name'     => $user['last_name'],
+            'address'       => $user['address'],
+            'city'          => "",
+            'postal_code'   => "",
+            'phone'         => $user['phone'],
+            'country_code'  => 'IDN'
+        );
+        
+        // Optional
+        $customer_details = array(
+            'first_name'    => $user['first_name'],
+            'last_name'     => $user['last_name'],
+            'email'         => $user['email'],
+            'phone'         => $user['phone'],
+            'billing_address'  => $billing_address,
+            'shipping_address' => $shipping_address
+        );
+        
+        // Optional, remove this to display all available payment methods
+        $enable_payments = array('credit_card','cimb_clicks','mandiri_clickpay','echannel');
+        
+        // Fill transaction details
+        $transaction = array(
+            'enabled_payments' => $enable_payments,
+            'transaction_details' => $transaction_details,
+            'customer_details' => $customer_details,
+            'item_details' => $item_details,
+        );
+        
+        $snap_token = '';
+        $snap_token = Snap::getSnapToken($transaction);
+
+        windowLocationHref("index.php");
+    }
 ?>
 <div class="py-3 m-3">
     <!-- <div class="yesno modal d-none" id="modalCart">

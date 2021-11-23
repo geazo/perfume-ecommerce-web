@@ -82,6 +82,7 @@ try {
         $stmt -> bind_param("iii", $id, $item['id'], $item['quantity']);
         $stmt -> execute();
     }
+    echo "200";
 }
 catch (\Exception $e) {
     echo "404";
