@@ -60,7 +60,7 @@ if ($transaction == 'capture') {
 }
 try {
     $stmt = $conn -> prepare("INSERT INTO `htrans`(`id_user`, `tanggal`, `total`, `status`) VALUES (?,?,?,?)");
-    $stmt -> bind_param("isis", $_SESSION['user-login']['id'], date("d-m-Y"), $_REQUEST['gross_amount'], $transaction);
+    $stmt -> bind_param("isis", $_SESSION['user-login']['id'], $date, $amount, $transaction);
     $stmt -> execute();
     
     $stmt = $conn -> prepare("SELECT * FROM htrans ORDER BY 1 DESC LIMIT 1");
@@ -70,7 +70,7 @@ try {
     $id = (int) $id;
     $id += 1;
     
-    $stmt = $conn -> prepare("SELECT p.id AS 'id', c.quantity AS 'quantity', FROM cart c, product p WHERE id_user = ? AND p.id = c.id_product");
+    $stmt = $conn -> prepare("SELECT p.id AS 'id', c.quantity AS 'quantity' FROM cart c, product p WHERE id_user = ? AND p.id = c.id_product");
     $stmt -> bind_param("i", $_SESSION['user-login']['id']);
     $stmt -> execute();
     $item_details = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
