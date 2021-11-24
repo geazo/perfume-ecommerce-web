@@ -67,7 +67,6 @@ if ($transaction == 'capture') {
 // $stmt -> bind_param("s", $coba);
 // $stmt -> execute();
 
-echo "test";
 try {
     $id = $_REQUEST['order_id'];
 

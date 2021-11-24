@@ -1,4 +1,5 @@
-<?php require_once("../template/heading.php")?>
+<?php require_once("heading.php")?>
+<?php require_once("../connector/connection.php") ?>
 <header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
   <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Aramyzda</a>
   <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
@@ -17,22 +18,22 @@
       <div class="position-sticky pt-3">
         <ul class="nav flex-column">
           <li class="nav-item">
-            <a class="nav-link active text-dark" aria-current="page" href="#">
+            <a class="nav-link active text-dark" aria-current="page" href="index.php">
               <i class="fa fa-home"></i> Home
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active text-dark" aria-current="page" href="#">
+            <a class="nav-link active text-dark" aria-current="page" href="crud.php">
               <i class="fa fa-share"></i> Entry
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active text-dark" aria-current="page" href="#">
+            <a class="nav-link active text-dark" aria-current="page" href="stock-management.php">
               <i class="fa fa-folder-open"></i> Stock Management
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active text-dark" aria-current="page" href="#">
+            <a class="nav-link active text-dark" aria-current="page" href="report.php">
               <i class="fa fa-book"></i> Report
             </a>
           </li>
@@ -47,20 +48,13 @@
           <thead>
             <tr>
               <th scope="col">#</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
-              <th scope="col">Header</th>
+              <th scope="col">Nama</th>
+              <th scope="col">Tipe</th>
+              <th scope="col">Stok</th>
+              <th class="d-flex justify-content-end" scope="col">Harga</th>
             </tr>
           </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>aaa</td>
-              <td>aaa</td>
-              <td>aaa</td>
-              <td>aaa</td>
-            </tr>
+          <tbody id="tbody">
           </tbody>
         </table>
       </div>
@@ -69,16 +63,14 @@
 </div>
 <?php require_once("../template/footing.php")?>
 <script>
+  loadListBarang();
     function loadListBarang() {
         $.ajax({
             type: "post",
-            url: "ajaxAdmin.php",
-            data: {
-                "action" : "LOAD_LIST_BARANG"
-            },
-            dataType: "dataType",
+            url: "../ajax/load_list_barang_admin.php",
             success: function (response) {
-                
+                $("#tbody").html("");
+                $("#tbody").append(response);
             }
         });
     }
