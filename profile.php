@@ -47,11 +47,11 @@
           
         </div>
         </div>
-        <div class="col-7  justify-content-center border border-dark rounded-3">
+        <div class="col-7  justify-content-center border border-dark rounded-3" >
           <div class="col-12 d-flex justify-content-center"><h5>Completed Transactions</h5></div>
-          <div class="col-12">
+          <div class="col-12" id="tableCompleted">
           <table class="table table-hover table-sm table-striped">
-            <thead>
+            <thead class="sticky-top bg-white">
               <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Tanggal</th>
@@ -84,9 +84,9 @@
           <div class="col-12 d-flex justify-content-center">
             <h3>History Transactions</h3>
           </div>
-          <div class="col-12">
+          <div class="col-12" id="tableAllTransaction">
             <table class="table table-hover table-light ">
-              <thead>
+              <thead class="sticky-top bg-white">
                 <tr>
                   <th scope="col">#</th>
                   <th scope="col">Invoice Number</th>
@@ -95,30 +95,30 @@
                 </tr>
               </thead>
               <tbody>
-                <?php for ($i=0; $i < 1; $i++) { 
+                <?php for ($i=0; $i <2; $i++) { 
                   # code...
                 ?>
                   <tr>
                     <th scope="row"><?=$i+1?></th>
-                    <td>IVC<?= str_pad($i+1,5,"0") ?></td>
+                    <td>IVC<?= str_pad($i+1,5,"0",STR_PAD_LEFT) ?></td>
                     <td>Lagi di Jalan</td>
                     <td>Pending</td>
                   </tr>
                   <tr>
                     <th scope="row"><?=$i+2?></th>
-                    <td>IVC<?= str_pad($i+721,5,"0") ?></td>
+                    <td>IVC<?= str_pad($i+721,5,"0",STR_PAD_LEFT) ?></td>
                     <td>Belum bayar</td>
                     <td>Pending</td>
                   </tr>
                   <tr>
                     <th scope="row"><?=$i+3?></th>
-                    <td>IVC<?= str_pad($i+187,5,"0") ?></td>
+                    <td>IVC<?= str_pad($i+187,5,"0",STR_PAD_LEFT) ?></td>
                     <td>Belum dikirim seller</td>
                     <td>Pending</td>
                   </tr>
                   <tr>
                     <th scope="row"><?=$i+4?></th>
-                    <td>IVC<?= str_pad($i+123,5,"0") ?></td>
+                    <td>IVC<?= str_pad($i+123,5,"0",STR_PAD_LEFT) ?></td>
                     <td>Payment Expired</td>
                     <td>Canceled</td>
                   </tr>
