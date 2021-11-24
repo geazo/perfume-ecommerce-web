@@ -68,10 +68,8 @@ if ($transaction == 'capture') {
 // $stmt -> execute();
 
 try {
-    $id = $_REQUEST['order_id'];
-
     $stmt = $conn -> prepare("UPDATE `htrans` SET `status`= ? WHERE id_transaksi = ?");
-    $stmt -> bind_param("si", $status, $id);
+    $stmt -> bind_param("si", $status, $order_id);
     $stmt -> execute();
 
     echo "200 OK";

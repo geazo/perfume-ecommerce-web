@@ -28,12 +28,7 @@
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link active text-dark" aria-current="page" href="stock-management.php">
-              <i class="fa fa-folder-open"></i> Stock Management
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link active text-dark" aria-current="page" href="report.php">
+            <a class="nav-link active text-dark bg-secondary bg-opacity-25" aria-current="page" href="report.php">
               <i class="fa fa-book"></i> Report
             </a>
           </li>
