@@ -147,7 +147,7 @@ if (isset($_REQUEST['page'])) {
 
                     </div>
                     <div class="row align-self-center addToCart">
-                       <button type="button" class="btn btn-danger" onclick="AddToCart(<?=$product['id']?>)">Add to Cart</button>  
+                       <button type="button" class="btn btn-danger" onclick="AddToCart(<?=$listProduct[$i]['id']?>)">Add to Cart</button>  
                     </div>
                   </div>
                 <!-- </div> -->
@@ -190,7 +190,7 @@ if (isset($_REQUEST['page'])) {
 <script>
   load_brand_name();
   function load_brand_name() {
-    $("#list-brand-name").html("bisa ini");
+    // $("#list-brand-name").html("bisa ini");
     $.ajax({
       type: "post",
       url: "ajax/katalog_load_brand_name.php",
@@ -200,7 +200,18 @@ if (isset($_REQUEST['page'])) {
       }
     });
   }
-
-  // load_isi_katalog();
-  
+  function AddToCart(id_product) {
+    quantity = parseInt($("#inputNumberLangsung" + id_product).val()) || 1;
+    $.ajax({
+        type: "post",
+        url: "ajax/add_to_cart.php",
+        data: {
+            "id-product" : id_product,
+            "quantity" : quantity
+        },
+        success: function (response) {
+            alert(response)  ;
+        }
+    });
+  }
 </script>
