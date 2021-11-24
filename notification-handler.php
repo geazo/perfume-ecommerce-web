@@ -76,7 +76,7 @@ try {
     $stmt -> bind_param("si", $status, $id);
     $stmt -> execute();
 
-    echo "OK";
+    echo "200 OK";
 }
 catch(Exception $e) {
     echo "404";
