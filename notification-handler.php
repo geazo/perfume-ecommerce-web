@@ -64,10 +64,10 @@ if ($transaction == 'capture') {
     $status = "FAILED";
 }
 
-$coba = json_encode($_REQUEST);
-$stmt = $conn -> prepare("INSERT INTO `checkcheck`(`string`) VALUES (?)");
-$stmt -> bind_param("s", $coba);
-$stmt -> execute();
+// $coba = json_encode($_REQUEST);
+// $stmt = $conn -> prepare("INSERT INTO `checkcheck`(`string`) VALUES (?)");
+// $stmt -> bind_param("s", $coba);
+// $stmt -> execute();
 
 try {
     $id = $_REQUEST['order_id'];

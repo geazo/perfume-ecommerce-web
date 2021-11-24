@@ -3,15 +3,15 @@ deployment:
   tasks:
     - export DEPLOYPATH=/home/aramyzda/public_html/
     - /bin/cp cart.php $DEPLOYPATH
+    - /bin/cp checkout-process.php $DEPLOYPATH
     - /bin/cp detailProduk.php $DEPLOYPATH
     - /bin/cp index.php $DEPLOYPATH
     - /bin/cp katalog.php $DEPLOYPATH
     - /bin/cp login.php $DEPLOYPATH
     - /bin/cp Midtrans.php $DEPLOYPATH
+    - /bin/cp notification-handler.php $DEPLOYPATH
     - /bin/cp profile.php $DEPLOYPATH
     - /bin/cp register.php $DEPLOYPATH
-    - /bin/cp notification-handler.php $DEPLOYPATH
-    - /bin/cp checkout-process.php $DEPLOYPATH
     - /bin/cp sukro.php $DEPLOYPATH
     - /bin/cp -R admin $DEPLOYPATH
     - /bin/cp -R ajax $DEPLOYPATH
