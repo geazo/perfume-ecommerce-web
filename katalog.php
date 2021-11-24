@@ -234,6 +234,7 @@ if (isset($_REQUEST['page'])) {
     ?>
     AddToCart(id_product);
     liveToaster(id_product);
+    loadSideCart();
     <?php
     }
     else{

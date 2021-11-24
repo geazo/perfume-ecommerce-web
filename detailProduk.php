@@ -99,6 +99,7 @@
                 alert(response)  ;
             }
         });
+        loadSideCart();
     }
     var toastTrigger = document.getElementById('btnAddToCart')
     var toastLiveExample = document.getElementById('liveToast')
