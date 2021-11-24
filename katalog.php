@@ -57,30 +57,6 @@ if (isset($_REQUEST['page'])) {
 <!-- <form action="" method="post"> -->
   
 <?php include ("./template/header.php")?>
-<script>
-    function gantiAngkaDown(){
-        if(parseInt(document.getElementById('inputNumberLangsung').value)>1){
-            document.getElementById('inputNumberLangsung').value = parseInt(document.getElementById('inputNumberLangsung').value) -  1;
-        }
-    }
-    function gantiAngkaUp(){
-        document.getElementById('inputNumberLangsung').value = parseInt(document.getElementById('inputNumberLangsung').value) +1;
-    }
-    function AddToCart(id_product) {
-        quantity = parseInt($("#inputNumberLangsung").val()) || 1;
-        $.ajax({
-            type: "post",
-            url: "ajax/add_to_cart.php",
-            data: {
-                "id-product" : id_product,
-                "quantity" : quantity
-            },
-            success: function (response) {
-                alert(response)  ;
-            }
-        });
-    }
-</script>
 
   <div class="kontainerUtama">
     <div class="sortBy row">
@@ -140,9 +116,9 @@ if (isset($_REQUEST['page'])) {
                       </div>
 
                       <div class="w-50 input-group">
-                          <button class="btn btn-outline-secondary" id="btnDownQty<?= $listProduct[$i]['id']?>" type="button" onclick="gantiAngkaDown()">-</button>
+                          <button class="btn btn-outline-secondary" id="btnDownQty<?= $listProduct[$i]['id']?>" type="button" onclick="gantiAngkaDown(<?=$listProduct[$i]['id']?>)">-</button>
                           <input type="text" class="form-control text-center" id="inputNumberLangsung<?= $listProduct[$i]['id']?>" aria-label="" value ="1">
-                          <button class="btn btn-outline-secondary" id="btnUpQty<?= $listProduct[$i]['id']?>"  type="button" onclick="gantiAngkaUp()">+</button>
+                          <button class="btn btn-outline-secondary" id="btnUpQty<?= $listProduct[$i]['id']?>"  type="button" onclick="gantiAngkaUp(<?=$listProduct[$i]['id']?>)">+</button>
                       </div>
 
                     </div>
@@ -213,5 +189,14 @@ if (isset($_REQUEST['page'])) {
             alert(response)  ;
         }
     });
+  }
+  
+  function gantiAngkaDown(id_product){
+    if(parseInt(document.getElementById('inputNumberLangsung' + id_product).value)>1){
+        document.getElementById('inputNumberLangsung' + id_product).value = parseInt(document.getElementById('inputNumberLangsung' + id_product).value) -  1;
+    }
+  }
+  function gantiAngkaUp(id_product){
+    document.getElementById('inputNumberLangsung' + id_product).value = parseInt(document.getElementById('inputNumberLangsung' + id_product).value) +1;
   }
 </script>
