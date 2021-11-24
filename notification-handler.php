@@ -5,8 +5,6 @@
 
 namespace Midtrans;
 
-use Exception;
-
 require_once './Midtrans.php';
 Config::$isProduction = false;
 Config::$serverKey = 'SB-Mid-server-R9BFL_Q-ByzCbA4KB8SWaZak';
@@ -69,6 +67,7 @@ if ($transaction == 'capture') {
 // $stmt -> bind_param("s", $coba);
 // $stmt -> execute();
 
+echo "test";
 try {
     $id = $_REQUEST['order_id'];
 
@@ -78,9 +77,9 @@ try {
 
     echo "200 OK";
 }
-catch(Exception $e) {
-    echo "404";
-    exit($e->getMessage());
+catch(\Exception $e) {
+    // echo "404";
+    echo $e->getMessage();
 }
 
 function printExampleWarningMessage() {
