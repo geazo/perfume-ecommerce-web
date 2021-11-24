@@ -101,10 +101,10 @@
         
         $snap_token = '';
         $snap_token = Snap::getSnapToken($transaction);
-        
+
         $stmt = $conn -> prepare("DELETE FROM `cart` WHERE id_user = ?");
         $stmt -> bind_param("i", $_SESSION['user-login']['id']);
-        $stmt -> execute();   
+        $stmt -> execute();
     }
 ?>
 <div class="p-5">

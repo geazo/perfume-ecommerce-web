@@ -7,9 +7,9 @@ namespace Midtrans;
 
 use Exception;
 
-require_once("./Midtrans.php");
-require_once("./connector/connection.php");
+require_once './Midtrans.php';
 Config::$isProduction = false;
+Config::$serverKey = 'SB-Mid-server-R9BFL_Q-ByzCbA4KB8SWaZak';
 
 // non-relevant function only used for demo/example purpose
 printExampleWarningMessage();
@@ -27,65 +27,52 @@ $type = $notif->payment_type;
 $order_id = $notif->order_id;
 $fraud = $notif->fraud_status;
 
-
+$status = "";
 if ($transaction == 'capture') {
     // For credit card transaction, we need to check whether transaction is challenge by FDS or not
     if ($type == 'credit_card') {
         if ($fraud == 'challenge') {
             // TODO set payment status in merchant's database to 'Challenge by FDS'
             // TODO merchant should decide whether this transaction is authorized or not in MAP
-            // echo "Transaction order_id: " . $order_id ." is challenged by FDS";
-            $transaction = "challenge by FDS";
+            echo "Transaction order_id: " . $order_id ." is challenged by FDS";
+            $status = "success";
         } else {
             // TODO set payment status in merchant's database to 'Success'
-            // echo "Transaction order_id: " . $order_id ." successfully captured using " . $type;
-            $transaction = "success";
+            echo "Transaction order_id: " . $order_id ." successfully captured using " . $type;
+            $status = "success";
         }
     }
 } else if ($transaction == 'settlement') {
     // TODO set payment status in merchant's database to 'Settlement'
-    // echo "Transaction order_id: " . $order_id ." successfully transfered using " . $type;
+    echo "Transaction order_id: " . $order_id ." successfully transfered using " . $type;
+    $status = "success";
 } else if ($transaction == 'pending') {
     // TODO set payment status in merchant's database to 'Pending'
-    // echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
+    echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
+    $status = "pending";
 } else if ($transaction == 'deny') {
     // TODO set payment status in merchant's database to 'Denied'
-    // echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
+    echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
+    $status = "fail";
 } else if ($transaction == 'expire') {
     // TODO set payment status in merchant's database to 'expire'
-    // echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is expired.";
+    echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is expired.";
+    $status = "fail";
 } else if ($transaction == 'cancel') {
     // TODO set payment status in merchant's database to 'Denied'
-    // echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
+    echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
+    $status = "fail";
 }
+
 try {
-    $date = date("d-m-Y");
-    $amount = $_REQUEST['gross_amount'];
-    $stmt = $conn -> prepare("INSERT INTO `htrans`(`id_user`, `tanggal`, `total`, `status`) VALUES (?,?,?,?)");
-    $stmt -> bind_param("isis", $_SESSION['user-login']['id'], $date, $amount, $transaction);
+    $id = $_REQUEST['order_id'];
+
+    $stmt = $conn -> prepare("UPDATE `htrans` SET `status`= ? WHERE id_transaksi = ?");
+    $stmt -> bind_param("si", $status, $id);
     $stmt -> execute();
-    
-    $stmt = $conn -> prepare("SELECT * FROM htrans ORDER BY 1 DESC LIMIT 1");
-    $stmt -> execute();
-    $id = $stmt -> get_result() -> fetch_assoc();
-    $id = $id['id_transaksi'];
-    $id = (int) $id;
-    $id += 1;
-    
-    $stmt = $conn -> prepare("SELECT p.id AS 'id', c.quantity AS 'quantity' FROM cart c, product p WHERE id_user = ? AND p.id = c.id_product");
-    $stmt -> bind_param("i", $_SESSION['user-login']['id']);
-    $stmt -> execute();
-    $item_details = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
-    
-    foreach ($item_details as $key => $item) {
-        $stmt = $conn -> prepare("INSERT INTO `dtrans`(`id_transaksi`, `id_product`, `quantity`) VALUES (?,?,?)");
-        $stmt -> bind_param("iii", $id, $item['id'], $item['quantity']);
-        $stmt -> execute();
-    }
-    echo "200";
 }
-catch (\Exception $e) {
-    echo "404";
+catch(Exception $e) {
+    exit($e->getMessage());
 }
 
 function printExampleWarningMessage() {
