@@ -12,47 +12,27 @@
   <div class="col h-100">
     <div class="row align-self-start d-flex  justify-content-center text-light fs-4 ">Your Cart</div>
 
-    <div class=" align-item-start h-75 ">
+    <div class=" align-item-start h-75 " id='sideCartBody'>
       <!-- cek ada user  -->
-    <?php if(isset($_SESSION['user-login'])){
-      foreach ($carts as $key => $cart) { 
-    ?>
-      <div class="d-flex justify-content-center cart-item" style="height: 75px;">
-        <div class=" m-1 gbrCart d-flex justify-content-center align-items-center hoverable expand-hover" style="width:20%">
-          <img class="h-100" src="<?=$cart['image_source']?>" alt="" class="itemGbrCart">
-        </div>
-        <div class=" m-1 itemNameCart d-flex text-light align-items-center" style="width:70%;">
-          <?=$cart['name']?>
-        </div>
-        <div class="m-1 itemCountCart d-flex text-light align-items-center" style="width:10%">
-          <?= $cart['quantity'] ?>x
-        </div>
-      </div>
+    </div>
     <?php
-      }
+    if(isset($_SESSION['user-login'])){
     ?>
-      </div>
-      <div class="row align-self-end text-light h-25 d-flex justify-content-center">
+    <div class="row align-self-end text-light h-25 d-flex justify-content-center">
         <a href="./cart.php" class="d-flex justify-content-center">
           <button class="button" href="./cart.php"><span>To Checkout </span></button>
         </a>
-      </div>
+    </div>
     <?php
     }
     else{
     ?>
-      <div class="d-flex justify-content-center align-items-center">
-            <a class="d-flex justify-content-center align-items-center" style="text-decoration:none;" href="login.php"> Please Login first
-            </a>
-      </div>
-    </div>
-      <div class="row align-self-end text-light h-25 d-flex justify-content-center">
+    <div class="row align-self-end text-light h-25 d-flex justify-content-center">
 
-      </div>
+    </div>
     <?php
     }
     ?>
-    
   </div>
 </div>
 
@@ -197,6 +177,7 @@ function mobileClose(){
 </div>
 
 <script>
+  loadSideCart();
   function logOff() {
     $.ajax({
       type: "post",
@@ -206,10 +187,16 @@ function mobileClose(){
       }
     });
   }
+  function loadSideCart() {
+    $.ajax({
+        type: "post",
+        url: "ajax/load_cart_side.php",
+        success: function (response) {
+            $("#sideCartBody").html("");
+            $("#sideCartBody").append(response);
+        }
+    });
+  }
 </script>
 
-<?php 
-  // echo "<pre>";
-  // print_r($_SESSION);
-  // echo "</pre>";
-?>
+
