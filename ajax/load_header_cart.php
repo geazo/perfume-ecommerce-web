@@ -8,6 +8,6 @@
 ?>
 
 <h2>Total : Rp. <?=getFormatHarga($total)?></h2>
-<form action="" method="POST">
-    <button type="submit" name="pay-button" id="pay-button" class="btn btn-primary btn-lg" onclick="checkout()">Check Out</button>
-</form>
+<a href="checkout-process.php">
+    <button type="submit" name="pay-button" id="pay-button" class="btn btn-primary btn-lg">Check Out</button>
+</a>
