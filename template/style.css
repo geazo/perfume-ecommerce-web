@@ -284,6 +284,10 @@
 .cart-item {
     background-color: indigo;
 }
+#sideCartBody{
+    max-height: 80%;
+    overflow-y: auto;
+}
 #tableCompleted {
     max-height: 300px;
     overflow-y: auto;
