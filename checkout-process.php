@@ -12,7 +12,7 @@
 
         $date = date("Y-m-d");
         $amount = $total;
-        $pending = "pending";
+        $pending = "PENDING";
     
         $stmt = $conn -> prepare("INSERT INTO `htrans`(`id_user`, `tanggal`, `total`, `status`) VALUES (?,?,?,?)");
         $stmt -> bind_param("isis", $_SESSION['user-login']['id'], $date, $amount, $pending);
@@ -132,12 +132,18 @@
     snap.pay('<?php echo $snap_token?>', {
         onSuccess: function(result){
             onFinished();
+            // setTransactionStatus("SUCCESS");
+            // alert('1');
         },
         onPending: function(result){
             onFinished();
+            // setTransactionStatus("PENDING");
+            // alert('2');
         },
         onError: function(result){
             onFinished();
+            // setTransactionStatus("ERROR");
+            // alert('3');
         }
     });
 
@@ -145,6 +151,19 @@
         $("#container").html("");
         $("#container").append($("<h1>Thank You</h1>"))
         $("#container").append($("<div><a href='index.php'><button class='btn btn-primary btn-lg'>Home</button></a> <a href='catalogue.php'><button class='btn btn-primary btn-lg'>Catalogue</button></a></div>"))
+    }
+
+    function setTransactionStatus(status) {
+        $.ajax({
+            type: "post",
+            url: "./ajax/set_transaction_status.php",
+            data: {
+                "status" : status
+            },
+            success: function (response) {
+                alert('sukro');
+            }
+        });
     }
 
     function checkout() {

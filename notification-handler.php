@@ -34,35 +34,40 @@ if ($transaction == 'capture') {
         if ($fraud == 'challenge') {
             // TODO set payment status in merchant's database to 'Challenge by FDS'
             // TODO merchant should decide whether this transaction is authorized or not in MAP
-            echo "Transaction order_id: " . $order_id ." is challenged by FDS";
-            $status = "success";
+            // echo "Transaction order_id: " . $order_id ." is challenged by FDS";
+            $status = "FAILED";
         } else {
             // TODO set payment status in merchant's database to 'Success'
-            echo "Transaction order_id: " . $order_id ." successfully captured using " . $type;
-            $status = "success";
+            // echo "Transaction order_id: " . $order_id ." successfully captured using " . $type;
+            $status = "SUCCESS";
         }
     }
 } else if ($transaction == 'settlement') {
     // TODO set payment status in merchant's database to 'Settlement'
-    echo "Transaction order_id: " . $order_id ." successfully transfered using " . $type;
-    $status = "success";
+    // echo "Transaction order_id: " . $order_id ." successfully transfered using " . $type;
+    $status = "SUCCESS";
 } else if ($transaction == 'pending') {
     // TODO set payment status in merchant's database to 'Pending'
-    echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
-    $status = "pending";
+    // echo "Waiting customer to finish transaction order_id: " . $order_id . " using " . $type;
+    $status = "PENDING";
 } else if ($transaction == 'deny') {
     // TODO set payment status in merchant's database to 'Denied'
-    echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
-    $status = "fail";
+    // echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is denied.";
+    $status = "FAILED";
 } else if ($transaction == 'expire') {
     // TODO set payment status in merchant's database to 'expire'
-    echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is expired.";
-    $status = "fail";
+    // echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is expired.";
+    $status = "FAILED";
 } else if ($transaction == 'cancel') {
     // TODO set payment status in merchant's database to 'Denied'
-    echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
-    $status = "fail";
+    // echo "Payment using " . $type . " for transaction order_id: " . $order_id . " is canceled.";
+    $status = "FAILED";
 }
+
+$coba = json_encode($_REQUEST);
+$stmt = $conn -> prepare("INSERT INTO `checkcheck`(`string`) VALUES (?)");
+$stmt -> bind_param("s", $coba);
+$stmt -> execute();
 
 try {
     $id = $_REQUEST['order_id'];
@@ -70,8 +75,11 @@ try {
     $stmt = $conn -> prepare("UPDATE `htrans` SET `status`= ? WHERE id_transaksi = ?");
     $stmt -> bind_param("si", $status, $id);
     $stmt -> execute();
+
+    echo "OK";
 }
 catch(Exception $e) {
+    echo "404";
     exit($e->getMessage());
 }
 
