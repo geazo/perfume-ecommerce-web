@@ -17,9 +17,30 @@
         document.getElementById('inputNumberLangsung').value = parseInt(document.getElementById('inputNumberLangsung').value) +1;
     }
 </script>
-<!-- code here -->
-<form action="#" method= "post">
 
+<!-- code here -->
+<!-- <button type="button" class="btn btn-primary" id="liveToastBtn">Show live toast</button> -->
+
+<div class="toast-container">
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="<?= $product['image_source']?>" class="rounded me-2" style="width:40px;" alt="...">
+      <strong class="me-auto"> <?=$product['name'] ?> </strong>
+      <strong> </strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Added to cart!
+    </div>
+  </div>
+</div>
+
+
+</div>
+
+<form action="#" method= "post">
 <?php include ("./template/header.php")?>
 
     <div class="kontainerDetail">
@@ -37,7 +58,7 @@
                         <div class="col-sm-4  col-lg-5">
                             <div class="input-group">
                                 <button class="btn btn-outline-secondary" id="btnDownQty" type="button" onclick="gantiAngkaDown()">-</button>
-                                <input type="text" class="form-control text-center" id="inputNumberLangsung" aria-label="" value ="1">
+                                <input type="text" class="form-control text-center" id="inputNumberLangsung" name="qtyInput" aria-label="" value ="1">
                                 <button class="btn btn-outline-secondary" id="btnUpQty"  type="button" onclick="gantiAngkaUp()">+</button>
                             </div>
                         </div>
@@ -46,7 +67,9 @@
                         </div>
                     </div>
                     <br>
-                    <div class="row addToCart"> <button type="button" class="btn btn-danger" onclick="AddToCart(<?=$product['id']?>)">Add to Cart</button>  </div>
+                    <div class="row addToCart"> 
+                        <button type="button" id="btnAddToCart" class="btn btn-danger" onclick="AddToCart(<?=$product['id']?>)">Add to Cart</button>  
+                    </div>
                     <br> <br>
                     <div class="row tipeProduk"><?= $product['type'] ?> </div>  
                     <div class="row descProduk"> <?=$product['description'] ?> </div>
@@ -76,6 +99,14 @@
                 alert(response)  ;
             }
         });
+    }
+    var toastTrigger = document.getElementById('btnAddToCart')
+    var toastLiveExample = document.getElementById('liveToast')
+    if (toastTrigger) {
+        toastTrigger.addEventListener('click', function () {
+            var toast = new bootstrap.Toast(toastLiveExample)
+            toast.show()
+        })
     }
 </script>
 <?php require_once("./template/footer.php")?>

@@ -55,7 +55,26 @@ if (isset($_REQUEST['page'])) {
 ?>
 <!-- code here -->
 <!-- <form action="" method="post"> -->
-  
+
+<div class="toast-container">
+
+<div class="position-fixed bottom-0 end-0 p-3" style="z-index: 11">
+  <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+    <div class="toast-header">
+      <img src="<?= $product['image_source']?>" class="rounded me-2" style="width:40px;" alt="...">
+      <strong class="me-auto"> <?=$product['name'] ?> </strong>
+      <strong> </strong>
+      <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+    </div>
+    <div class="toast-body">
+      Added to cart!
+    </div>
+  </div>
+</div>
+
+
+</div>
+
 <?php include ("./template/header.php")?>
 
   <div class="kontainerUtama">
@@ -100,7 +119,7 @@ if (isset($_REQUEST['page'])) {
           <?php if(count($listProduct) != 0) { ?>
             <?php for ($i = ($currentPage - 1) * $maxProductInAPage; $i < $currentPage * $maxProductInAPage; $i++) { ?>
               <?php if ($i >= count($listProduct)) break; ?>
-              <div class="card text-decoration-none color-inherit" style="width: 18rem;" href="detailProduk.php?product=<?= $listProduct[$i]['id']?>">
+              <div class="card text-decoration-none color-inherit" id="productNum_<?= $listProduct[$i]['id']?>" style="width: 18rem;" href="detailProduk.php?product=<?= $listProduct[$i]['id']?>">
                 <!-- <div class="card" style="width: 18rem;"> -->
                   <a href="detailProduk.php?product=<?= $listProduct[$i]['id']?>">
                     <img src="<?= $listProduct[$i]['image_source'] ?>" class="card-img-top" alt="...">
@@ -123,7 +142,7 @@ if (isset($_REQUEST['page'])) {
 
                     </div>
                     <div class="row align-self-center addToCart">
-                       <button type="button" class="btn btn-danger" onclick="AddToCart(<?=$listProduct[$i]['id']?>)">Add to Cart</button>  
+                       <button type="button" class="btn btn-danger" onclick="AddToCartFullSet(<?=$listProduct[$i]['id']?>)">Add to Cart</button>  
                     </div>
                   </div>
                 <!-- </div> -->
@@ -199,4 +218,18 @@ if (isset($_REQUEST['page'])) {
   function gantiAngkaUp(id_product){
     document.getElementById('inputNumberLangsung' + id_product).value = parseInt(document.getElementById('inputNumberLangsung' + id_product).value) +1;
   }
+
+   function liveToaster(id_product){
+     document.querySelector('#liveToast .toast-header img').src = document.querySelector('#productNum_'+id_product+" .card-img-top").src;
+     var temp = document.querySelector('#productNum_'+id_product+ " .card-title").innerHTML;
+     document.querySelector('#liveToast .toast-header .me-auto').innerHTML = temp;
+     console.log(temp);
+     var toast = new bootstrap.Toast(document.querySelector('#liveToast'));
+     toast.show()
+   }
+
+   function AddToCartFullSet(id_product){
+     AddToCart(id_product);
+     liveToaster(id_product);
+   }
 </script>
