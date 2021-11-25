@@ -14,7 +14,7 @@
         $email = $_REQUEST['inp-email'];
         $password = $_REQUEST['inp-password'];
 
-        if ($email == "admin" && $password == "admin") {
+        if ($email == "admin" && $password == "meja_kursi_aramyzda_2021") {
             // header("Location: ./admin/index.php");
             windowLocationHref("./admin/index.php");
         }
