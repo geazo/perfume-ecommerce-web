@@ -128,7 +128,7 @@ function mobileClose(){
       <ul class="d-flex w-50 bg-black p-1 justify-content-center align-items-center list-style-none ">
         <a class="text-light nav-link active" href="index.php"><li>HOME</li></a>
         <a class="text-light nav-link active" href="katalog.php"><li>CATALOGUE</li></a>
-        <a class="text-light nav-link active" href="cart.php"><li>CART</li></a>
+        <a class="text-light nav-link active"  onclick="logincheck()"><li>CART</li></a>
         <a class="text-light nav-link active" href="#"><li>TRANSACTION</li></a>
       </ul>
       <ul class="w-25 bg-black d-flex justify-content-end">
@@ -197,6 +197,41 @@ function mobileClose(){
         }
     });
   }
+
+  function logincheck() {
+    <?php
+    if(isset($_SESSION['user-login'])){
+    ?>
+        window.location.href = "cart.php";
+    <?php
+    }else{
+    ?>
+    $.confirm({
+    title: 'Please Login First!',
+    content: '',
+    buttons: {
+         cancel: {
+            text:'Cancel',
+            btnClass:'btn-light',
+            action: function(){
+              
+            }
+        },
+        
+        gotoLogin: {
+            text: 'Login',
+            btnClass: 'btn-blue',
+            keys: ['enter', 'shift'],
+            action: function(){
+              window.location.href = "login.php";
+            }
+        }
+    }
+    });
+    <?php
+    }
+    ?>
+    }
 </script>
 
 

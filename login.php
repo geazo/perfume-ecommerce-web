@@ -4,7 +4,7 @@
     require_once("./connector/connection.php");
     if (isset($_SESSION['user-login'])) {
         // header("Location: index.php");
-        windowLocationHref("index.php");
+        windowLocationHref("katalog.php");
     }
     if (isset($_REQUEST['btn-register'])) {
         // header("Location: register.php");

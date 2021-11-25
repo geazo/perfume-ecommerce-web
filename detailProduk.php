@@ -87,6 +87,9 @@
 </form>
 <script>
     function AddToCart(id_product) {
+    <?php
+    if(isset($_SESSION['user-login'])){
+    ?>
         quantity = parseInt($("#inputNumberLangsung").val()) || 1;
         $.ajax({
             type: "post",
@@ -108,6 +111,34 @@
             var toast = new bootstrap.Toast(toastLiveExample)
             toast.show()
         })
+    <?php
+    }else{
+    ?>
+    $.confirm({
+    title: 'Please Login First!',
+    content: '',
+    buttons: {
+         cancel: {
+            text:'Cancel',
+            btnClass:'btn-light',
+            action: function(){
+              
+            }
+        },
+        
+        gotoLogin: {
+            text: 'Login',
+            btnClass: 'btn-blue',
+            keys: ['enter', 'shift'],
+            action: function(){
+              window.location.href = "login.php";
+            }
+        }
+    }
+    });
+    <?php
+    }
+    ?>
     }
 </script>
 <?php require_once("./template/footer.php")?>
