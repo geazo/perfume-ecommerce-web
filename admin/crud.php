@@ -82,7 +82,8 @@
       <div class="mb-3 d-flex justify-content-end">
         <button id="btn-submit-bulk" name="btn-submit" type="submit" class="btn btn-primary" onclick="entryProductBulk()">Submit</button>
       </div>
-      <p id="info"></p>
+      <h2>Log</h2>
+      <div id="info" style="height: 500px; overflow: scroll;"></div>
     </main>
   </div>
 </div>
