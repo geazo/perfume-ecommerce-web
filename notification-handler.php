@@ -6,6 +6,7 @@
 namespace Midtrans;
 
 require_once './Midtrans.php';
+require_once './connector/connection.php';
 Config::$isProduction = false;
 Config::$serverKey = 'SB-Mid-server-R9BFL_Q-ByzCbA4KB8SWaZak';
 
