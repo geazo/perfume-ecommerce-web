@@ -1,6 +1,31 @@
 <?php require_once("heading.php")?>
 <?php require_once("../connector/connection.php") ?>
 <?php require_once "header.php" ?>
+<?php 
+  $listTransaction = [];
+  try {
+    $stmt = $conn -> prepare("SELECT h.*, u.first_name FROM htrans h, user u where h.id_user = u.id");
+    $stmt -> execute();
+    $listTransaction = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+  }
+  catch(Exception $e) {
+    exit($e->getMessage());
+  }
+
+  $maxProductInAPage = 50;
+  $maxPage = ceil(count($listTransaction) / $maxProductInAPage);
+
+  $currentPage = 1;
+  if (isset($_REQUEST['page'])) {
+    $currentPage = $_REQUEST['page'];
+    if ($currentPage < 1)  {
+      $currentPage = 1;
+    }
+    else if ( $currentPage > $maxPage) {
+      $currentPage = $maxPage;
+    }
+  }
+?>
 
 <div class="container-fluid">
   <div class="row">
@@ -28,33 +53,103 @@
 
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-3">
       <div id="chart_div"></div>
+      <h2>List Transaction</h2>
+
+      <div class="row py-3">
+        <div class="col-3"></div>
+        <div class="col-6 d-flex align-items-center justify-content-center">
+        <?php if(count($listTransaction) > 0) { ?>
+          <nav class="d-flex justify-content-center">
+            <ul class="pagination m-0">
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage - 1?>">Previous</a></li>
+              <?php if($currentPage - 2 > 1) {?>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php' ?>">1</a></li>
+                <li class="page-item"><span class="page-link text-dark">...</span></li>
+              <?php } ?>
+              <?php for ($i = $currentPage - 2; $i <= $currentPage + 2; $i++) { ?>
+                <?php if ($i < 1 || $i > $maxPage) continue; ?>
+                <?php if($i == $currentPage) { ?>
+                  <li class="page-item"><a class="page-link text-dark bg-secondary bg-opacity-25" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
+                <?php } else { ?>
+                  <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
+                  <?php } ?>
+              <?php } ?>
+              <?php if($currentPage + 2 < $maxPage) {?>
+                <li class="page-item"><span class="page-link text-dark">...</span></li>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$maxPage?>"><?= $maxPage ?></a></li>
+              <?php } ?>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage + 1?>">Next</a></li>
+            </ul>
+          </nav>
+        <?php } ?>
+        </div>
+        <div class="col-3 d-flex justify-content-end align-items-center">
+          <?=(($currentPage - 1)* $maxProductInAPage) + 1?> - 
+          <?= ($currentPage * $maxProductInAPage) + 1 > count($listTransaction) ? count($listTransaction) : ($currentPage * $maxProductInAPage) + 1?>
+          out of <?=count($listTransaction)?> transaction(s)
+        </div>
+      </div>
+
+
       <div class="table-responsive">
         <table class="table table-striped table-sm align-middle">
           <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">ID</th>
+              <th scope="col">User</th>
               <th scope="col">Tanggal</th>
+              <th scope="col">Total</th>
+              <th scope="col">Status</th>
             </tr>
           </thead>
           <tbody id="tbody">
           <?php for ($i = ($currentPage - 1) * $maxProductInAPage; $i < $currentPage * $maxProductInAPage; $i++) { ?>
-            <?php if ($i >= count($listProduct)) break; ?>
-            <?php $product = $listProduct[$i] ?>
+            <?php if ($i >= count($listTransaction)) break; ?>
+            <?php $transaction = $listTransaction[$i] ?>
             <tr>
                 <td><?=($i + 1)."."?></td>
-                <td><?=$product['id']?></td>
-                <td><?=$product['name']?></td>
-                <td><?=$product['type']?></td>
-                <td class="text-center" id="td-stock-<?=$product['id']?>"><?=$product['stock']?></td>
-                <td class="text-end"><?="Rp. " . getFormatHarga($product['price'])?></td>
-                <td class="text-center">
-                  <button class="btn btn-secondary" id="btn-<?=$product['id']?>" state="inactive" onclick="toggleEdit(<?=$product['id']?>)">Edit</button>
-                </td>
+                <td><?=$transaction['id_transaksi']?></td>
+                <td><?=$transaction['first_name']?></td>
+                <td><?=$transaction['tanggal']?></td>
+                <td><?=$transaction['total']?></td>
+                <td><?=$transaction['status']?></td>
             </tr>
           <?php } ?>
           </tbody>
         </table>
+      </div>
+
+      <div class="row py-3">
+        <div class="col-3"></div>
+        <div class="col-6 d-flex align-items-center justify-content-center">
+        <?php if(count($listTransaction) > 0) { ?>
+          <nav class="d-flex justify-content-center">
+            <ul class="pagination m-0">
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage - 1?>">Previous</a></li>
+              <?php if($currentPage - 2 > 1) {?>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php' ?>">1</a></li>
+                <li class="page-item"><span class="page-link text-dark">...</span></li>
+              <?php } ?>
+              <?php for ($i = $currentPage - 2; $i <= $currentPage + 2; $i++) { ?>
+                <?php if ($i < 1 || $i > $maxPage) continue; ?>
+                <?php if($i == $currentPage) { ?>
+                  <li class="page-item"><a class="page-link text-dark bg-secondary bg-opacity-25" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
+                <?php } else { ?>
+                  <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
+                  <?php } ?>
+              <?php } ?>
+              <?php if($currentPage + 2 < $maxPage) {?>
+                <li class="page-item"><span class="page-link text-dark">...</span></li>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$maxPage?>"><?= $maxPage ?></a></li>
+              <?php } ?>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage + 1?>">Next</a></li>
+            </ul>
+          </nav>
+        <?php } ?>
+        </div>
+        <div class="col-3">
+        </div>
       </div>
     </main>
   </div>
