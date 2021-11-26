@@ -86,7 +86,7 @@
               <th scope="col">ID</th>
               <th scope="col">Nama</th>
               <th scope="col">Tipe</th>
-              <th scope="col">Stok</th>
+              <th class="text-center" scope="col">Stok</th>
               <th class="text-end" scope="col">Harga</th>
               <th class="text-center" scope="col">Action</th>
             </tr>
@@ -100,7 +100,7 @@
                 <td><?=$product['id']?></td>
                 <td><?=$product['name']?></td>
                 <td><?=$product['type']?></td>
-                <td id="td-stock-<?=$product['id']?>"><?=$product['stock']?></td>
+                <td class="text-center" id="td-stock-<?=$product['id']?>"><?=$product['stock']?></td>
                 <td class="text-end"><?="Rp. " . getFormatHarga($product['price'])?></td>
                 <td class="text-center">
                   <button class="btn btn-secondary" id="btn-<?=$product['id']?>" state="inactive" onclick="toggleEdit(<?=$product['id']?>)">Edit</button>
@@ -124,6 +124,7 @@
       $("#btn-" + id).html("Save");
     }
     else {
+      setNewStock(id);
       $("#td-stock-"+id).text($("#inp-stock-" + id).val());
       $("#btn-" + id).attr("state", "inactive");
       $("#btn-" + id).html("Edit");
@@ -134,7 +135,8 @@
       type: "post",
       url: "set_product_stock.php",
       data: {
-        "id" : id
+        "id" : id,
+        "stok" : $("#inp-stock-" + id).val()
       },
       success: function (response) {
         
