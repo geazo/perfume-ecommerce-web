@@ -53,30 +53,41 @@
     <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 pt-3">
       <h2>List Product</h2>
 
-      <?php if(count($listProduct) > 0) { ?>
-        <nav class="d-flex justify-content-center">
-          <ul class="pagination">
-            <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage - 1?>">Previous</a></li>
-            <?php if($currentPage - 2 > 1) {?>
-              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php' ?>">1</a></li>
-              <li class="page-item"><span class="page-link text-dark">...</span></li>
-            <?php } ?>
-            <?php for ($i = $currentPage - 2; $i <= $currentPage + 2; $i++) { ?>
-              <?php if ($i < 1 || $i > $maxPage) continue; ?>
-              <?php if($i == $currentPage) { ?>
-                <li class="page-item"><a class="page-link text-dark bg-secondary bg-opacity-25" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
-              <?php } else { ?>
-                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
-                <?php } ?>
-            <?php } ?>
-            <?php if($currentPage + 2 < $maxPage) {?>
-              <li class="page-item"><span class="page-link text-dark">...</span></li>
-              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$maxPage?>"><?= $maxPage ?></a></li>
-            <?php } ?>
-            <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage + 1?>">Next</a></li>
-          </ul>
-        </nav>
-      <?php } ?>
+      <div class="row py-3">
+        <div class="col-3"></div>
+        <div class="col-6 d-flex align-items-center justify-content-center">
+        <?php if(count($listProduct) > 0) { ?>
+          <nav class="d-flex justify-content-center">
+            <ul class="pagination m-0">
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage - 1?>">Previous</a></li>
+              <?php if($currentPage - 2 > 1) {?>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php' ?>">1</a></li>
+                <li class="page-item"><span class="page-link text-dark">...</span></li>
+              <?php } ?>
+              <?php for ($i = $currentPage - 2; $i <= $currentPage + 2; $i++) { ?>
+                <?php if ($i < 1 || $i > $maxPage) continue; ?>
+                <?php if($i == $currentPage) { ?>
+                  <li class="page-item"><a class="page-link text-dark bg-secondary bg-opacity-25" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
+                <?php } else { ?>
+                  <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
+                  <?php } ?>
+              <?php } ?>
+              <?php if($currentPage + 2 < $maxPage) {?>
+                <li class="page-item"><span class="page-link text-dark">...</span></li>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$maxPage?>"><?= $maxPage ?></a></li>
+              <?php } ?>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage + 1?>">Next</a></li>
+            </ul>
+          </nav>
+        <?php } ?>
+        </div>
+        <div class="col-3 d-flex justify-content-end align-items-center">
+          <?=(($currentPage - 1)* $maxProductInAPage) + 1?> - 
+          <?= ($currentPage * $maxProductInAPage) + 1 > count($listProduct) ? count($listProduct) : ($currentPage * $maxProductInAPage) + 1?>
+          out of <?=count($listProduct)?> product(s)
+        </div>
+      </div>
+      
 
       <div class="table-responsive">
         <table class="table table-striped table-sm align-middle">
@@ -109,6 +120,38 @@
           <?php } ?>
           </tbody>
         </table>
+      </div>
+
+      <div class="row py-3">
+        <div class="col-3"></div>
+        <div class="col-6 d-flex align-items-center justify-content-center">
+        <?php if(count($listProduct) > 0) { ?>
+          <nav class="d-flex justify-content-center">
+            <ul class="pagination m-0">
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage - 1?>">Previous</a></li>
+              <?php if($currentPage - 2 > 1) {?>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php' ?>">1</a></li>
+                <li class="page-item"><span class="page-link text-dark">...</span></li>
+              <?php } ?>
+              <?php for ($i = $currentPage - 2; $i <= $currentPage + 2; $i++) { ?>
+                <?php if ($i < 1 || $i > $maxPage) continue; ?>
+                <?php if($i == $currentPage) { ?>
+                  <li class="page-item"><a class="page-link text-dark bg-secondary bg-opacity-25" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
+                <?php } else { ?>
+                  <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
+                  <?php } ?>
+              <?php } ?>
+              <?php if($currentPage + 2 < $maxPage) {?>
+                <li class="page-item"><span class="page-link text-dark">...</span></li>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$maxPage?>"><?= $maxPage ?></a></li>
+              <?php } ?>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage + 1?>">Next</a></li>
+            </ul>
+          </nav>
+        <?php } ?>
+        </div>
+        <div class="col-3">
+        </div>
       </div>
     </main>
   </div>
