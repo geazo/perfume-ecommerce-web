@@ -1,5 +1,4 @@
 <?php require_once("heading.php")?>
-<?php require_once("../connector/connection.php") ?>
 <?php 
   $listProduct = [];
   try {
@@ -25,17 +24,7 @@
     }
   }
 ?>
-<header class="navbar navbar-dark sticky-top bg-dark flex-md-nowrap p-2 shadow">
-  <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3" href="#">Aramyzda</a>
-  <button class="navbar-toggler position-absolute d-md-none collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#sidebarMenu" aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-  <div class="navbar-nav">
-    <div class="nav-item text-nowrap">
-      <a class="nav-link px-3" href="../index.php">Sign out</a>
-    </div>
-  </div>
-</header>
+<?php require_once "header.php" ?>
 
 <div class="container-fluid">
   <div class="row">
@@ -90,7 +79,7 @@
       <?php } ?>
 
       <div class="table-responsive">
-        <table class="table table-striped table-sm">
+        <table class="table table-striped table-sm align-middle">
           <thead>
             <tr>
               <th scope="col">#</th>
@@ -98,7 +87,8 @@
               <th scope="col">Nama</th>
               <th scope="col">Tipe</th>
               <th scope="col">Stok</th>
-              <th class="d-flex justify-content-end" scope="col">Harga</th>
+              <th class="text-end" scope="col">Harga</th>
+              <th class="text-center" scope="col">Action</th>
             </tr>
           </thead>
           <tbody id="tbody">
@@ -110,8 +100,11 @@
                 <td><?=$product['id']?></td>
                 <td><?=$product['name']?></td>
                 <td><?=$product['type']?></td>
-                <td><?=$product['stock']?></td>
-                <td class="d-flex justify-content-end"><?="Rp. " . getFormatHarga($product['price'])?></td>
+                <td id="td-stock-<?=$product['id']?>"><?=$product['stock']?></td>
+                <td class="text-end"><?="Rp. " . getFormatHarga($product['price'])?></td>
+                <td class="text-center">
+                  <button class="btn btn-secondary" id="btn-<?=$product['id']?>" state="inactive" onclick="toggleEdit(<?=$product['id']?>)">Edit</button>
+                </td>
             </tr>
           <?php } ?>
           </tbody>
@@ -121,3 +114,31 @@
   </div>
 </div>
 <?php require_once("../template/footing.php")?>
+<script>
+  function toggleEdit(id) {
+    if ($("#btn-" + id).attr("state") == "inactive") {
+      let stok = $("#td-stock-" + id).text();
+      $("#td-stock-"+id).html("");
+      $("#td-stock-"+id).append($('<input style="width:60px" type="number" id="inp-stock-' + id + '" value="' + stok + '">'));
+      $("#btn-" + id).attr("state", "active");
+      $("#btn-" + id).html("Save");
+    }
+    else {
+      $("#td-stock-"+id).text($("#inp-stock-" + id).val());
+      $("#btn-" + id).attr("state", "inactive");
+      $("#btn-" + id).html("Edit");
+    }
+  }
+  function setNewStock(id) {
+    $.ajax({
+      type: "post",
+      url: "set_product_stock.php",
+      data: {
+        "id" : id
+      },
+      success: function (response) {
+        
+      }
+    });
+  }
+</script>

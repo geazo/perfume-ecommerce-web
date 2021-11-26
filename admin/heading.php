@@ -1,3 +1,10 @@
+<?php 
+    require_once '../connector/connection.php';
+    if (!isset($_SESSION['admin'])) {
+        echo "<script>alert('tidak boleh gan')</script>";
+        echo "<script>window.location.href='../index.php'</script>";
+    }
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>

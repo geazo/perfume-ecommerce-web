@@ -16,7 +16,7 @@
         ?>
         <tr class="align-middle">
             <th scope="row"><?=$key + 1?></th>
-            <td class="d-flex justify-content-center">
+            <td class="text-center">
                 <a href="detailProduk.php?product=<?= $cart_item['id']?>">
                     <img class="hover-expand" style="width: 100px;" src="<?= $cart_item['image_source'] ?>" alt="">
                 </a>

@@ -21,7 +21,7 @@
                 <thead>
                     <tr>
                     <th scope="col">#</th>
-                    <th class="d-flex justify-content-center" scope="col">Image</th>
+                    <th class="text-center" scope="col">Image</th>
                     <th scope="col">Name</th>
                     <th scope="col">Type</th>
                     <th scope="col">Price</th>

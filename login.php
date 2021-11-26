@@ -16,6 +16,7 @@
 
         if ($email == "admin" && $password == "meja_kursi_aramyzda_2021") {
             // header("Location: ./admin/index.php");
+            $_SESSION['admin'] = "ahiahi";
             windowLocationHref("./admin/index.php");
         }
 

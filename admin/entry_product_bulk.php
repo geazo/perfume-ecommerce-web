@@ -23,6 +23,4 @@
         fclose($handle);
     }
     echo "Success!"
-    //C:/Fakepath/namafiles
-    //files[0]
 ?>
