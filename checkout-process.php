@@ -132,47 +132,18 @@
     snap.pay('<?php echo $snap_token?>', {
         onSuccess: function(result){
             onFinished();
-            // setTransactionStatus("SUCCESS");
-            // alert('1');
         },
         onPending: function(result){
             onFinished();
-            // setTransactionStatus("PENDING");
-            // alert('2');
         },
         onError: function(result){
             onFinished();
-            // setTransactionStatus("ERROR");
-            // alert('3');
         }
     });
 
     function onFinished() {
         $("#container").html("");
         $("#container").append($("<h1>Thank You</h1>"))
-        $("#container").append($("<div><a href='index.php'><button class='btn btn-primary btn-lg'>Home</button></a> <a href='catalogue.php'><button class='btn btn-primary btn-lg'>Catalogue</button></a></div>"))
-    }
-
-    function setTransactionStatus(status) {
-        $.ajax({
-            type: "post",
-            url: "./ajax/set_transaction_status.php",
-            data: {
-                "status" : status
-            },
-            success: function (response) {
-                alert('sukro');
-            }
-        });
-    }
-
-    function checkout() {
-        $.ajax({
-            type: "post",
-            url: "./ajax/checkout.php",
-            success: function (response) {
-                alert(response)
-            }
-        });
+        $("#container").append($("<div><a href='index.php'><button class='btn btn-primary btn-lg'>Home</button></a> <a href='katalog.php'><button class='btn btn-primary btn-lg'>Catalogue</button></a></div>"))
     }
 </script>
