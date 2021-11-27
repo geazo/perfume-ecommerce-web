@@ -2,9 +2,17 @@
 <?php 
   $listProduct = [];
   try {
-    $stmt = $conn -> prepare("SELECT * FROM product");
-    $stmt -> execute();
-    $listProduct = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+    if (!isset($_REQUEST['select-query']) || $_REQUEST['select-query'] == "All") {
+      $stmt = $conn -> prepare("SELECT * FROM product");
+      $stmt -> execute();
+      $listProduct = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+    }
+    else {
+      $arrParam = explode("-", $_REQUEST['select-query']);
+      $stmt = $conn -> prepare("SELECT * FROM product ORDER BY ". $arrParam[0] . " " . $arrParam[1]);
+      $stmt -> execute();
+      $listProduct = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+    }
   }
   catch(Exception $e) {
     exit($e->getMessage());
@@ -54,7 +62,18 @@
       <h2>List Product</h2>
 
       <div class="row py-3">
-        <div class="col-3"></div>
+        <div class="col-3">
+          <form action="" method="GET">
+            <select name="select-query" id="select-query" class="form-select" aria-label="select-query" onchange="changedSelect()">
+              <option <?= !isset($_REQUEST['select-query']) ? "selected" : ""?> value="All" selected>All</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "price-asc" ? "selected" : "")?> value="price-asc">Harga Asc</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "price-desc" ? "selected" : "")?> value="price-desc">Harga Desc</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "stock-asc" ? "selected" : "")?> value="stock-asc">Stok Asc</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "stock-desc" ? "selected" : "")?> value="stock-desc">Stok Desc</option>
+            </select>
+            <input id="btn-submit-sq" class="d-none" type="submit" value="">
+          </form>
+        </div>
         <div class="col-6 d-flex align-items-center justify-content-center">
         <?php if(count($listProduct) > 0) { ?>
           <nav class="d-flex justify-content-center">
@@ -158,6 +177,10 @@
 </div>
 <?php require_once("../template/footing.php")?>
 <script>
+  function changedSelect() {
+    $("#btn-submit-sq").click();
+  }
+
   function toggleEdit(id) {
     if ($("#btn-" + id).attr("state") == "inactive") {
       let stok = $("#td-stock-" + id).text();
@@ -187,3 +210,8 @@
     });
   }
 </script>
+<style>
+  .hover:hover {
+    cursor: pointer;
+  }
+</style>
