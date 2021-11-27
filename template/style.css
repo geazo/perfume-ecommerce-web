@@ -183,6 +183,7 @@
     .sidebar {padding-top: 15px;}
     .sidebar a {font-size: 18px;}
   }
+  
   .button {
     border-radius: 4px;
     background: none;
@@ -228,16 +229,30 @@
 .mobileView{
     display: none;
 }
-@media screen and (max-width: 720px) {
+.katalog .card{
+    width: 18em;
+}
+@media screen and (max-width: 768px) {
     .pcView{
         display: none;
     }
     .mobileView{
         display: block;
     }
+    .searchbox{
+        display: flex;
+        justify-content: center;
+    }
+    .navKiri{
+        display: none;
+    }
+    .katalog .card{
+        width: 16rem;
+    }
 }
+
 .mobileSidebar{
-    width: 35vw;
+    width: 40vw;
     height: 100vh;
     background: black;
     position: fixed;
@@ -246,12 +261,12 @@
     transition: 0.75s;
 }
 .mobileSidebarClosed{
-    width: 35vw;
+    width: 40vw;
     height: 100vh;
     background: black;
     position: fixed;
     z-index: 1000;
-    transform: translateX(-35vw);
+    transform: translateX(-40vw);
     transition: 0.75s;
 }
 .iconSidebar{

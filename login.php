@@ -40,7 +40,7 @@
         else {
             $_SESSION['user-login'] = $user;
             alert('berhasil login');
-            windowLocationHref("index.php");
+            windowLocationHref("katalog.php");
         }
     }
 ?>
