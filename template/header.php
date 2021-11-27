@@ -144,8 +144,8 @@ function mobileClose(){
       <ul class="d-flex w-50 bg-black p-1 justify-content-center align-items-center list-style-none ">
         <a class="text-light nav-link active" href="index.php"><li>HOME</li></a>
         <a class="text-light nav-link active" href="katalog.php"><li>CATALOGUE</li></a>
-        <a class="text-light nav-link active"  onclick="logincheckCart()"><li>CART</li></a>
-        <a class="text-light nav-link active" href="#"><li>TRANSACTION</li></a>
+        <a class="text-light nav-link active mintahover"  onclick="logincheckCart()"><li>VIEW CART</li></a>
+        
       </ul>
       <ul class="w-25 bg-black d-flex justify-content-end">
         kanan 
