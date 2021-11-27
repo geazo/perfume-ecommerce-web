@@ -10,7 +10,7 @@
         $total = $stmt -> get_result() -> fetch_assoc();
         $total = $total['total'];
 
-        $date = date("Y-m-d");
+        $date = date("Y-m-d H:i:s");
         $amount = $total;
         $pending = "PENDING";
     
