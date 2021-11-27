@@ -176,15 +176,17 @@
   </div>
 </div>
 <?php require_once("../template/footing.php")?>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<script type='text/javascript' src='https://www.gstatic.com/charts/loader.js'></script>
 <script>
-  google.charts.load('current', {packages: ['corechart', 'bar']});
+  google.charts.load('current', {'packages': ['corechart'], 'language': 'id'});
+  // google.charts.setOnLoadCallback(drawMarkersMap);
+  // google.charts.load('current', {packages: ['corechart', 'bar']});
   google.charts.setOnLoadCallback(drawBasic);
 
   function drawBasic() {
     var data = new google.visualization.DataTable();
     data.addColumn('string', 'Month');
-    data.addColumn('number', 'Rp. ');
+    data.addColumn('number', 'Penghasilan');
 
     data.addRows([
 <?php 
@@ -198,8 +200,10 @@
       $stmt -> execute();
       $total = $stmt -> get_result() -> fetch_assoc();
       $total = $total['total'];
+      $totalFormatted = getFormatHarga($total);
       if ($total == null || $total == "") $total = 0;
-      echo "\t\t[{v: '$arrBulan[$i]'}, $total]";
+      // echo "\t\t[{v: '$arrBulan[$i]'}, $total]";
+      echo "\t\t['$arrBulan[$i]', {v: $total, f:'Rp$totalFormatted'}]";
       if ($i != 11) echo ",";
       echo "\n";
     }
@@ -221,7 +225,8 @@
         }
       },
       vAxis: {
-        title: 'Penghasilan'
+        title: 'Penghasilan',
+        format: 'currency'
       }
     };
 
