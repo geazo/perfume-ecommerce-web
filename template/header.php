@@ -66,12 +66,28 @@ function mobileClose(){
       <a class="" style="text-decoration:none;" href="katalog.php">
         <li class = "text-light pb-3 fs-4">CATALOGUE</li>
       </a>
-      <a class="" style="text-decoration:none;" href="profile.php">
-        <li class = "text-light pb-3 fs-4">ACCOUNT</li>
+      <?php 
+      if(isset($_SESSION['user-login'])){
+        ?>
+        <a class="mintahover" style="text-decoration:none;" href="profile.php" >
+          <li class = "text-light pb-3 fs-4">ACCOUNT</li>
+        </a>
+        <a class="mintahover" style="text-decoration:none;"  onclick="logincheckCart()">
+          <li class = "text-light pb-3 fs-4">CHECK OUT</li>
+        </a>
+        <a class="mintahover" style="text-decoration:none;" onclick="logOff()">
+          <li class = "text-light pb-3 fs-4">LOG OUT</li>
+        </a>
+      <?php
+      }
+      else{
+      ?>
+      <a class="mintahover" style="text-decoration:none;" href="login.php" >
+        <li class = "text-light pb-3 fs-4">LOG IN</li>
       </a>
-      <a class="" style="text-decoration:none;" href="cart.php">
-        <li class = "text-light pb-3 fs-4">CHECK OUT</li>
-      </a>
+      <?php
+      }
+      ?>
     </ul>
 </div>
 <div class="mainHead pcView">
@@ -128,7 +144,7 @@ function mobileClose(){
       <ul class="d-flex w-50 bg-black p-1 justify-content-center align-items-center list-style-none ">
         <a class="text-light nav-link active" href="index.php"><li>HOME</li></a>
         <a class="text-light nav-link active" href="katalog.php"><li>CATALOGUE</li></a>
-        <a class="text-light nav-link active"  onclick="logincheck()"><li>CART</li></a>
+        <a class="text-light nav-link active"  onclick="logincheckCart()"><li>CART</li></a>
         <a class="text-light nav-link active" href="#"><li>TRANSACTION</li></a>
       </ul>
       <ul class="w-25 bg-black d-flex justify-content-end">
@@ -183,7 +199,7 @@ function mobileClose(){
       type: "post",
       url: "./ajax/log_off.php",
       success: function (response) {
-
+        window.location.href = "";
       }
     });
   }
@@ -198,7 +214,7 @@ function mobileClose(){
     });
   }
 
-  function logincheck() {
+  function logincheckCart() {
     <?php
     if(isset($_SESSION['user-login'])){
     ?>

@@ -250,6 +250,9 @@
         width: 16rem;
     }
 }
+.mintahover:hover{
+    cursor: pointer;
+}
 
 .mobileSidebar{
     width: 40vw;
@@ -280,6 +283,8 @@
 }
 .loginBg{
     background-image: url(https://ak.picdn.net/shutterstock/videos/14986201/thumb/1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 .garis{
     border-bottom: 2px solid grey;

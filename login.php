@@ -44,16 +44,16 @@
         }
     }
 ?>
-    <div class="vh-100 p-5 bg-dark">
-        <div class="row h-75  m-5 p-5 bg-dark">
-            
-            <div class="col-7 loginBg d-flex justify-content-center align-items-center">
+    <div class="vh-100  d-flex justify-content-center align-items-center  bg-dark">
+        <div class="row h-75 w-75">
+
+            <div class="col-lg-7 col-sm-12 loginBg d-flex justify-content-center align-items-center">
                 <div class=" fs-4 text-light">
                      Aramyzda
                 </div>
             </div>
-            <div class="col-5 p-5  bg-light">
 
+            <div class="col-lg-5 col-sm-12 p-5  bg-light">
                 <h1>Login</h1>
                 <form method="POST">
                     <div class="form-group">
@@ -68,6 +68,8 @@
                     <button name="btn-register" type="submit" class="btn border btn-light">Go to register</button>
                 </form>
             </div>
+
         </div>
+
     </div>
 <?php require_once("./template/footing.php")?>
