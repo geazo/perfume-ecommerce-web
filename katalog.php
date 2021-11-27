@@ -90,10 +90,10 @@ if (isset($_REQUEST['page'])) {
           ?>
         </select>
       </div>
-      <div class="displayTeksSort col-9">
+      <div class="displayTeksSort col-md-9 col-sm-12">
         <span name="displayTeks" class="displayedTeks"><?= isset($_REQUEST['brand']) ? strtoupper($_REQUEST['brand']) :"CATALOGUE" ?> </span>
       </div>
-      <div class="searchbox d-flex justify-content-end col-3">
+      <div class="searchbox  col-md-3 col-sm-12">
           <form action="" method="POST">
             <div class="row">
               <div class="col-8">
@@ -114,34 +114,34 @@ if (isset($_REQUEST['page'])) {
         </ul>
       </div>
 
-      <div class="navKanan col-9 ">
-        <div class="katalog justify-content-between row" id="katalog">
+      <div class="navKanan col-md-9 col-sm-12 ">
+        <div class="katalog justify-content-around row" id="katalog">
           <?php if(count($listProduct) != 0) { ?>
             <?php for ($i = ($currentPage - 1) * $maxProductInAPage; $i < $currentPage * $maxProductInAPage; $i++) { ?>
               <?php if ($i >= count($listProduct)) break; ?>
-              <div class="card text-decoration-none color-inherit" id="productNum_<?= $listProduct[$i]['id']?>" style="width: 18rem;" href="detailProduk.php?product=<?= $listProduct[$i]['id']?>">
+              <div class="card text-decoration-none color-inherit" id="productNum_<?= $listProduct[$i]['id']?>"  href="detailProduk.php?product=<?= $listProduct[$i]['id']?>">
                 <!-- <div class="card" style="width: 18rem;"> -->
                   <a href="detailProduk.php?product=<?= $listProduct[$i]['id']?>">
                     <img src="<?= $listProduct[$i]['image_source'] ?>" class="card-img-top" alt="...">
                   </a>
                   <div class="row d-flex justify-content-center card-body">
                     <a href="detailProduk.php?product=<?= $listProduct[$i]['id']?>"></a>
-                    <h6 class="row card-title"> <?= $listProduct[$i]['name'] ?> </h6>
-                    <p class="row card-text"> <?= $listProduct[$i]['type'] ?> </p>
-                    <div class=" d-flex justify-content-center align-items-center flex-row mb-2">
+                    <h6 class="row p-0 card-title"> <?= $listProduct[$i]['name'] ?> </h6>
+                    <p class="row p-0 card-text"> <?= $listProduct[$i]['type'] ?> </p>
+                    <div class="row p-0  mb-2">
 
-                      <div class="w-50 ">
+                      <div class="col-md-7 col-sm-12  p-0 ">
                         <p class="card-text">Rp <?= $listProduct[$i]['price'] != '' ? number_format($listProduct[$i]['price'], 0, ',', '.') : '0' ?> </p>
                       </div>
 
-                      <div class="w-50 input-group">
+                      <div class="input-group p-0 col ">
                           <button class="btn btn-outline-secondary" id="btnDownQty<?= $listProduct[$i]['id']?>" type="button" onclick="gantiAngkaDown(<?=$listProduct[$i]['id']?>)">-</button>
                           <input type="text" class="form-control text-center" id="inputNumberLangsung<?= $listProduct[$i]['id']?>" aria-label="" value ="1">
                           <button class="btn btn-outline-secondary" id="btnUpQty<?= $listProduct[$i]['id']?>"  type="button" onclick="gantiAngkaUp(<?=$listProduct[$i]['id']?>)">+</button>
                       </div>
 
                     </div>
-                    <div class="row align-self-center addToCart">
+                    <div class="row p-0 align-self-center addToCart">
                        <button type="button" class="btn btn-danger" onclick="AddToCartFullSet(<?=$listProduct[$i]['id']?>)">Add to Cart</button>  
                     </div>
                   </div>

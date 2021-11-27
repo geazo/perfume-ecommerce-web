@@ -56,11 +56,11 @@ function mobileClose(){
   $("#theMobileSidebar").removeClass("mobileSidebar");
 }
 </script>
-<div class="mobileSidebarClosed p-2" id="theMobileSidebar">
-    <ul class = "d-flex flex-column list-style-none fs-6 text light">
-      <li class="iconSidebar fs-1  pb-5 text-light align-self-end" onclick="mobileClose()"><i class="fa fa-bars"></i> </li>
+<div class="mobileSidebarClosed " id="theMobileSidebar">
+    <ul class = "d-flex  flex-column list-style-none fs-6 text light">
+      <li class="iconSidebar fs-1 px-3 pb-5 text-light align-self-end" onclick="mobileClose()"><i class="fa fa-bars"></i> </li>
 
-      <a class="" style="text-decoration:none;" href="index.php">
+      <a class="align-self-start " style="text-decoration:none;" href="index.php">
         <li class = "text-light pt-5 pb-3 fs-4">HOME</li>
       </a>
       <a class="" style="text-decoration:none;" href="katalog.php">
