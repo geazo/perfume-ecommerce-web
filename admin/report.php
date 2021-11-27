@@ -4,9 +4,17 @@
 <?php 
   $listTransaction = [];
   try {
-    $stmt = $conn -> prepare("SELECT h.*, u.first_name FROM htrans h, user u where h.id_user = u.id");
-    $stmt -> execute();
-    $listTransaction = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+    if (!isset($_REQUEST['select-query']) || $_REQUEST['select-query'] == "All") {
+      $stmt = $conn -> prepare("SELECT h.*, u.first_name FROM htrans h, user u where h.id_user = u.id");
+      $stmt -> execute();
+      $listTransaction = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+    }
+    else {
+      $arrParam = explode("-", $_REQUEST['select-query']);
+      $stmt = $conn -> prepare("SELECT h.*, u.first_name FROM htrans h, user u where h.id_user = u.id ORDER BY ". $arrParam[0] . " " . $arrParam[1]);
+      $stmt -> execute();
+      $listTransaction = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+    }
   }
   catch(Exception $e) {
     exit($e->getMessage());
@@ -56,7 +64,20 @@
       <h2>List Transaction</h2>
 
       <div class="row py-3">
-        <div class="col-3"></div>
+        <div class="col-3">
+          <form action="" method="GET">
+            <select name="select-query" id="select-query" class="form-select" aria-label="select-query" onchange="changedSelect()">
+              <option <?= !isset($_REQUEST['select-query']) ? "selected" : ""?> value="All" selected>All</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "total-asc" ? "selected" : "")?>  value="total-asc">Total Asc</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "total-desc" ? "selected" : "")?> value="total-desc">Total Desc</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "tanggal-asc" ? "selected" : "")?>  value="tanggal-asc">Tanggal Asc</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "tanggal-desc" ? "selected" : "")?> value="tanggal-desc">Tanggal Desc</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "status-asc" ? "selected" : "")?>  value="status-asc">Status Asc</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "status-desc" ? "selected" : "")?> value="status-desc">Status Desc</option>
+            </select>
+            <input id="btn-submit-sq" class="d-none" type="submit" value="">
+          </form>
+        </div>
         <div class="col-6 d-flex align-items-center justify-content-center">
         <?php if(count($listTransaction) > 0) { ?>
           <nav class="d-flex justify-content-center">
@@ -98,9 +119,9 @@
               <th scope="col">#</th>
               <th scope="col">ID</th>
               <th scope="col">User</th>
-              <th scope="col">Tanggal</th>
-              <th scope="col">Total</th>
-              <th scope="col">Status</th>
+              <th class="text-center" scope="col">Tanggal</th>
+              <th class="text-end" scope="col">Total</th>
+              <th class="text-center" scope="col">Status</th>
             </tr>
           </thead>
           <tbody id="tbody">
@@ -111,9 +132,9 @@
                 <td><?=($i + 1)."."?></td>
                 <td><?=$transaction['id_transaksi']?></td>
                 <td><?=$transaction['first_name']?></td>
-                <td><?=$transaction['tanggal']?></td>
-                <td><?=$transaction['total']?></td>
-                <td><?=$transaction['status']?></td>
+                <td class="text-center"><?=$transaction['tanggal']?></td>
+                <td class="text-end"><?="Rp. " . getFormatHarga($transaction['total'])?></td>
+                <td class="text-center"><?=$transaction['status']?></td>
             </tr>
           <?php } ?>
           </tbody>
@@ -162,34 +183,45 @@
 
   function drawBasic() {
     var data = new google.visualization.DataTable();
-    data.addColumn('timeofday', 'Time of Day');
-    data.addColumn('number', 'Motivation Level');
+    data.addColumn('string', 'Month');
+    data.addColumn('number', 'Rp. ');
 
     data.addRows([
-      [{v: [8, 0, 0], f: '8 am'}, 1],
-      [{v: [9, 0, 0], f: '9 am'}, 2],
-      [{v: [10, 0, 0], f:'10 am'}, 3],
-      [{v: [11, 0, 0], f: '11 am'}, 4],
-      [{v: [12, 0, 0], f: '12 pm'}, 5],
-      [{v: [13, 0, 0], f: '1 pm'}, 6],
-      [{v: [14, 0, 0], f: '2 pm'}, 7],
-      [{v: [15, 0, 0], f: '3 pm'}, 8],
-      [{v: [16, 0, 0], f: '4 pm'}, 9],
-      [{v: [17, 0, 0], f: '5 pm'}, 10],
+<?php 
+  $arrBulan = ["Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember"];
+  $tahun = (int) date("Y");
+  for ($i=0; $i < 12; $i++) { 
+    $bulan = $i + 1;
+    try {
+      $stmt = $conn -> prepare("SELECT SUM(total) AS total FROM htrans WHERE MONTH(tanggal) = ? AND YEAR(tanggal) = ?");
+      $stmt -> bind_param("ii", $bulan, $tahun);
+      $stmt -> execute();
+      $total = $stmt -> get_result() -> fetch_assoc();
+      $total = $total['total'];
+      if ($total == null || $total == "") $total = 0;
+      echo "\t\t[{v: '$arrBulan[$i]'}, $total]";
+      if ($i != 11) echo ",";
+      echo "\n";
+    }
+    catch(Exception $e) {
+      exit($e->getMessage());
+    }
+  }  
+?>
     ]);
 
     var options = {
-      title: 'Motivation Level Throughout the Day',
+      title: 'Penghasilan Tahun <?=date("Y")?>',
       hAxis: {
-        title: 'Time of Day',
-        format: 'h:mm a',
+        title: 'Bulan',
+        format: 'string',
         viewWindow: {
           min: [7, 30, 0],
           max: [17, 30, 0]
         }
       },
       vAxis: {
-        title: 'Rating (scale of 1-10)'
+        title: 'Penghasilan'
       }
     };
 
@@ -197,5 +229,9 @@
       document.getElementById('chart_div'));
 
     chart.draw(data, options);
+  }
+
+  function changedSelect() {
+    $("#btn-submit-sq").click();
   }
 </script>
