@@ -143,7 +143,7 @@ if (isset($_REQUEST['page'])) {
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
           <?= (($currentPage - 1) * $maxProductInAPage) + 1 ?> -
-          <?= ($currentPage * $maxProductInAPage) + 1 > count($listProduct) ? count($listProduct) : ($currentPage * $maxProductInAPage) + 1 ?>
+          <?= (($currentPage * $maxProductInAPage) + 1) > count($listProduct) ? count($listProduct) : ($currentPage * $maxProductInAPage) ?>
           out of <?= count($listProduct) ?> product(s)
         </div>
       </div>

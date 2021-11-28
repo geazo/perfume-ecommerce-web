@@ -140,7 +140,7 @@
         </div>
         <div class="col-3 d-flex justify-content-end align-items-center">
           <?=(($currentPage - 1)* $maxProductInAPage) + 1?> - 
-          <?= ($currentPage * $maxProductInAPage) + 1 > count($listTransaction) ? count($listTransaction) : ($currentPage * $maxProductInAPage) + 1?>
+          <?= ($currentPage * $maxProductInAPage) + 1 > count($listTransaction) ? count($listTransaction) : ($currentPage * $maxProductInAPage)?>
           out of <?=count($listTransaction)?> transaction(s)
         </div>
       </div>
