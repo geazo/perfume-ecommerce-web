@@ -4,17 +4,32 @@
 <?php 
   $listTransaction = [];
   try {
-    if (!isset($_REQUEST['select-query']) || $_REQUEST['select-query'] == "All") {
-      $stmt = $conn -> prepare("SELECT h.*, u.first_name FROM htrans h, user u where h.id_user = u.id");
-      $stmt -> execute();
-      $listTransaction = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+    $sql = "";
+    if (isset($_REQUEST['btn-filter'])) {
+      $sql = "SELECT h.*, CONCAT(u.first_name, ' ', u.last_name) as 'full_name' FROM htrans h, user u where h.id_user = u.id ";
+      if ($_REQUEST['select-status'] != "") {
+        $status = $_REQUEST['select-status'];
+        $sql = $sql . "AND h.status = '$status' ";
+      }
+      if ($_REQUEST['inp-nama'] != "") {
+        $nama = $_REQUEST['inp-nama'];
+        $sql = $sql . "AND CONCAT(u.first_name, ' ', u.last_name) LIKE '%$nama%' ";
+      }
+      if ($_REQUEST['inp-tanggal']) {
+        $tanggal = $_REQUEST['inp-tanggal'];
+        $sql = $sql . "AND tanggal = '$tanggal' ";
+      }
+      if ($_REQUEST['select-order'] != "") {
+        $arrParam = explode("-", $_REQUEST['select-order']);
+        $sql = $sql . "ORDER BY ". $arrParam[0] . " " . $arrParam[1] . " ";
+      }
     }
     else {
-      $arrParam = explode("-", $_REQUEST['select-query']);
-      $stmt = $conn -> prepare("SELECT h.*, u.first_name FROM htrans h, user u where h.id_user = u.id ORDER BY ". $arrParam[0] . " " . $arrParam[1]);
-      $stmt -> execute();
-      $listTransaction = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
+      $sql = "SELECT h.*, CONCAT(u.first_name, ' ', u.last_name) as 'full_name' FROM htrans h, user u where h.id_user = u.id";
     }
+    $stmt = $conn -> prepare($sql);
+    $stmt -> execute();
+    $listTransaction = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
   }
   catch(Exception $e) {
     exit($e->getMessage());
@@ -33,6 +48,8 @@
       $currentPage = $maxPage;
     }
   }
+
+
 ?>
 
 <div class="container-fluid">
@@ -63,43 +80,60 @@
       <div id="chart_div"></div>
       <h2>List Transaction</h2>
 
+      <div class="row">
+        <div class="col-2">
+          <h5 class="p-1 text-end">Filter: </h5> 
+        </div>
+        <div class="col-4">
+          <form action="" method="GET">
+            <select class="form-select mb-2" name="select-status">
+              <option value="">Status</option>
+              <option <?= ((isset($_REQUEST['select-status']) && ($_REQUEST['select-status'] == 'SUCCESS')) ? "selected" : "") ?> value="SUCCESS">Success</option>
+              <option <?= ((isset($_REQUEST['select-status']) && ($_REQUEST['select-status'] == 'FAILED')) ? "selected" : "") ?> value="FAILED">Failed</option>
+              <option <?= ((isset($_REQUEST['select-status']) && ($_REQUEST['select-status'] == 'PENDING')) ? "selected" : "") ?> value="PENDING">Pending</option>
+            </select>
+            <select class="form-select mb-2" name="select-order">
+              <option value="">Order</option>
+              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'total-asc')) ? "selected" : "") ?> value="total-asc">Total Asc</option>
+              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'total-desc')) ? "selected" : "") ?> value="total-desc">Total Desc</option>
+              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'tanggal-asc')) ? "selected" : "") ?> value="tanggal-asc">Tanggal Asc</option>
+              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'tanggal-desc')) ? "selected" : "") ?> value="tanggal-desc">Tanggal Desc</option>
+            </select>
+            <input value="<?= isset($_REQUEST['inp-nama']) ? $_REQUEST['inp-nama'] : "" ?>" type="text" class="form-control mb-2" name="inp-nama" placeholder="Nama User">             
+            <input value="<?= isset($_REQUEST['inp-tanggal']) ? $_REQUEST['inp-tanggal'] : "" ?>" type="date" class="form-control mb-2" name="inp-tanggal" placeholder="Tanggal">
+            <button name="btn-filter" type="submit" class="btn btn-secondary btn-sm mb-2">Go</button>
+          </form>
+          <form action="" method="get">
+            <button name="btn-reset" type="submit" class="btn btn-secondary btn-sm mb-2">Reset</button>
+          </form>
+        </div>
+      </div>
+
       <div class="row py-3">
         <div class="col-3">
-          <form action="" method="GET">
-            <select name="select-query" id="select-query" class="form-select" aria-label="select-query" onchange="changedSelect()">
-              <option <?= !isset($_REQUEST['select-query']) ? "selected" : ""?> value="All" selected>All</option>
-              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "total-asc" ? "selected" : "")?>  value="total-asc">Total Asc</option>
-              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "total-desc" ? "selected" : "")?> value="total-desc">Total Desc</option>
-              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "tanggal-asc" ? "selected" : "")?>  value="tanggal-asc">Tanggal Asc</option>
-              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "tanggal-desc" ? "selected" : "")?> value="tanggal-desc">Tanggal Desc</option>
-              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "status-asc" ? "selected" : "")?>  value="status-asc">Status Asc</option>
-              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "status-desc" ? "selected" : "")?> value="status-desc">Status Desc</option>
-            </select>
-            <input id="btn-submit-sq" class="d-none" type="submit" value="">
-          </form>
         </div>
         <div class="col-6 d-flex align-items-center justify-content-center">
         <?php if(count($listTransaction) > 0) { ?>
           <nav class="d-flex justify-content-center">
             <ul class="pagination m-0">
-              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage - 1?>">Previous</a></li>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.$currentPage - 1?>">Previous</a></li>
               <?php if($currentPage - 2 > 1) {?>
-                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php' ?>">1</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php' ?>">1</a></li>
                 <li class="page-item"><span class="page-link text-dark">...</span></li>
               <?php } ?>
               <?php for ($i = $currentPage - 2; $i <= $currentPage + 2; $i++) { ?>
                 <?php if ($i < 1 || $i > $maxPage) continue; ?>
                 <?php if($i == $currentPage) { ?>
-                  <li class="page-item"><a class="page-link text-dark bg-secondary bg-opacity-25" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
+                  <li class="page-item"><a class="page-link text-dark bg-secondary bg-opacity-25" href="<?= 'report.php?page='.$i ?>"><?=$i?></a></li>
                 <?php } else { ?>
-                  <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
+                  <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.$i ?>"><?=$i?></a></li>
                   <?php } ?>
               <?php } ?>
               <?php if($currentPage + 2 < $maxPage) {?>
                 <li class="page-item"><span class="page-link text-dark">...</span></li>
-                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$maxPage?>"><?= $maxPage ?></a></li>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.$maxPage?>"><?= $maxPage ?></a></li>
               <?php } ?>
-              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage + 1?>">Next</a></li>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.$currentPage + 1?>">Next</a></li>
             </ul>
           </nav>
         <?php } ?>
@@ -122,6 +156,7 @@
               <th class="text-center" scope="col">Tanggal</th>
               <th class="text-end" scope="col">Total</th>
               <th class="text-center" scope="col">Status</th>
+              <th class="text-center" scope="col">Action</th>
             </tr>
           </thead>
           <tbody id="tbody">
@@ -129,12 +164,17 @@
             <?php if ($i >= count($listTransaction)) break; ?>
             <?php $transaction = $listTransaction[$i] ?>
             <tr>
-                <td><?=($i + 1)."."?></td>
-                <td><?=$transaction['id_transaksi']?></td>
-                <td><?=$transaction['first_name']?></td>
-                <td class="text-center"><?=$transaction['tanggal']?></td>
-                <td class="text-end"><?="Rp. " . getFormatHarga($transaction['total'])?></td>
-                <td class="text-center"><?=$transaction['status']?></td>
+              <td><?=($i + 1)."."?></td>
+              <td><?=$transaction['id_transaksi']?></td>
+              <td><?=$transaction['full_name']?></td>
+              <td class="text-center"><?=$transaction['tanggal']?></td>
+              <td class="text-end"><?="Rp. " . getFormatHarga($transaction['total'])?></td>
+              <td class="text-center"><?=$transaction['status']?></td>
+              <td class="text-center">
+                <a href="detail_transaction.php?id=<?=$transaction['id_transaksi']?>">
+                  <button type="button" class="btn btn-secondary">Detail</button>
+                </a>
+              </td>
             </tr>
           <?php } ?>
           </tbody>
@@ -147,24 +187,24 @@
         <?php if(count($listTransaction) > 0) { ?>
           <nav class="d-flex justify-content-center">
             <ul class="pagination m-0">
-              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage - 1?>">Previous</a></li>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.$currentPage - 1?>">Previous</a></li>
               <?php if($currentPage - 2 > 1) {?>
-                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php' ?>">1</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php' ?>">1</a></li>
                 <li class="page-item"><span class="page-link text-dark">...</span></li>
               <?php } ?>
               <?php for ($i = $currentPage - 2; $i <= $currentPage + 2; $i++) { ?>
                 <?php if ($i < 1 || $i > $maxPage) continue; ?>
                 <?php if($i == $currentPage) { ?>
-                  <li class="page-item"><a class="page-link text-dark bg-secondary bg-opacity-25" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
+                  <li class="page-item"><a class="page-link text-dark bg-secondary bg-opacity-25" href="<?= 'report.php?page='.$i ?>"><?=$i?></a></li>
                 <?php } else { ?>
-                  <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$i ?>"><?=$i?></a></li>
+                  <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.$i ?>"><?=$i?></a></li>
                   <?php } ?>
               <?php } ?>
               <?php if($currentPage + 2 < $maxPage) {?>
                 <li class="page-item"><span class="page-link text-dark">...</span></li>
-                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$maxPage?>"><?= $maxPage ?></a></li>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.$maxPage?>"><?= $maxPage ?></a></li>
               <?php } ?>
-              <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page='.$currentPage + 1?>">Next</a></li>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.$currentPage + 1?>">Next</a></li>
             </ul>
           </nav>
         <?php } ?>
@@ -234,9 +274,5 @@
       document.getElementById('chart_div'));
 
     chart.draw(data, options);
-  }
-
-  function changedSelect() {
-    $("#btn-submit-sq").click();
   }
 </script>
