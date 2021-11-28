@@ -97,7 +97,7 @@ function mobileClose(){
       <div class="w-25 text-dark">
         kiri
       </div>
-      <a href="./index.php" class="w-50 fs-1 d-flex justify-content-center text-center" style="text-decoration:none;">
+      <a href="index.php" class="w-50 fs-1 d-flex justify-content-center text-center" style="text-decoration:none;">
         <div class="w-50 fs-1 text-center text-light">
           <!-- Aramyzda logo-->
           Aramyzda
@@ -162,7 +162,7 @@ function mobileClose(){
         <div class="fa fa-bars text-light fs-1" onclick="mobileOpen()"></div>
           
       </div>
-      <div class="w-50 text-light fs-1 text-center">
+      <div href="index.php" class="w-50 text-light fs-1 text-center">
         <!-- Aramyzda logo-->
         Aramyzda
       </div>
