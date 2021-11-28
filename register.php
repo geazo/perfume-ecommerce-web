@@ -41,9 +41,9 @@
         }
     }
 ?>
-    <div class="  text-light bg-dark  p-5">
-        <div class="row p-5 d-flex justify-content-center ">
-            <div class="col-8 p-5">
+    
+        <div class="bg-dark text-light d-flex justify-content-center">
+            <div class="col-sm-8 col-md-5 py-3 ">
                 <h1>Register</h1>
                 <form method="POST" id="form">
                     <div class="form-group">
@@ -105,5 +105,5 @@
                 </form>
             </div>
         </div>
-    </div>
+   
 <?php require_once("./template/footing.php")?>
