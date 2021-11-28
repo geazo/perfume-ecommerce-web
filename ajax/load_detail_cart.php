@@ -16,7 +16,7 @@
         ?>
         <tr class="align-middle">
             <th scope="row"><?=$key + 1?></th>
-            <td class="text-center">
+            <td class="text-center imgCart">
                 <a href="detailProduk.php?product=<?= $cart_item['id']?>">
                     <img class="hover-expand" style="width: 100px;" src="<?= $cart_item['image_source'] ?>" alt="">
                 </a>
@@ -26,12 +26,15 @@
                     <?=$cart_item['name']?>
                 </a>
             </td>
-            <td><?=$cart_item['type']?></td>
+            <td class="tipeCart" ><?=$cart_item['type']?></td>
             <td><?="Rp. " . getFormatHarga($cart_item['price'])?></td>
-            <td>
-                <button class="btn btn-outline-secondary" id="btnDownQty" type="button" onclick="editQuantity(-1, <?=$cart_item['id_cart']?>)">-</button>
-                <button class="text-dark btn btn-outline-secondary" disabled><?=$cart_item['quantity']?></button>
-                <button class="btn btn-outline-secondary" id="btnUpQty"  type="button" onclick="editQuantity(1, <?=$cart_item['id_cart']?>)">+</button>
+            <td class="qtyCartLengkap" >
+                <button class="btn btn-outline-secondary " id="btnDownQty" type="button" onclick="editQuantity(-1, <?=$cart_item['id_cart']?>)">-</button>
+                <button class="btn btn-outline-secondary " disabled><?=$cart_item['quantity']?></button>
+                <button class="btn btn-outline-secondary " id="btnUpQty"  type="button" onclick="editQuantity(1, <?=$cart_item['id_cart']?>)">+</button>
+            </td>
+            <td class="qtyCartSingle "  >
+                <button class="btn btn-outline-secondary w-100 " onclick="qtyCartManual(<?=$cart_item['quantity']?>,<?=$cart_item['id_cart']?>)"><?=$cart_item['quantity']?></button>
             </td>
             <td><?="Rp. " . getFormatHarga($cart_item['price'] * $cart_item['quantity'])?></td>
             <td>

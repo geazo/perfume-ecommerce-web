@@ -8,9 +8,9 @@
         <div class="mintacenter">
           <h3 class="align-self-center">Customer Information</h3>
         </div>
-        <div class="col my-3">
+        <!-- <div class="col my-3">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgJNg5Lobsd8RuidmEPPw0bfDjSzq6LhkG1C5xYvvaWovVix_TdwCqlZ1yWYCXGU6PWEA&usqp=CAU" class="col-3 rounded-circle border border-dark ">
-        </div>
+        </div> -->
         <div class="col-12">
           <!-- <div class="row">
             <div class="col-3">Usename </div>

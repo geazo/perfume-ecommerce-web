@@ -232,6 +232,16 @@
 .katalog .card{
     width: 18em;
 }
+#tableCheckout {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+.qtyCartSingle{
+    display: none;
+}
+.qtyCartLengkap{
+    width: 150px;
+}
 @media screen and (max-width: 768px) {
     .pcView{
         display: none;
@@ -249,11 +259,31 @@
     .katalog .card{
         width: 16rem;
     }
+    .tipeCart{
+        display: none;
+    }
+    .imgCart{
+        display: none;
+    }
+    #tableCheckout {
+        max-height: none;
+        overflow-y: auto;
+    }
+    .qtyCartLengkap{
+        display: none;
+    }
+    .qtyCartSingle{
+        display: table-cell;
+        width: 35px;
+        
+    }
 }
 .mintahover:hover{
     cursor: pointer;
 }
-
+.sticky-top{
+    z-index: 100;
+}
 .mobileSidebar{
     width: 40vw;
     height: 100vh;
@@ -320,6 +350,7 @@
     max-height: 225px;
     overflow-y: auto;
 }
+
 .xyzUnusedForTestingOnlyClassPlsDontTouch{
     background-image: url(../asset/formal_but_lux_amogus.png);
 }

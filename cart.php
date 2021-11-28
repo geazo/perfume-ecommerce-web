@@ -16,14 +16,14 @@
     <span onclick="document.getElementById('modalCart').style.display='none'" class="close" title="Close Modal">&times;</span>
     </div> -->
     <div class="row">
-        <div class="col-12">
-            <table class="table table-hover fs-6">
-                <thead>
+        <div class="col-12" id="tableCheckout">
+            <table class="table table-striped table-hover fs-6 " >
+                <thead class="bg-light sticky-top ">
                     <tr>
                     <th scope="col">#</th>
-                    <th class="text-center" scope="col">Image</th>
+                    <th class="text-center imgCart" scope="col">Image</th>
                     <th scope="col">Name</th>
-                    <th scope="col">Type</th>
+                    <th class="tipeCart" scope="col">Type</th>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Subtotal</th>
@@ -33,9 +33,8 @@
                 <tbody id="tbody">
                 </tbody>
             </table>
-            <div id="header-cart" class="d-flex align-items-end flex-column">
-            </div>
         </div>
+        <div id="header-cart" class="d-flex align-items-end flex-column"></div>
         
     </div>
     
@@ -89,15 +88,69 @@
     }
 
     function deleteCart(id_cart) {
-        $.ajax({
-            type: "post",
-            url: "ajax/delete_cart.php",
-            data: {
-                "id-cart" : id_cart
-            },
-            success: function (response) {
-                loadCart();
+        $.confirm({
+            title: '',
+            content: 'Are you sure you want to \n remove this from Cart?',
+            buttons: {
+                confirm: function () {
+                    $.ajax({
+                        type: "post",
+                        url: "ajax/delete_cart.php",
+                        data: {
+                            "id-cart" : id_cart
+                        },
+                        success: function (response) {
+                            loadCart();
+                        }
+                    });
+                    $.alert('Removed');
+                },
+                cancel: function () {
+                    //close
+                },
             }
         });
+    }
+    function qtyCartManual(numget,id_cart){
+        var num = numget;
+        $.confirm({
+        title:'',
+        content: '' +
+        '<form action="" class="formName">' +
+        '<div class="form-group">' +
+        '<label>Enter New Quantity Here</label>' +
+        '<input type="number" placeholder="number" value="1" class="jumlah form-control" required />' +
+        '</div>' +
+        '</form>',
+        buttons: {
+            formSubmit: {
+                text: 'Submit',
+                btnClass: 'btn-blue',
+                action: function () {
+                    var jum = this.$content.find('.jumlah').val();
+                    if(jum<1){
+                        $.alert('Input a Valid number');
+                        return false;
+                    }
+                    num = jum;
+                    $.ajax({
+                        type: "post",
+                        url: "ajax/edit_cart_quantity_manual.php",
+                        data: {
+                            "number" : num,
+                            "id-cart" : id_cart
+                        },
+                        success: function (response) {
+                            loadCart();
+                        }
+                    });
+                }
+            },
+            cancel: function () {
+                //close
+            },
+        },
+        });
+        
     }
 </script>
