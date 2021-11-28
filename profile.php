@@ -116,13 +116,11 @@ if (isset($_REQUEST['page'])) {
       </div>
 
     <div class="row py-3">
-      <div class="col-3">
-      </div>
-      <div class="col-6 d-flex align-items-center justify-content-center">
+      <div class="col-8 d-flex align-items-center justify-content-center">
         <?php if (count($listTransaction) > 0) { ?>
           <nav class="d-flex justify-content-center">
             <ul class="pagination m-0">
-              <li class="page-item"><a class="page-link text-dark" href="<?= 'profile.php?page=' . $currentPage - 1 ?>">Previous</a></li>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'profile.php?page=' . ($currentPage - 1) ?>">Previous</a></li>
               <?php if ($currentPage - 2 > 1) { ?>
                 <li class="page-item"><a class="page-link text-dark" href="<?= 'profile.php' ?>">1</a></li>
                 <li class="page-item"><span class="page-link text-dark">...</span></li>
@@ -139,12 +137,12 @@ if (isset($_REQUEST['page'])) {
                 <li class="page-item"><span class="page-link text-dark">...</span></li>
                 <li class="page-item"><a class="page-link text-dark" href="<?= 'profile.php?page=' . $maxPage ?>"><?= $maxPage ?></a></li>
               <?php } ?>
-              <li class="page-item"><a class="page-link text-dark" href="<?= 'profile.php?page=' . $currentPage + 1 ?>">Next</a></li>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'profile.php?page=' . ($currentPage + 1) ?>">Next</a></li>
             </ul>
           </nav>
         <?php } ?>
       </div>
-      <div class="col-3 d-flex justify-content-end align-items-center">
+      <div class="col-4 d-flex justify-content-end align-items-center">
         <?= (($currentPage - 1) * $maxProductInAPage) + 1 ?> -
         <?= ($currentPage * $maxProductInAPage) + 1 > count($listTransaction) ? count($listTransaction) : ($currentPage * $maxProductInAPage) + 1 ?>
         out of <?= count($listTransaction) ?> transaction(s)
@@ -190,13 +188,11 @@ if (isset($_REQUEST['page'])) {
     </div>
 
     <div class="row py-3">
-      <div class="col-3">
-      </div>
       <div class="col-6 d-flex align-items-center justify-content-center">
         <?php if (count($listTransaction) > 0) { ?>
           <nav class="d-flex justify-content-center">
             <ul class="pagination m-0">
-              <li class="page-item"><a class="page-link text-dark" href="<?= 'profile.php?page=' . $currentPage - 1 ?>">Previous</a></li>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'profile.php?page=' . ($currentPage - 1) ?>">Previous</a></li>
               <?php if ($currentPage - 2 > 1) { ?>
                 <li class="page-item"><a class="page-link text-dark" href="<?= 'profile.php' ?>">1</a></li>
                 <li class="page-item"><span class="page-link text-dark">...</span></li>
@@ -213,12 +209,10 @@ if (isset($_REQUEST['page'])) {
                 <li class="page-item"><span class="page-link text-dark">...</span></li>
                 <li class="page-item"><a class="page-link text-dark" href="<?= 'profile.php?page=' . $maxPage ?>"><?= $maxPage ?></a></li>
               <?php } ?>
-              <li class="page-item"><a class="page-link text-dark" href="<?= 'profile.php?page=' . $currentPage + 1 ?>">Next</a></li>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'profile.php?page=' . ($currentPage + 1) ?>">Next</a></li>
             </ul>
           </nav>
         <?php } ?>
-      </div>
-      <div class="col-3 d-flex justify-content-end align-items-center">
       </div>
     </div>
   </div>

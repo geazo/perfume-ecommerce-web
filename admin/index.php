@@ -75,7 +75,7 @@ if (isset($_REQUEST['page'])) {
           <?php if (count($listProduct) > 0) { ?>
             <nav class="d-flex justify-content-center">
               <ul class="pagination m-0">
-                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page=' . $currentPage - 1 ?>">Previous</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page=' . ($currentPage - 1) ?>">Previous</a></li>
                 <?php if ($currentPage - 2 > 1) { ?>
                   <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php' ?>">1</a></li>
                   <li class="page-item"><span class="page-link text-dark">...</span></li>
@@ -92,7 +92,7 @@ if (isset($_REQUEST['page'])) {
                   <li class="page-item"><span class="page-link text-dark">...</span></li>
                   <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page=' . $maxPage ?>"><?= $maxPage ?></a></li>
                 <?php } ?>
-                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page=' . $currentPage + 1 ?>">Next</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page=' . ($currentPage + 1) ?>">Next</a></li>
               </ul>
             </nav>
           <?php } ?>
@@ -144,7 +144,7 @@ if (isset($_REQUEST['page'])) {
           <?php if (count($listProduct) > 0) { ?>
             <nav class="d-flex justify-content-center">
               <ul class="pagination m-0">
-                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page=' . $currentPage - 1 ?>">Previous</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page=' . ($currentPage - 1) ?>">Previous</a></li>
                 <?php if ($currentPage - 2 > 1) { ?>
                   <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php' ?>">1</a></li>
                   <li class="page-item"><span class="page-link text-dark">...</span></li>
@@ -161,7 +161,7 @@ if (isset($_REQUEST['page'])) {
                   <li class="page-item"><span class="page-link text-dark">...</span></li>
                   <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page=' . $maxPage ?>"><?= $maxPage ?></a></li>
                 <?php } ?>
-                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page=' . $currentPage + 1 ?>">Next</a></li>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'index.php?page=' . ($currentPage + 1) ?>">Next</a></li>
               </ul>
             </nav>
           <?php } ?>
