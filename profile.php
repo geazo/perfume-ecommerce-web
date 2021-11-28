@@ -4,7 +4,10 @@
 <div class="cb py-3"></div>
 <div class="container border border-black p-4" >
     <div class="row ">
-      <div class="col-5  align-items-center">
+      <div class="col-md-5 col-sm-12 align-items-center">
+        <div class="mintacenter">
+          <h3 class="align-self-center">Customer Information</h3>
+        </div>
         <div class="col my-3">
           <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRgJNg5Lobsd8RuidmEPPw0bfDjSzq6LhkG1C5xYvvaWovVix_TdwCqlZ1yWYCXGU6PWEA&usqp=CAU" class="col-3 rounded-circle border border-dark ">
         </div>
@@ -47,7 +50,7 @@
           
         </div>
         </div>
-        <div class="col-7  justify-content-center border border-dark rounded-3" >
+        <div class="col-md-7 col-sm-12 justify-content-center border border-dark rounded-3" >
           <div class="col-12 d-flex justify-content-center"><h5>Completed Transactions</h5></div>
           <div class="col-12" id="tableCompleted">
           <table class="table table-hover table-sm table-striped">
