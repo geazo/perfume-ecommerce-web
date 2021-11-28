@@ -24,7 +24,7 @@
 
         for ($i=0; $i < $jumlahTransaksi; $i++) { 
             //random header transaksi
-            $date = '2021-' . mt_rand(1,12) . '-' . mt_rand(1,28);
+            $date = '2021-' . mt_rand(1,12) . '-' . mt_rand(1,28) .'-'. mt_rand(0,23) . '-' . mt_rand(0, 59) . '-' . mt_rand(0, 59);
             $idUser = mt_rand(1, $maxIdUser);
             $total = 0;
 
