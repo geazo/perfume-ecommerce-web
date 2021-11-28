@@ -162,10 +162,10 @@ function mobileClose(){
         <div class="fa fa-bars text-light fs-1" onclick="mobileOpen()"></div>
           
       </div>
-      <div href="index.php" class="w-50 text-light fs-1 text-center">
+      <a style="text-decoration:none;" href="index.php" class="w-50 text-light fs-1 text-center">
         <!-- Aramyzda logo-->
         Aramyzda
-      </div>
+      </a>
       <div class="w-25 text-dark">
         kanan
       </div>
