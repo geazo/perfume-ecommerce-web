@@ -260,14 +260,15 @@
         title: 'Bulan',
         format: 'string',
         viewWindow: {
-          min: [7, 30, 0],
-          max: [17, 30, 0]
+          // min: [7, 30, 0],
+          // max: [17, 30, 0]
         }
       },
       vAxis: {
         title: 'Penghasilan',
         format: 'currency'
-      }
+      },
+      height: 650
     };
 
     var chart = new google.visualization.ColumnChart(
