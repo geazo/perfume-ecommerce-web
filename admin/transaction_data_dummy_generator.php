@@ -3,7 +3,11 @@
     <input type="submit" value="go!" name="go">
 </form>
 <?php 
-    require_once './connector/connection.php';
+    require_once '../connector/connection.php';
+    if (!isset($_SESSION['admin'])) {
+        echo "<script>alert('tidak boleh gan')</script>";
+        echo "<script>window.location.href='../index.php'</script>";
+    }
     if (isset($_REQUEST['go'])) { 
         $stmt = $conn -> prepare("SELECT * FROM user ORDER BY 1 DESC LIMIT 1");
         $stmt -> execute();
