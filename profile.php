@@ -88,10 +88,10 @@ if (isset($_REQUEST['page'])) {
     <h2>List Transaction</h2>
 
     <div class="row">
-        <div class="col-2">
+        <div class="col-md-2 col-sm-3">
           <h5 class="p-1 text-end">Filter: </h5> 
         </div>
-        <div class="col-4">
+        <div class="col-md-4 col-sm-8">
           <form action="" method="GET">
             <select class="form-select mb-2" name="select-status">
               <option value="">Status</option>
@@ -107,11 +107,13 @@ if (isset($_REQUEST['page'])) {
               <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'tanggal-asc')) ? "selected" : "") ?> value="tanggal-asc">Oldest</option>
             </select>
             <input value="<?= isset($_REQUEST['inp-tanggal']) ? $_REQUEST['inp-tanggal'] : "" ?>" type="date" class="form-control mb-2" name="inp-tanggal" placeholder="Tanggal">
-            <button name="btn-filter" type="submit" class="btn btn-secondary btn-sm mb-2">Go</button>
-          </form>
-          <form action="" method="get">
-            <button name="btn-reset" type="submit" class="btn btn-secondary btn-sm mb-2">Reset</button>
-          </form>
+            <div class="d-flex">
+              <button name="btn-filter" type="submit" class="col-2 btn btn-secondary btn-sm  mb-2">Go</button>
+            </form>
+            <form action="" method="get">
+              <button name="btn-reset" type="submit" class="mx-2 col-12 btn btn-secondary btn-sm mb-2">Reset</button>
+            </form>
+            </div>
         </div>
       </div>
 

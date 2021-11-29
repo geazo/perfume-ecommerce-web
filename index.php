@@ -1,19 +1,26 @@
-<?php require_once("./template/heading.php"); ?>
+<?php 
+  require_once("./template/heading.php"); 
+  require_once("./connector/connection.php");
+  $listProduct = [];
+  $stmt = $conn->prepare("select * from product");
+  $stmt->execute();
+  $listProduct = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+?>
 <!-- code here -->
 <!-- <form action="#" method= "post"> -->
 
 <?php include ("./template/header.php")?>
 
-    <div id="carouselExampleCaptions" class="carousel  slide" data-bs-ride="carousel">
-  <div class="carousel-indicators">
+    <div id="carouselExampleCaptions" class="carousel py-3 slide" data-bs-ride="carousel">
+    <div class="carousel-indicators">
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
     <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="./asset/formal_but_lux_amogus.png" class="d-block w-100" alt="...">
-      <div class="carousel-caption d-none d-md-block">
+      <img src="<?= $listProduct[0]['image_source']?>" class="d-block  m-3 w-25" alt="...">
+      <div class="carousel-caption text-dark d-none d-md-block">
         <h5>First slide label</h5>
         <p>Some representative placeholder content for the first slide.</p>
       </div>
@@ -40,6 +47,9 @@
   <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
     <span class="carousel-control-next-icon" aria-hidden="true"></span>
     <span class="visually-hidden">Next</span>
+
+    <!-- <a href="index.php#idbarang"></a> auto scroll waktu linking -->
+
   </button>
 </div>
 <!-- </form> -->
