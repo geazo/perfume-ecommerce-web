@@ -11,7 +11,7 @@ $printedTex = isset($_REQUEST['']);
 $listProduct = [];
 
 if (isset($_REQUEST['btn-submit-search'])) {
-  header("Location: katalog.php?search=" . $_REQUEST['tbx-search']);
+  windowLocationHref("Location: katalog.php?search=" . $_REQUEST['tbx-search']);
 }
 
 if (isset($_REQUEST['search']) || isset($_REQUEST['brand'])) {
