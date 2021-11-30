@@ -76,15 +76,15 @@
   </div>
   <div class="col-12 d-flex justify-content-center " >
     
-    <div class="col-5 text-align-end">
+    <div class=" col-5 text-align-end">
         <p class="fs-4">We are a shop that wishes to bless your <br>
           senses of smell with the Fragrance of the World. <br> 
-          Be it for a Party, a Romantic Dinner, or on the daily! <br>
-          Browse our vast collection of Fragrances 
+          Be it for a Party, a Romantic Dinner, or on the daily! <br> <br>
+          Browse our vast collection of Fragrances ranging in many brands
         </p>
     </div>
-    
   </div>
+  <div class=" d-flex justify-content-center"><button type="button " class="btn fs-5 bg-none text-light w-25 btn-outline-dark border-light" style="height:50px;">Browse</button></div>
 </div>
 
 <!-- <a href="index.php#idbarang"></a> auto scroll waktu linking -->

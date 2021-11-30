@@ -20,7 +20,6 @@
           <li class="nav-item mb-2 border-bottom-0"><a href="profile.php" class="nav-link p-0 text-muted">My Profile</a></li>
           <li class="nav-item mb-2 border-bottom-0"><a href="cart.php" class="nav-link p-0 text-muted">Checkout</a></li>
           
-          <li class="nav-item mb-2 border-bottom-0"><a href="#" class="nav-link p-0 text-muted">FAQs</a></li>
           
         </ul>
       </div>
