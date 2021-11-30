@@ -1,58 +1,37 @@
 <?php
-require_once("./template/heading.php");
-require_once("./connector/connection.php");
-$pilihanSort = array('Best Selling', 'Alhpabetical,A-Z', 'Alphabetical,Z-A', 'Price, Hight to Low', 'Price, Low to High', 'Oldest to Newest', 'Newest to Oldest');
-$printedTex = isset($_REQUEST['']);
-// $listProductDB = file_get_contents(
-//   "result.json"
-// );
-// $listProductDB = json_decode($listProductDB, true);
+  require_once("./template/heading.php");
+  require_once("./connector/connection.php");
+  $pilihanSort = array('Best Selling', 'Alhpabetical,A-Z', 'Alphabetical,Z-A', 'Price, Hight to Low', 'Price, Low to High', 'Oldest to Newest', 'Newest to Oldest');
+  $printedTex = isset($_REQUEST['']);
 
-$listProduct = [];
+  $listProduct = [];
 
-if (isset($_REQUEST['btn-submit-search'])) {
-  header("Location: katalog.php?search=" . $_REQUEST['tbx-search']);
-}
-
-if (isset($_REQUEST['search']) || isset($_REQUEST['brand'])) {
-  isset($_REQUEST['search']) ? $search = $_REQUEST['search'] : $search = $_REQUEST['brand'];
-  // foreach ($listProductDB as $key => $value) {
-  //   if (str_contains(strtoupper($value['name']), strtoupper($search))) {
-  //   $listProduct[] = $value;
-  //   }
-  // }
-  $search = "%" . $search . "%";
-  $stmt = $conn->prepare("select * from product where name like ?");
-  $stmt->bind_param("s", $search);
-  $stmt->execute();
-  $listProduct = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-} else {
-  $stmt = $conn->prepare("select * from product");
-  $stmt->execute();
-  $listProduct = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
-}
-
-$maxProductInAPage = 15;
-$maxPage = ceil(count($listProduct) / $maxProductInAPage);
-
-$currentPage = 1;
-if (isset($_REQUEST['page'])) {
-  $currentPage = $_REQUEST['page'];
-  if ($currentPage < 1) {
-    $currentPage = 1;
-  } else if ($currentPage > $maxPage) {
-    $currentPage = $maxPage;
+  if (isset($_REQUEST['search']) || isset($_REQUEST['brand'])) {
+    isset($_REQUEST['search']) ? $search = $_REQUEST['search'] : $search = $_REQUEST['brand'];
+    $search = "%" . $search . "%";
+    $stmt = $conn->prepare("select * from product where name like ?");
+    $stmt->bind_param("s", $search);
+    $stmt->execute();
+    $listProduct = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
+  } else {
+    $stmt = $conn->prepare("select * from product");
+    $stmt->execute();
+    $listProduct = $stmt->get_result()->fetch_all(MYSQLI_ASSOC);
   }
-}
 
-// echo '<pre>';
-// print_r($currentPage); echo "<br>";
-// print_r($listProduct);
-// print_r($listProduct[0]);
-// echo '</pre>';
+  $maxProductInAPage = 15;
+  $maxPage = ceil(count($listProduct) / $maxProductInAPage);
+
+  $currentPage = 1;
+  if (isset($_REQUEST['page'])) {
+    $currentPage = $_REQUEST['page'];
+    if ($currentPage < 1) {
+      $currentPage = 1;
+    } else if ($currentPage > $maxPage) {
+      $currentPage = $maxPage;
+    }
+  }
 ?>
-<!-- code here -->
-<!-- <form action="" method="post"> -->
 
 <div class="toast-container">
 
@@ -92,13 +71,13 @@ if (isset($_REQUEST['page'])) {
       <span name="displayTeks" class="displayedTeks"><?= isset($_REQUEST['brand']) ? strtoupper($_REQUEST['brand']) : "CATALOGUE" ?> </span>
     </div>
     <div class="searchbox  col-md-3 col-sm-12">
-      <form action="" method="POST">
+      <form action="" method="get">
         <div class="row">
           <div class="col-8">
-            <input class="form-control me-2" name="tbx-search" type="search" placeholder="Search" aria-label="Search" value="<?= isset($_REQUEST['tbx-search']) ? $_REQUEST['tbx-search'] : '' ?>">
+            <input class="form-control me-2" name="search" type="search" placeholder="Search" aria-label="Search" value="<?= isset($_REQUEST['tbx-search']) ? $_REQUEST['tbx-search'] : '' ?>">
           </div>
           <div class="col-4">
-            <button class="btn btn-outline-success" type="submit" name="btn-submit-search">Search</button>
+            <button class="btn btn-outline-success" type="submit">Search</button>
           </div>
         </div>
       </form>
