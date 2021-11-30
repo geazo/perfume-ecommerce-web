@@ -96,6 +96,30 @@
       <div class="row py-3">
         <div class="col-8 d-flex align-items-center justify-content-center">
           <?php if (count($listProduct) > 0) { ?>
+            <?php if (isset($_REQUEST['brand'])) { ?>
+            <nav class="d-flex justify-content-center">
+              <ul class="pagination m-0">
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?brand='. $_REQUEST['brand'] .'&page=' . ($currentPage - 1) ?>">Previous</a></li>
+                <?php if ($currentPage - 2 > 1) { ?>
+                  <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?brand='. $_REQUEST['brand'] ?>">1</a></li>
+                  <li class="page-item"><span class="page-link text-dark">...</span></li>
+                <?php } ?>
+                <?php for ($i = $currentPage - 2; $i <= $currentPage + 2; $i++) { ?>
+                  <?php if ($i < 1 || $i > $maxPage) continue; ?>
+                  <?php if ($i == $currentPage) { ?>
+                    <li class="page-item"><a class="page-link text-dark bg-secondary bg-opacity-25" href="<?= 'katalog.php?brand='. $_REQUEST['brand'] .'&page=' . $i ?>"><?= $i ?></a></li>
+                  <?php } else { ?>
+                    <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?brand='. $_REQUEST['brand'] .'&page=' . $i ?>"><?= $i ?></a></li>
+                  <?php } ?>
+                <?php } ?>
+                <?php if ($currentPage + 2 < $maxPage) { ?>
+                  <li class="page-item"><span class="page-link text-dark">...</span></li>
+                  <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?brand='. $_REQUEST['brand'] .'&page=' . $maxPage ?>"><?= $maxPage ?></a></li>
+                <?php } ?>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?brand='. $_REQUEST['brand'] .'&page=' . ($currentPage + 1) ?>">Next</a></li>
+              </ul>
+            </nav>
+            <?php } else { ?>
             <nav class="d-flex justify-content-center">
               <ul class="pagination m-0">
                 <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?page=' . ($currentPage - 1) ?>">Previous</a></li>
@@ -118,6 +142,7 @@
                 <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?page=' . ($currentPage + 1) ?>">Next</a></li>
               </ul>
             </nav>
+            <?php } ?>
           <?php } ?>
         </div>
         <div class="col-4 d-flex justify-content-end align-items-center">
@@ -168,6 +193,30 @@
       <div class="row py-3">
         <div class="col-12 d-flex align-items-center justify-content-center">
           <?php if (count($listProduct) > 0) { ?>
+            <?php if (isset($_REQUEST['brand'])) { ?>
+            <nav class="d-flex justify-content-center">
+              <ul class="pagination m-0">
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?brand='. $_REQUEST['brand'] .'&page=' . ($currentPage - 1) ?>">Previous</a></li>
+                <?php if ($currentPage - 2 > 1) { ?>
+                  <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?brand='. $_REQUEST['brand'] ?>">1</a></li>
+                  <li class="page-item"><span class="page-link text-dark">...</span></li>
+                <?php } ?>
+                <?php for ($i = $currentPage - 2; $i <= $currentPage + 2; $i++) { ?>
+                  <?php if ($i < 1 || $i > $maxPage) continue; ?>
+                  <?php if ($i == $currentPage) { ?>
+                    <li class="page-item"><a class="page-link text-dark bg-secondary bg-opacity-25" href="<?= 'katalog.php?brand='. $_REQUEST['brand'] .'&page=' . $i ?>"><?= $i ?></a></li>
+                  <?php } else { ?>
+                    <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?brand='. $_REQUEST['brand'] .'&page=' . $i ?>"><?= $i ?></a></li>
+                  <?php } ?>
+                <?php } ?>
+                <?php if ($currentPage + 2 < $maxPage) { ?>
+                  <li class="page-item"><span class="page-link text-dark">...</span></li>
+                  <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?brand='. $_REQUEST['brand'] .'&page=' . $maxPage ?>"><?= $maxPage ?></a></li>
+                <?php } ?>
+                <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?brand='. $_REQUEST['brand'] .'&page=' . ($currentPage + 1) ?>">Next</a></li>
+              </ul>
+            </nav>
+            <?php } else { ?>
             <nav class="d-flex justify-content-center">
               <ul class="pagination m-0">
                 <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?page=' . ($currentPage - 1) ?>">Previous</a></li>
@@ -190,6 +239,7 @@
                 <li class="page-item"><a class="page-link text-dark" href="<?= 'katalog.php?page=' . ($currentPage + 1) ?>">Next</a></li>
               </ul>
             </nav>
+            <?php } ?>
           <?php } ?>
         </div>
       </div>
