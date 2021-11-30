@@ -92,7 +92,7 @@ if (isset($_REQUEST['page'])) {
       <span name="displayTeks" class="displayedTeks"><?= isset($_REQUEST['brand']) ? strtoupper($_REQUEST['brand']) : "CATALOGUE" ?> </span>
     </div>
     <div class="searchbox  col-md-3 col-sm-12">
-      <form action="" method="get">
+      <form action="" method="post">
         <div class="row">
           <div class="col-8">
             <input class="form-control me-2" name="tbx-search" type="search" placeholder="Search" aria-label="Search" value="<?= isset($_REQUEST['tbx-search']) ? $_REQUEST['tbx-search'] : '' ?>">
