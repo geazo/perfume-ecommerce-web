@@ -92,7 +92,11 @@
         </p>
     </div>
   </div>
-  <div class=" d-flex justify-content-center"><button type="button " class="btn fs-5 bg-none text-light w-25 btn-outline-dark border-light" style="height:50px;">Browse</button></div>
+  <div class=" d-flex justify-content-center">
+    <a class="w-25" href="katalog.php">
+      <button type="button " class="btn fs-5 w-100 bg-none text-light  btn-outline-dark border-light"  style="height:50px;">Browse</button>
+    </a>
+  </div>
 </div>
 
 <!-- <a href="index.php#idbarang"></a> auto scroll waktu linking -->
