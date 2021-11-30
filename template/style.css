@@ -1,9 +1,19 @@
 .mainHead{
     background-color: black;
 }
+
 #header{
     position: absolute;
     top: 60px;
+}
+.bgAboutUs{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-image:linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url(https://corporate.douglas.de/wp-content/uploads/2018/12/Douglas-GmbH_Landingpage_Alexa.jpg);
+    height: 75vh;
+    max-width: 100%;
+    background-color: #818181;
+    
 }
 .header{
     display: flex;
