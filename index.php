@@ -28,33 +28,41 @@
     <div class="carousel-inner " style="max-height:356px;">
       
       <div class="carousel-item active">
-        <a style="padding-bottom: 20px;" class="w-100 d-flex justify-content-center" href="detailProduk.php?product=<?= $podium1['id'] ?>">
+        <a class="w-100 d-flex justify-content-center" href="detailProduk.php?product=<?= $podium1['id']?>">
           <img src="<?= $podium1['image_source']?>" class="d-block h-100 m-3 w-25" alt="...">
         </a>
-        <div class="carousel-caption text-dark d-none d-md-block">
-          <h5>Try one of our Latest Items!</h5>
-          <p><?=$podium1['name'] ?>, a new comer in this Shop!</p>
-        </div>
+        <div class="carousel-caption text-light d-none d-md-flex justify-content-center">
+          <div class="w-75 p-1 darken">
+            <h5>Try one of our Latest Items!</h5>
+            <p><?=$podium1['name'] ?>, a new comer in this Shop!</p>
+            </div>
+          </div>
+        
       </div>
 
       <div class="carousel-item " style="max-height:356px;">
-      <a href="detailProduk.php?product=<?= $podium2['id'] ?>">
+      <a class="w-100 d-flex justify-content-center" href="detailProduk.php?product=<?= $podium2['id'] ?>">
         <img src="<?= $podium2['image_source']?>" class=" d-block h-100 m-3 w-25" alt="...">
       </a>
-        <div class="carousel-caption text-dark d-none d-md-block">
-          <h5>The Item Everyone Wants!</h5>
-          <p>Famously on demand, <?=$podium2['name'] ?>!</p>
-        </div>
+      <div class="carousel-caption text-light d-none d-md-flex justify-content-center">
+          <div class="w-75 p-1 darken">
+            <h5>The Item Everyone Wants!</h5>
+            <p>Famously on demand, <?=$podium2['name'] ?>!</p>
+            </div>
+          </div>
+        
       </div>
 
       <div class="carousel-item  " style="max-height:356px;">
-      <a href="detailProduk.php?product=<?= $podium3['id'] ?>">
+      <a class="w-100 d-flex justify-content-center" href="detailProduk.php?product=<?= $podium3['id'] ?>">
         <img src="<?= $podium3['image_source']?>" class="d-block h-100 m-3 w-25" alt="..." >
       </a>
-        <div class="carousel-caption text-dark d-none d-md-block">
-          <h5>Our Favourite!</h5>
-          <p>For us, <?=$podium3['name'] ?> has always been our favourite!</p>
-        </div>
+        <div class="carousel-caption text-light d-none d-md-flex justify-content-center">
+          <div class="w-75 p-1 darken">
+            <h5>Our Favourite!</h5>
+            <p>For us, <?=$podium3['name'] ?> has always been our favourite!</p>
+            </div>
+          </div>
       </div>
 
     </div>
