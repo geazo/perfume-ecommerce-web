@@ -8,10 +8,9 @@
   $ayebruv = $conn->prepare("select * from product order by stock desc");
   $ayebruv->execute();
   $listByStock = $ayebruv->get_result()->fetch_all(MYSQLI_ASSOC);
-  $podium1 = $listProduct[count($listProduct)-2];
+  $podium1 = $listProduct[count($listProduct)-10];
   $podium2 = $listByStock[0];
   $podium3 = $listProduct[68];
-  
 ?>
 
 <?php include ("./template/header.php")?>
@@ -29,9 +28,9 @@
     <div class="carousel-inner " style="max-height:356px;">
       
       <div class="carousel-item active">
-      <a href="detailProduk.php?product=<?= $podium1['id'] ?>">
-        <img src="<?= $podium1['image_source']?>" class="d-block h-100 m-3 w-25" alt="...">
-      </a>
+        <a style="padding-bottom: 20px;" class="w-100 d-flex justify-content-center" href="detailProduk.php?product=<?= $podium1['id'] ?>">
+          <img src="<?= $podium1['image_source']?>" class="d-block h-100 m-3 w-25" alt="...">
+        </a>
         <div class="carousel-caption text-dark d-none d-md-block">
           <h5>Try one of our Latest Items!</h5>
           <p><?=$podium1['name'] ?>, a new comer in this Shop!</p>
