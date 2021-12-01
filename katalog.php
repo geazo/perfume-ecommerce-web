@@ -94,7 +94,7 @@
     <div class="navKanan col-md-9 col-sm-12 ">
 
       <div class="row py-3">
-        <div class="col-8 d-flex align-items-center justify-content-center">
+        <div class="col-md-8 col-sm-12 d-flex align-items-center justify-content-center">
           <?php if (count($listProduct) > 0) { ?>
             <?php if (isset($_REQUEST['brand'])) { ?>
             <nav class="d-flex justify-content-center">
@@ -145,7 +145,7 @@
             <?php } ?>
           <?php } ?>
         </div>
-        <div class="col-4 d-flex justify-content-end align-items-center">
+        <div class="col-md-4 d-none d-md-flex  justify-content- align-items-center">
           <?= (($currentPage - 1) * $maxProductInAPage) + 1 ?> -
           <?= (($currentPage * $maxProductInAPage) + 1) > count($listProduct) ? count($listProduct) : ($currentPage * $maxProductInAPage) ?>
           out of <?= count($listProduct) ?> product(s)

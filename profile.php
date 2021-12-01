@@ -123,7 +123,7 @@ if (isset($_REQUEST['page'])) {
       </div>
 
     <div class="row py-3">
-      <div class="col-8 d-flex align-items-center justify-content-center">
+      <div class="col-md-8 col-sm-12 d-flex align-items-center justify-content-center">
         <?php if (count($listTransaction) > 0) { ?>
           <nav class="d-flex justify-content-center">
             <ul class="pagination m-0">
@@ -149,7 +149,7 @@ if (isset($_REQUEST['page'])) {
           </nav>
         <?php } ?>
       </div>
-      <div class="col-4 d-flex justify-content-end align-items-center">
+      <div class="col-md-4 d-none d-md-flex justify-content-end align-items-center">
         <?= (($currentPage - 1) * $maxProductInAPage) + 1 ?> -
         <?= ($currentPage * $maxProductInAPage) + 1 > count($listTransaction) ? count($listTransaction) : ($currentPage * $maxProductInAPage) ?>
         out of <?= count($listTransaction) ?> transaction(s)

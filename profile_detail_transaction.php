@@ -59,7 +59,7 @@ if (isset($_REQUEST['page'])) {
     <div class="row py-3">
         <div class="col-3">
         </div>
-        <div class="col-6 d-flex align-items-center justify-content-center">
+        <div class="col-md-6 d-flex align-items-center justify-content-center">
             <?php if (count($listProduct) > 0) { ?>
                 <nav class="d-flex justify-content-center">
                     <ul class="pagination m-0">
@@ -85,7 +85,7 @@ if (isset($_REQUEST['page'])) {
                 </nav>
             <?php } ?>
         </div>
-        <div class="col-3 d-flex justify-content-end align-items-center">
+        <div class="col-md-3 d-none d-md-flex justify-content-end align-items-center">
             <?= (($currentPage - 1) * $maxProductInAPage) + 1 ?> -
             <?= ($currentPage * $maxProductInAPage) > count($listProduct) ? count($listProduct) : ($currentPage * $maxProductInAPage) ?>
             out of <?= count($listProduct) ?> product(s)
