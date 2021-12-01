@@ -98,10 +98,10 @@
             </select>
             <select class="form-select mb-2" name="select-order">
               <option value="">Order</option>
-              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'total-asc')) ? "selected" : "") ?> value="total-asc">Total Asc</option>
-              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'total-desc')) ? "selected" : "") ?> value="total-desc">Total Desc</option>
-              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'tanggal-asc')) ? "selected" : "") ?> value="tanggal-asc">Tanggal Asc</option>
-              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'tanggal-desc')) ? "selected" : "") ?> value="tanggal-desc">Tanggal Desc</option>
+              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'total-asc')) ? "selected" : "") ?> value="total-asc">Total Tertinggi</option>
+              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'total-desc')) ? "selected" : "") ?> value="total-desc">Total Terendah</option>
+              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'tanggal-asc')) ? "selected" : "") ?> value="tanggal-asc">Terbaru</option>
+              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'tanggal-desc')) ? "selected" : "") ?> value="tanggal-desc">Terlama</option>
             </select>
             <input value="<?= isset($_REQUEST['inp-id']) ? $_REQUEST['inp-id'] : "" ?>" type="text" class="form-control mb-2" name="inp-id" placeholder="ID Transaksi">             
             <input value="<?= isset($_REQUEST['inp-nama']) ? $_REQUEST['inp-nama'] : "" ?>" type="text" class="form-control mb-2" name="inp-nama" placeholder="Nama User">             

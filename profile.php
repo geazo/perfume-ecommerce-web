@@ -105,8 +105,8 @@ if (isset($_REQUEST['page'])) {
             </select>
             <select class="form-select mb-2" name="select-order">
               <option value="">Order</option>
-              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'total-asc')) ? "selected" : "") ?> value="total-asc">Total Asc</option>
-              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'total-desc')) ? "selected" : "") ?> value="total-desc">Total Desc</option>
+              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'total-asc')) ? "selected" : "") ?> value="total-asc">Total Tertinggi</option>
+              <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'total-desc')) ? "selected" : "") ?> value="total-desc">Total Terendah</option>
               <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'tanggal-desc')) ? "selected" : "") ?> value="tanggal-desc">Newest</option>
               <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'tanggal-asc')) ? "selected" : "") ?> value="tanggal-asc">Oldest</option>
             </select>

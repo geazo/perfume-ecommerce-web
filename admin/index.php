@@ -63,10 +63,10 @@ if (isset($_REQUEST['page'])) {
           <form action="" method="GET">
             <select name="select-query" id="select-query" class="form-select" aria-label="select-query" onchange="changedSelect()">
               <option <?= !isset($_REQUEST['select-query']) ? "selected" : "" ?> value="All" selected>All</option>
-              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "price-asc" ? "selected" : "") ?> value="price-asc">Harga Asc</option>
-              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "price-desc" ? "selected" : "") ?> value="price-desc">Harga Desc</option>
-              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "stock-asc" ? "selected" : "") ?> value="stock-asc">Stok Asc</option>
-              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "stock-desc" ? "selected" : "") ?> value="stock-desc">Stok Desc</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "price-asc" ? "selected" : "") ?> value="price-asc">Harga Tertinggi</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "price-desc" ? "selected" : "") ?> value="price-desc">Harga Terendah</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "stock-asc" ? "selected" : "") ?> value="stock-asc">Stok Tertinggi</option>
+              <option <?= !isset($_REQUEST['select-query']) ? "" : ($_REQUEST['select-query'] == "stock-desc" ? "selected" : "") ?> value="stock-desc">Stok Terendah</option>
             </select>
             <input id="btn-submit-sq" class="d-none" type="submit" value="">
           </form>
