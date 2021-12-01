@@ -106,9 +106,7 @@ function mobileClose(){
 
       <div class="w-25 ">
       <ul class="d-flex list-style-none justify-content-end align-items-center fs-6 h-100">
-          <li class="px-2">
-            <i class="fa fa-search" aria-hidden="true"></i> Search
-          </li>
+         
           <li class="px-2">
             <?php 
               if (isset($_SESSION['user-login'])) {
