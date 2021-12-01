@@ -143,7 +143,8 @@
 
     function onFinished() {
         $("#container").html("");
-        $("#container").append($("<h1>Thank You</h1>"))
+        $("#container").append($("<h1>Thank You!</h1>"))
+        $("#container").append($("<p>Please check your email.</p>"))
         $("#container").append($("<div><a href='index.php'><button class='btn btn-primary btn-lg'>Home</button></a> <a href='katalog.php'><button class='btn btn-primary btn-lg'>Catalogue</button></a></div>"))
     }
 </script>
