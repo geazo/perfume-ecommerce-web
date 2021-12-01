@@ -11,6 +11,10 @@ try {
       $status = $_REQUEST['select-status'];
       $sql = $sql . "AND status = '$status' ";
     }
+    if ($_REQUEST['inp-id'] != "") {
+      $idtemp = $_REQUEST['inp-id'];
+      $sql = $sql . "AND id_transaksi = '$idtemp' ";
+    }
     if ($_REQUEST['inp-tanggal']) {
       $tanggal = $_REQUEST['inp-tanggal'];
       $sql = $sql . "AND tanggal = '$tanggal' ";
@@ -106,6 +110,7 @@ if (isset($_REQUEST['page'])) {
               <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'tanggal-desc')) ? "selected" : "") ?> value="tanggal-desc">Newest</option>
               <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'tanggal-asc')) ? "selected" : "") ?> value="tanggal-asc">Oldest</option>
             </select>
+            <input value="<?= isset($_REQUEST['inp-id']) ? $_REQUEST['inp-id'] : "" ?>" type="text" class="form-control mb-2" name="inp-id" placeholder="ID Transaksi">             
             <input value="<?= isset($_REQUEST['inp-tanggal']) ? $_REQUEST['inp-tanggal'] : "" ?>" type="date" class="form-control mb-2" name="inp-tanggal" placeholder="Tanggal">
             <div class="d-flex">
               <button name="btn-filter" type="submit" class="col-2 btn btn-secondary btn-sm  mb-2">Go</button>

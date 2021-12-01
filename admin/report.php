@@ -15,6 +15,10 @@
         $nama = $_REQUEST['inp-nama'];
         $sql = $sql . "AND CONCAT(u.first_name, ' ', u.last_name) LIKE '%$nama%' ";
       }
+      if ($_REQUEST['inp-id'] != "") {
+        $idtemp = $_REQUEST['inp-id'];
+        $sql = $sql . "AND h.id_transaksi = '$idtemp' ";
+      }
       if ($_REQUEST['inp-tanggal']) {
         $tanggal = $_REQUEST['inp-tanggal'];
         $sql = $sql . "AND tanggal = '$tanggal' ";
@@ -99,6 +103,7 @@
               <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'tanggal-asc')) ? "selected" : "") ?> value="tanggal-asc">Tanggal Asc</option>
               <option <?= ((isset($_REQUEST['select-order']) && ($_REQUEST['select-order'] == 'tanggal-desc')) ? "selected" : "") ?> value="tanggal-desc">Tanggal Desc</option>
             </select>
+            <input value="<?= isset($_REQUEST['inp-id']) ? $_REQUEST['inp-id'] : "" ?>" type="text" class="form-control mb-2" name="inp-id" placeholder="ID Transaksi">             
             <input value="<?= isset($_REQUEST['inp-nama']) ? $_REQUEST['inp-nama'] : "" ?>" type="text" class="form-control mb-2" name="inp-nama" placeholder="Nama User">             
             <input value="<?= isset($_REQUEST['inp-tanggal']) ? $_REQUEST['inp-tanggal'] : "" ?>" type="date" class="form-control mb-2" name="inp-tanggal" placeholder="Tanggal">
             <button name="btn-filter" type="submit" class="btn btn-secondary btn-sm mb-2">Go</button>
