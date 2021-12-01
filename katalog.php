@@ -277,7 +277,7 @@
         "quantity": quantity
       },
       success: function(response) {
-        // alert(response);
+        alert(response);
       }
     });
   }
