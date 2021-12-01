@@ -31,10 +31,10 @@
         <a class="w-100 d-flex justify-content-center" href="detailProduk.php?product=<?= $podium1['id']?>">
           <img src="<?= $podium1['image_source']?>" class="d-block h-100 m-3 w-25" alt="...">
         </a>
-        <div class="carousel-caption text-light d-none d-md-flex justify-content-center">
+        <div class="carousel-caption text-light p-0 d-none d-sm-flex justify-content-center">
           <div class="w-75 p-1 darken">
-            <h5>Try one of our Latest Items!</h5>
-            <p><?=$podium1['name'] ?>, a new comer in this Shop!</p>
+            <h5>Try the Latest Item!</h5>
+            <p class="d-sm-none d-md-block" ><?=$podium1['name'] ?>, a new comer in this Shop!</p>
             </div>
           </div>
         
@@ -44,10 +44,10 @@
       <a class="w-100 d-flex justify-content-center" href="detailProduk.php?product=<?= $podium2['id'] ?>">
         <img src="<?= $podium2['image_source']?>" class=" d-block h-100 m-3 w-25" alt="...">
       </a>
-      <div class="carousel-caption text-light d-none d-md-flex justify-content-center">
+      <div class="carousel-caption text-light p-0 d-none d-sm-flex justify-content-center">
           <div class="w-75 p-1 darken">
             <h5>The Item Everyone Wants!</h5>
-            <p>Famously on demand, <?=$podium2['name'] ?>!</p>
+            <p class="d-sm-none d-md-block" >Famously on demand, <?=$podium2['name'] ?>!</p>
             </div>
           </div>
         
@@ -57,10 +57,10 @@
       <a class="w-100 d-flex justify-content-center" href="detailProduk.php?product=<?= $podium3['id'] ?>">
         <img src="<?= $podium3['image_source']?>" class="d-block h-100 m-3 w-25" alt="..." >
       </a>
-        <div class="carousel-caption text-light d-none d-md-flex justify-content-center">
+        <div class="carousel-caption text-light p-0 d-none d-sm-flex justify-content-center">
           <div class="w-75 p-1 darken">
             <h5>Our Favourite!</h5>
-            <p>For us, <?=$podium3['name'] ?> has always been our favourite!</p>
+            <p class="d-sm-none d-md-block" >For us, <?=$podium3['name'] ?> has always been our favourite!</p>
             </div>
           </div>
       </div>
@@ -111,7 +111,7 @@
       $listProduct = $stmt -> get_result() -> fetch_all(MYSQLI_ASSOC);
     ?>
     <?php foreach ($listProduct as $key => $product) { ?>
-      <div class="col-3">
+      <div class="col-md-3 col-sm-6 col-xs-12">
         <div class="card text-decoration-none color-inherit" id="productNum_<?= $product['id'] ?>" href="detailProduk.php?product=<?= $product['id'] ?>">
           <a href="detailProduk.php?product=<?= $product['id'] ?>">
             <img style="max-height: 304px;" src="<?= $product['image_source'] ?>" class="card-img-top" alt="...">
