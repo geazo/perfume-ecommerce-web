@@ -39,7 +39,7 @@
     exit($e->getMessage());
   }
 
-  $maxProductInAPage = 50;
+  $maxProductInAPage = 20;
   $maxPage = ceil(count($listTransaction) / $maxProductInAPage);
 
   $currentPage = 1;
