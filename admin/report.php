@@ -138,7 +138,7 @@
                 <li class="page-item"><span class="page-link text-dark">...</span></li>
                 <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.$maxPage?>"><?= $maxPage ?></a></li>
               <?php } ?>
-              <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.($currentPage - 1)?>">Next</a></li>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.($currentPage + 1)?>">Next</a></li>
             </ul>
           </nav>
         <?php } ?>
@@ -192,7 +192,7 @@
         <?php if(count($listTransaction) > 0) { ?>
           <nav class="d-flex justify-content-center">
             <ul class="pagination m-0">
-              <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.$currentPage - 1?>">Previous</a></li>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.($currentPage - 1)?>">Previous</a></li>
               <?php if($currentPage - 2 > 1) {?>
                 <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php' ?>">1</a></li>
                 <li class="page-item"><span class="page-link text-dark">...</span></li>
@@ -209,7 +209,7 @@
                 <li class="page-item"><span class="page-link text-dark">...</span></li>
                 <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.$maxPage?>"><?= $maxPage ?></a></li>
               <?php } ?>
-              <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.$currentPage + 1?>">Next</a></li>
+              <li class="page-item"><a class="page-link text-dark" href="<?= 'report.php?page='.($currentPage + 1)?>">Next</a></li>
             </ul>
           </nav>
         <?php } ?>
