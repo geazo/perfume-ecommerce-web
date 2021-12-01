@@ -9,7 +9,7 @@
   $ayebruv->execute();
   $listByStock = $ayebruv->get_result()->fetch_all(MYSQLI_ASSOC);
   $podium1 = $listProduct[count($listProduct)-10];
-  $podium2 = $listByStock[0];
+  $podium2 = $listByStock[100];
   $podium3 = $listProduct[68];
 ?>
 
@@ -129,6 +129,11 @@
         </div>
       </div>
     <?php } ?>
+    <div class="col-12 d-flex justify-content-center">
+      <a href="katalog.php">
+        <button type="button" class="btn btn-primary btn-lg">Browse</button>
+      </a>
+    </div>
   </div>
 </div>
 
