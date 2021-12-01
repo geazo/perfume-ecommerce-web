@@ -63,31 +63,31 @@ if (isset($_REQUEST['page'])) {
             <?php if (count($listProduct) > 0) { ?>
                 <nav class="d-flex justify-content-center">
                     <ul class="pagination m-0">
-                        <li class="page-item"><a class="page-link text-dark" href="<?= 'detail_transaction.php?id=' . $id . '&page=' . $currentPage - 1 ?>">Previous</a></li>
+                        <li class="page-item"><a class="page-link text-dark" href="<?= 'profile_detail_transaction.php?id=' . $id . '&page=' . $currentPage - 1 ?>">Previous</a></li>
                         <?php if ($currentPage - 2 > 1) { ?>
-                            <li class="page-item"><a class="page-link text-dark" href="<?= 'detail_transaction.php?id=' . $id ?>">1</a></li>
+                            <li class="page-item"><a class="page-link text-dark" href="<?= 'profile_detail_transaction.php?id=' . $id ?>">1</a></li>
                             <li class="page-item"><span class="page-link text-dark">...</span></li>
                         <?php } ?>
                         <?php for ($i = $currentPage - 2; $i <= $currentPage + 2; $i++) { ?>
                             <?php if ($i < 1 || $i > $maxPage) continue; ?>
                             <?php if ($i == $currentPage) { ?>
-                                <li class="page-item"><a class="page-link text-dark bg-secondary bg-opacity-25" href="<?= 'detail_transaction.php?id=' . $id . '&page=' . $i ?>"><?= $i ?></a></li>
+                                <li class="page-item"><a class="page-link text-dark bg-secondary bg-opacity-25" href="<?= 'profile_detail_transaction.php?id=' . $id . '&page=' . $i ?>"><?= $i ?></a></li>
                             <?php } else { ?>
-                                <li class="page-item"><a class="page-link text-dark" href="<?= 'detail_transaction.php?id=' . $id . '&page=' . $i ?>"><?= $i ?></a></li>
+                                <li class="page-item"><a class="page-link text-dark" href="<?= 'profile_detail_transaction.php?id=' . $id . '&page=' . $i ?>"><?= $i ?></a></li>
                             <?php } ?>
                         <?php } ?>
                         <?php if ($currentPage + 2 < $maxPage) { ?>
                             <li class="page-item"><span class="page-link text-dark">...</span></li>
-                            <li class="page-item"><a class="page-link text-dark" href="<?= 'detail_transaction.php?id=' . $id . '&page=' . $maxPage ?>"><?= $maxPage ?></a></li>
+                            <li class="page-item"><a class="page-link text-dark" href="<?= 'profile_detail_transaction.php?id=' . $id . '&page=' . $maxPage ?>"><?= $maxPage ?></a></li>
                         <?php } ?>
-                        <li class="page-item"><a class="page-link text-dark" href="<?= 'detail_transaction.php?id=' . $id . '&page=' . $currentPage + 1 ?>">Next</a></li>
+                        <li class="page-item"><a class="page-link text-dark" href="<?= 'profile_detail_transaction.php?id=' . $id . '&page=' . $currentPage + 1 ?>">Next</a></li>
                     </ul>
                 </nav>
             <?php } ?>
         </div>
         <div class="col-3 d-flex justify-content-end align-items-center">
             <?= (($currentPage - 1) * $maxProductInAPage) + 1 ?> -
-            <?= ($currentPage * $maxProductInAPage) + 1 > count($listProduct) ? count($listProduct) : ($currentPage * $maxProductInAPage) + 1 ?>
+            <?= ($currentPage * $maxProductInAPage) > count($listProduct) ? count($listProduct) : ($currentPage * $maxProductInAPage) ?>
             out of <?= count($listProduct) ?> product(s)
         </div>
     </div>
