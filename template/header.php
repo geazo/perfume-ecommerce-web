@@ -95,7 +95,7 @@ function mobileClose(){
     <div class="col-12" id ="header">
     <div class="d-flex  text-white p-3">
       <div class="w-25 text-dark">
-        kiri
+        
       </div>
       <a href="index.php" class="w-50 fs-1 d-flex justify-content-center text-center" style="text-decoration:none;">
         <div class="w-50 fs-1 text-center text-light">
@@ -146,7 +146,7 @@ function mobileClose(){
         
       </ul>
       <ul class="w-25 bg-black d-flex justify-content-end">
-        kanan 
+        
       </ul>
     </div>
   </div>
@@ -165,7 +165,7 @@ function mobileClose(){
         Aramyzda
       </a>
       <div class="w-25 text-dark">
-        kanan
+        
       </div>
 
     </div>
