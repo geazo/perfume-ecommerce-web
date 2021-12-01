@@ -9,14 +9,14 @@
             $stmt = $conn -> prepare("INSERT INTO `cart`(`id_user`, `id_product`, `quantity`) VALUES (?,?,?)");
             $stmt -> bind_param("iii", $_SESSION['user-login']['id'], $_REQUEST['id-product'], $_REQUEST['quantity']);
             $stmt -> execute();
-            echo "inserted\n";
+            // echo "inserted\n";
         }
         else {
             $newQty = (int) $result['quantity'] + (int) $_REQUEST['quantity'];
             $stmt = $conn -> prepare("UPDATE `cart` SET `quantity`=? WHERE id_cart = ?");
             $stmt -> bind_param("ii", $newQty, $result['id_cart']);
             $stmt -> execute();
-            echo "updated new quantity = " . $newQty;
+            // echo "updated new quantity = " . $newQty;
         }
     }
 ?>
