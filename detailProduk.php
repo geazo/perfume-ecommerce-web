@@ -40,9 +40,8 @@
 
 </div>
 
-<form action="#" method= "post">
 <?php include ("./template/header.php")?>
-
+<form action="#" method= "post">
     <div class="kontainerDetail">
         <div class="container">
             <div class="row">
