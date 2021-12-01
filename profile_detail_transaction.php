@@ -30,7 +30,7 @@ if (isset($_REQUEST['page'])) {
     }
 }
 ?>
-<div class="container-fluid my-4">
+<div class="container-fluid my-4 px-5">
 
     <h2>Detail Transaksi</h2>
     <table class="fs-5">
