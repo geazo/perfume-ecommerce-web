@@ -99,7 +99,7 @@
                 "quantity" : quantity
             },
             success: function (response) {
-                alert(response)  ;
+                  ;
             }
         });
         loadSideCart();
